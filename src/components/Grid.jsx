@@ -17,9 +17,7 @@ const Grid = () => {
     <Spinner />
   ) : (
     <section className="center">
-      {status.map((status) => (
-        <Status key={status.id} status={status} />
-      ))}
+      <Status key={status.id} status={status} />
     </section>
   );
 };
