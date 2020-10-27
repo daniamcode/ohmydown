@@ -6,8 +6,8 @@ export const loadStatus = () => {
   return function (dispatch) {
     const isLoading = false;
     dispatch({
-      type: actionTypes.LOAD_GIFS,
-      payload: {status: mockData.status, isLoading}
+      type: actionTypes.LOAD_STATUS,
+      payload: {status: mockData, isLoading}
     });
   };
 };
