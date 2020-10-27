@@ -16,7 +16,7 @@ const Grid = () => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <section className="cards">
+    <section className="center">
       {status.map((status) => (
         <Status key={status.id} status={status} />
       ))}
