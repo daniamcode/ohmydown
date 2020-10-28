@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { loadStatus } from "../actions/statusActions";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const Status = ({ status }) => {
   let [url, setUrl] = useState("");
+  const dispatch = useDispatch();
 
   function onFieldChange(value, setValue) {
     setValue(value);
   }
-  
+
   function handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
-    loadStatus(url)
+    dispatch(loadStatus(url));
   }
 
   return (
@@ -19,21 +23,35 @@ const Status = ({ status }) => {
       <form className="status__form" onSubmit={handleSubmit}>
         <label className="status__form-label">Is your site up or down?</label>
         <div className="status__form-inner-container">
-        <input
-        className="status__form-input"
-          placeholder="Write your url here"
-          name="url"
-          required
-          value={url}
-          onChange={(event) => onFieldChange(event.target.value, setUrl)}
-        />
-
-        <button className="status__form-button" type="submit">
-          Check
-        </button>
+          <TextField
+            id="filled-basic"
+            variant="filled"
+            className="status__form-input"
+            placeholder="Write your url here"
+            name="url"
+            required
+            value={url}
+            onChange={(event) => onFieldChange(event.target.value, setUrl)}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            className="status__form-button"
+            type="submit"
+          >
+            Check
+          </Button>
         </div>
       </form>
-      <h1>Your website is {status.status}!</h1>
+      <section className="status__result">
+      {status === null ? (
+        <></>
+      ) : status === undefined ? (
+        <h1>Sorry, that was an error, try again!</h1>
+      ) : (
+        <h1>Your website is {status.statusText}!</h1>
+      )}
+      </section>
     </div>
   );
 };

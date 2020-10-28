@@ -1,23 +1,17 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { loadStatus } from "../actions/statusActions";
+import { useSelector } from "react-redux";
 import Status from "./Status";
 import Spinner from "./Spinner";
 
 const Grid = () => {
-  const dispatch = useDispatch();
   const status = useSelector((state) => state.status.status);
   const isLoading = useSelector((state) => state.status.isLoading);
 
-  useEffect(() => {
-    dispatch(loadStatus());
-  }, [dispatch]);
-
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  return (
     <section className="center">
-      <Status key={status.id} status={status} />
+      <Status 
+      //key={status.url}  
+      status={status} />
     </section>
   );
 };

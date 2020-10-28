@@ -79,7 +79,7 @@ input[type='text'] {
 }
 
 .status__form-label {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .status__form-inner-container {
@@ -90,12 +90,17 @@ input[type='text'] {
 }
 
 .status__form-input {
-  height: 25px;
   width: 80%;
-  margin-bottom: 5px;
 }
 
 .status__form-button {
-  width: 20%;
-  height: 25px;
+  width: 80%;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.status__result {
+  margin-top: 40px;
 }
