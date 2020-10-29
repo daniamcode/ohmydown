@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loadStatus } from "../actions/statusActions";
+import { showStatus } from "../actions/showStatusActions";
+import Spinner from "./Spinner";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-const Status = ({ status }) => {
+const Status = ({ show, status, isLoading }) => {
   let [url, setUrl] = useState("");
-  const dispatch = useDispatch();
+  let dispatch = useDispatch();
 
   function onFieldChange(value, setValue) {
     setValue(value);
@@ -15,6 +17,7 @@ const Status = ({ status }) => {
   function handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
+    dispatch(showStatus);
     dispatch(loadStatus(url));
   }
 
@@ -43,14 +46,17 @@ const Status = ({ status }) => {
           </Button>
         </div>
       </form>
+
       <section className="status__result">
-      {status === null ? (
-        <></>
-      ) : status === undefined ? (
-        <h1>Sorry, that was an error, try again!</h1>
-      ) : (
-        <h1>Your website is {status.statusText}!</h1>
-      )}
+        {!show ? (
+          <></>
+        ) : isLoading === true ? (
+          <Spinner />
+        ) : status === undefined ? (
+          <h1>Sorry, that was an error, try again!</h1>
+        ) : (
+          <h1>Your website is {status.statusText}!</h1>
+        )}
       </section>
     </div>
   );

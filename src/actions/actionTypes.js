@@ -1,4 +1,5 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    LOAD_STATUS: "LOAD_STATUS"
+    LOAD_STATUS: "LOAD_STATUS",
+    SHOW_STATUS: "SHOW_STATUS"
 }

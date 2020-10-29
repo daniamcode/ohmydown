@@ -1,10 +1,10 @@
-import React from 'react'
-import spinner from '../img/spinner.gif'
+import React from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const Spinner = () => {
-    return (
-        <img src={spinner} style={{width: '200px', margin: 'auto', display: 'block'}} alt='Loading' />
-    )
+export default function CircularIndeterminate() {
+  return (
+    <div>
+      <CircularProgress />
+    </div>
+  );
 }
-
-export default Spinner

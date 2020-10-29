@@ -21,11 +21,12 @@ export const loadStatus = (url) => {
     ).catch(error => {
       console.log('Sorry, that was an error, try again!');
     })
-    const isLoading = false;
+    let isLoading = false;
     dispatch({
       type: actionTypes.LOAD_STATUS,
       payload: {status, isLoading}
     });
-  };
+  }
 };
+
 
