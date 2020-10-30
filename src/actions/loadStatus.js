@@ -16,12 +16,17 @@ import actionTypes from "./actionTypes";
 
 export const loadStatus = (url) => {
   return async function (dispatch) {
+    let isLoading = true;
+    dispatch({
+      type: actionTypes.LOAD_STATUS,
+      payload: {isLoading}
+    });
     const status = await axios.post(
       'http://httpstat.us/200', {url}
     ).catch(error => {
       console.log('Sorry, that was an error, try again!');
     })
-    let isLoading = false;
+    isLoading = false;
     dispatch({
       type: actionTypes.LOAD_STATUS,
       payload: {status, isLoading}

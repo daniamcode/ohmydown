@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loadStatus } from "../actions/statusActions";
-import { showStatus } from "../actions/showStatusActions";
+import { loadStatus } from "../actions/loadStatus";
+import { showStatus } from "../actions/showStatus";
 import Spinner from "./Spinner";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";

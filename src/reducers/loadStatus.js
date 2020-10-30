@@ -1,6 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
-const statusReducer = (state = {status: null, isLoading: true}, action) => {
+const loadStatusReducer = (state = {status: null, isLoading: false}, action) => {
     switch(action.type) {
         case actionTypes.LOAD_STATUS:
             return action.payload;
@@ -9,4 +9,4 @@ const statusReducer = (state = {status: null, isLoading: true}, action) => {
     }
 }
 
-export default statusReducer;
+export default loadStatusReducer;

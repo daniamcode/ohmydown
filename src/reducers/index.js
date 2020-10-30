@@ -1,11 +1,11 @@
-import statusReducer from './status';
+import loadStatusReducer from './loadStatus';
 import showStatusReducer from './showStatus';
 import {
     combineReducers
 } from 'redux';
 
 const rootReducer = combineReducers({
-    status: statusReducer,
+    status: loadStatusReducer,
     showStatus: showStatusReducer
 })
 
