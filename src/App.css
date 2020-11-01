@@ -6,9 +6,8 @@
 
 html,
 body {
-  background: #000 url('img/bg.jpg') no-repeat center center/cover;
   height: 100vh;
-  color: #fff;
+  color: #000;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -54,7 +53,7 @@ header img {
   height: 100px;
 }
 
-input[type='text'] {
+input[type="text"] {
   display: block;
   padding: 10px;
   font-size: 20px;
@@ -103,4 +102,30 @@ input[type='text'] {
 
 .status__result {
   margin-top: 40px;
+  font-size: 40px;
+}
+
+.status__up {
+  background: #000 url("img/up.gif") no-repeat center center/cover;
+  color: #fff;
+}
+
+.status__down {
+  background: #000 url("img/error.gif") no-repeat center center/cover;
+  color: #fff;
+}
+
+.status__error {
+  background: #000 url("img/down.gif") no-repeat center center/cover;
+  color: #000;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3f51b5;
+  color: white;
+  text-align: center;
 }

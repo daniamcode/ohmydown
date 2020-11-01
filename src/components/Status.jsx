@@ -53,9 +53,12 @@ const Status = ({ show, status, isLoading }) => {
         ) : isLoading === true ? (
           <Spinner />
         ) : status === undefined ? (
-          <h1>Sorry, that was an error, try again!</h1>
+          <h1>{document.body.classList.remove("status__up")} {document.body.classList.add("status__error")}Sorry, that was an error, try again!</h1>
         ) : (
-          <h1>Your website is {status.statusText}!</h1>
+          <h1>
+            {document.body.classList.remove("status__error")} {document.body.classList.add("status__up")}Your website is{" "}
+            {status.statusText}!
+          </h1>
         )}
       </section>
     </div>
