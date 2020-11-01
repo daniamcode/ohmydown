@@ -1,10 +1,25 @@
 // import configureMockStore from 'redux-mock-store';
 // import thunk from 'redux-thunk';
 
-// import {
-//     showStatus
-// } from "./showStatus";
-// import actionTypes from "./actionTypes";
+import {
+    showStatus
+} from "./showStatus";
+import actionTypes from "./actionTypes";
+
+
+describe('dispatch', () => {
+    it('dispatches', () => {
+    const dispatch = jest.fn();
+    showStatus(dispatch);
+    
+    expect(dispatch.mock.calls.length).toBe(1);
+
+    expect(dispatch.mock.calls[0][0]).toEqual({
+        type: actionTypes.SHOW_STATUS,
+        payload: true
+    })
+})
+})
 
 // const middlewares = [thunk];
 // const mockStore = configureMockStore(middlewares);
