@@ -47,6 +47,7 @@ header img {
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
+  padding-top: 80px;
 }
 
 .search {
@@ -78,6 +79,7 @@ input[type="text"] {
 }
 
 .status__form-label {
+  margin-top: 5px;
   margin-bottom: 25px;
 }
 
