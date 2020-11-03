@@ -1,3 +1,25 @@
+import {
+    loadStatus
+} from "./loadStatus";
+import actionTypes from "./actionTypes";
+
+
+describe('dispatch', () => {
+    it('dispatches', () => {
+    const dispatch = jest.fn();
+    jest.mock('axios')
+    loadStatus(dispatch);
+    
+    expect(dispatch.mock.calls.length).toBe(2);
+
+    expect(dispatch.mock.calls[0][0]).toEqual({
+        type: actionTypes.LOAD_STATUS,
+        payload: true
+    })
+})
+})
+
+
 // import {
 //     loadStatus
 // } from "./loadStatus";

@@ -14,6 +14,8 @@ const Status = ({ show, status, isLoading }) => {
     setValue(value);
   }
 
+  console.log(status);
+
   function handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
@@ -53,11 +55,22 @@ const Status = ({ show, status, isLoading }) => {
         ) : isLoading === true ? (
           <Spinner />
         ) : status === undefined ? (
-          <h1>{document.body.classList.remove("status__up")} {document.body.classList.add("status__error")}Sorry, that was an error, try again!</h1>
+          <h1>
+            {document.body.classList.remove("status__up")} {document.body.classList.remove("status__down")}{" "}
+            {document.body.classList.add("status__error")}Sorry, that was an
+            error, try again!
+          </h1>
+        ) : status.data.status === "UP" ? (
+          <h1>
+            {document.body.classList.remove("status__error")} {document.body.classList.remove("status__down")}{" "}
+            {document.body.classList.add("status__up")}Your website is{" "}
+            {status.data.status}!
+          </h1>
         ) : (
           <h1>
-            {document.body.classList.remove("status__error")} {document.body.classList.add("status__up")}Your website is{" "}
-            {status.statusText}!
+            {document.body.classList.remove("status__error")} {document.body.classList.remove("status__up")}{" "}
+            {document.body.classList.add("status__down")}Your website is{" "}
+            {status.data.status}!
           </h1>
         )}
       </section>
