@@ -113,13 +113,19 @@ input[type="text"] {
 }
 
 .status__down {
+  background: #000 url("img/down.gif") no-repeat center center/cover;
+  color: #000;
+}
+
+.status__error {
   background: #000 url("img/error.gif") no-repeat center center/cover;
   color: #fff;
 }
 
-.status__error {
-  background: #000 url("img/down.gif") no-repeat center center/cover;
-  color: #000;
+.status__delay {
+  font-size: 24px;
+  color: #fff;
+  margin-top: 20px;
 }
 
 .footer {

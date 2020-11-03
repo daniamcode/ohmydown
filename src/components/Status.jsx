@@ -65,6 +65,7 @@ const Status = ({ show, status, isLoading }) => {
             {document.body.classList.remove("status__error")} {document.body.classList.remove("status__down")}{" "}
         {document.body.classList.add("status__up")}{status.data.url} is{" "}
             {status.data.status}!
+            <p className="status__delay">There was a delay of {status.data.delay} ms.</p>
           </h1>
         ) : (
           <h1>
