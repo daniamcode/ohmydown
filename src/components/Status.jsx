@@ -63,13 +63,13 @@ const Status = ({ show, status, isLoading }) => {
         ) : status.data.status === "UP" ? (
           <h1>
             {document.body.classList.remove("status__error")} {document.body.classList.remove("status__down")}{" "}
-            {document.body.classList.add("status__up")}Your website is{" "}
+        {document.body.classList.add("status__up")}{status.data.url} is{" "}
             {status.data.status}!
           </h1>
         ) : (
           <h1>
             {document.body.classList.remove("status__error")} {document.body.classList.remove("status__up")}{" "}
-            {document.body.classList.add("status__down")}Your website is{" "}
+            {document.body.classList.add("status__down")}{status.data.url} is{" "}
             {status.data.status}!
           </h1>
         )}
