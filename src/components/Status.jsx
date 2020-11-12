@@ -3,8 +3,11 @@ import { useDispatch } from "react-redux";
 import { loadStatus } from "../actions/loadStatus";
 import { showStatus } from "../actions/showStatus";
 import Spinner from "./Spinner";
+import ControlledPaginationGrid from "./ControlledPaginationGrid";
+import EnhancedTable from "./EnhancedTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
 
 const Status = ({ show, status, isLoading }) => {
   let [url, setUrl] = useState("");
@@ -13,8 +16,6 @@ const Status = ({ show, status, isLoading }) => {
   function onFieldChange(value, setValue) {
     setValue(value);
   }
-
-  console.log(status);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -32,7 +33,7 @@ const Status = ({ show, status, isLoading }) => {
             id="filled-basic"
             variant="filled"
             className="status__form-input"
-            placeholder="Write your url here"
+            placeholder="Write any url here"
             name="url"
             required
             value={url}
@@ -56,25 +57,33 @@ const Status = ({ show, status, isLoading }) => {
           <Spinner />
         ) : status === undefined ? (
           <h1>
-            {document.body.classList.remove("status__up")} {document.body.classList.remove("status__down")}{" "}
+            {document.body.classList.remove("status__up")}{" "}
+            {document.body.classList.remove("status__down")}{" "}
             {document.body.classList.add("status__error")}Sorry, that was an
             error, try again!
           </h1>
         ) : status.data.status === "UP" ? (
           <h1>
-            {document.body.classList.remove("status__error")} {document.body.classList.remove("status__down")}{" "}
-        {document.body.classList.add("status__up")}{status.data.url} is{" "}
-            {status.data.status}!
-            <p className="status__delay">There was a delay of {status.data.delay} ms.</p>
+            {document.body.classList.remove("status__error")}{" "}
+            {document.body.classList.remove("status__down")}{" "}
+            {document.body.classList.add("status__up")}
+            {status.data.url} is {status.data.status}!
+            <p className="status__delay">
+              There was a delay of {status.data.delay} ms.
+            </p>
           </h1>
         ) : (
           <h1>
-            {document.body.classList.remove("status__error")} {document.body.classList.remove("status__up")}{" "}
-            {document.body.classList.add("status__down")}{status.data.url} is{" "}
-            {status.data.status}!
+            {document.body.classList.remove("status__error")}{" "}
+            {document.body.classList.remove("status__up")}{" "}
+            {document.body.classList.add("status__down")}
+            {status.data.url} is {status.data.status}!
           </h1>
         )}
       </section>
+
+      <EnhancedTable />
+      <br></br>
     </div>
   );
 };

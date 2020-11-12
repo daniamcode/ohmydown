@@ -104,27 +104,31 @@ input[type="text"] {
 
 .status__result {
   margin-top: 40px;
-  font-size: 32px;
+  font-size: 24px;
+  margin-bottom: 40px;
 }
 
 .status__up {
-  background: #000 url("img/up.gif") no-repeat center center/cover;
-  color: #fff;
+  /* background: #000 url("img/up.gif") no-repeat center center/cover; */
+  background-color: lightgreen;
+  color: #000;
 }
 
 .status__down {
-  background: #000 url("img/down.gif") no-repeat center center/cover;
+  /* background: #000 url("img/down.gif") no-repeat center center/cover; */
+  background-color: red;
   color: #000;
 }
 
 .status__error {
-  background: #000 url("img/error.gif") no-repeat center center/cover;
-  color: #fff;
+  /* background: #000 url("img/error.gif") no-repeat center center/cover; */
+  background-color: yellow;
+  color: #000;
 }
 
 .status__delay {
-  font-size: 24px;
-  color: #fff;
+  font-size: 20px;
+  color: #000;
   margin-top: 20px;
 }
 
