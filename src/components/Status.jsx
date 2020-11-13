@@ -33,7 +33,7 @@ const Status = ({ show, status, isLoading }) => {
   return (
     <div className="status__form-container">
       <form className="status__form" onSubmit={handleSubmit}>
-        <label className="status__form-label">Is your site up or down?</label>
+        <label className="status__form-label">Welcome to Caucana!<br />Is your site up or down?</label>
         <div className="status__form-inner-container">
           <TextField
             id="filled-basic"

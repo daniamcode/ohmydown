@@ -16,7 +16,7 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <p className="header__dropdown-categories">Options</p>
+          <p className="header__dropdown-categories">Resources</p>
         </AccordionSummary>
         <AccordionDetails>
           <Link className="header__dropdown-subcategories" to="/about">
