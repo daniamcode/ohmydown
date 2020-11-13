@@ -16,9 +16,7 @@ a {
 }
 
 .container {
-  max-width: 1100px;
   margin: auto;
-  padding: 0 20px;
   margin-bottom: 20px;
 }
 
@@ -31,14 +29,6 @@ a {
   padding: 10px 15px;
   border: 0;
   margin: 10px 0;
-}
-
-header {
-  height: 200px;
-}
-
-header img {
-  width: 200px;
 }
 
 .center {
@@ -75,12 +65,13 @@ input[type="text"] {
   flex-direction: column;
   align-items: center;
   height: 120px;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .status__form-label {
   margin-top: 5px;
   margin-bottom: 25px;
+  font-size: larger;
 }
 
 .status__form-inner-container {

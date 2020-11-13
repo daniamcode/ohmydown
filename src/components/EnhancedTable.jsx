@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { lighten, makeStyles } from "@material-ui/core/styles";
@@ -183,7 +184,7 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Analized Websites:
+          Websites checked:
         </Typography>
       )}
 
@@ -345,7 +346,7 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="10px"
                       >
-                        {row.name}
+                        <Link to={`/${row.name}`}>{row.name}</Link>
                       </TableCell>
                       <TableCell align="right">{row.uptime}</TableCell>
                       <TableCell align="right">{row.delay}</TableCell>
