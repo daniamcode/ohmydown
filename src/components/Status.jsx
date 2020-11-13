@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loadStatus } from "../actions/loadStatus";
 import { showStatus } from "../actions/showStatus";
+import { hideStatus } from "../actions/hideStatus";
 import Spinner from "./Spinner";
 //import ControlledPaginationGrid from "./ControlledPaginationGrid";
 import EnhancedTable from "./EnhancedTable";
@@ -14,6 +15,10 @@ const Status = ({ show, status, isLoading }) => {
   let dispatch = useDispatch();
 
   function onFieldChange(value, setValue) {
+    dispatch(hideStatus);
+    document.body.classList.remove("status__up")
+    document.body.classList.remove("status__down")
+    document.body.classList.remove("status__error")
     document.body.classList.add("status__initial")
     setValue(value);
   }
