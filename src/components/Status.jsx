@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { loadStatus } from "../actions/loadStatus";
 import { showStatus } from "../actions/showStatus";
 import Spinner from "./Spinner";
-import ControlledPaginationGrid from "./ControlledPaginationGrid";
+//import ControlledPaginationGrid from "./ControlledPaginationGrid";
 import EnhancedTable from "./EnhancedTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -14,6 +14,7 @@ const Status = ({ show, status, isLoading }) => {
   let dispatch = useDispatch();
 
   function onFieldChange(value, setValue) {
+    document.body.classList.add("status__initial")
     setValue(value);
   }
 
@@ -57,6 +58,7 @@ const Status = ({ show, status, isLoading }) => {
           <Spinner />
         ) : status === undefined ? (
           <h1>
+            {document.body.classList.remove("status__initial")}{" "}
             {document.body.classList.remove("status__up")}{" "}
             {document.body.classList.remove("status__down")}{" "}
             {document.body.classList.add("status__error")}Sorry, that was an
@@ -64,6 +66,7 @@ const Status = ({ show, status, isLoading }) => {
           </h1>
         ) : status.data.status === "UP" ? (
           <h1>
+            {document.body.classList.remove("status__initial")}{" "}
             {document.body.classList.remove("status__error")}{" "}
             {document.body.classList.remove("status__down")}{" "}
             {document.body.classList.add("status__up")}
@@ -74,6 +77,7 @@ const Status = ({ show, status, isLoading }) => {
           </h1>
         ) : (
           <h1>
+            {document.body.classList.remove("status__initial")}{" "}
             {document.body.classList.remove("status__error")}{" "}
             {document.body.classList.remove("status__up")}{" "}
             {document.body.classList.add("status__down")}
