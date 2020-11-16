@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Status from "./Status";
+import Status from "./LandingPage";
 
 const Grid = () => {
   const status = useSelector((state) => state.status.status);

@@ -14,7 +14,6 @@ export const loadStatus = (url) => {
         console.log('Sorry, that was an error, try again!');
       })
       isLoading = false;
-      console.log(status)
     dispatch({
       type: actionTypes.LOAD_STATUS,
       payload: {status, isLoading}

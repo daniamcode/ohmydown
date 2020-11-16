@@ -9,8 +9,9 @@ import EnhancedTable from "./EnhancedTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import "./LandingPage.css";
 
-const Status = ({ show, status, isLoading }) => {
+const LandingPage = ({ show, status, isLoading }) => {
   let [url, setUrl] = useState("");
   let dispatch = useDispatch();
 
@@ -104,4 +105,4 @@ const Status = ({ show, status, isLoading }) => {
   );
 };
 
-export default Status;
+export default LandingPage;
