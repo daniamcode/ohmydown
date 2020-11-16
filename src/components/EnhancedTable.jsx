@@ -184,7 +184,7 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Websites checked:
+          Websites checked (click for detail):
         </Typography>
       )}
 

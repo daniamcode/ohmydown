@@ -4,13 +4,25 @@ import { Link } from "react-router-dom";
 import Accordion from "./SimpleAccordion";
 import LoginButton from "./Login";
 import "./Header.css";
+import { hideStatus } from "../actions/hideStatus";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
+  let dispatch = useDispatch();
+
+  function handleClick() {
+    dispatch(hideStatus);
+  }
   return (
     <section className="header">
       <div>
         <Link to="/">
-          <img className="header__logo" src={logo} alt="Logo" />
+          <img
+            className="header__logo"
+            src={logo}
+            alt="Logo"
+            onClick={handleClick}
+          />
         </Link>
       </div>
       <div className="header__dropdown">

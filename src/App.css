@@ -100,31 +100,31 @@ input[type="text"] {
 }
 
 .status__up {
-  /* background: #000 url("img/up.gif") no-repeat center center/cover; */
-  background-color: lightgreen;
-  color: #000;
+  color:green
 }
 
 .status__down {
-  /* background: #000 url("img/down.gif") no-repeat center center/cover; */
-  background-color: red;
-  color: #000;
+  color: red;
 }
 
 .status__error {
-  /* background: #000 url("img/error.gif") no-repeat center center/cover; */
-  background-color: yellow;
-  color: #000;
+  color: goldenrod;
 }
 
 .status__initial {
-  background-color: #fff;
+  color: #000;
 }
 
 .status__delay {
   font-size: 20px;
   color: #000;
   margin-top: 20px;
+}
+
+.link-to-profile {
+  width: 70%;
+  margin: auto; 
+  margin-bottom: 30px;
 }
 
 .footer {

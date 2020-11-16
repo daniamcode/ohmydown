@@ -6,6 +6,7 @@ import Detail from './components/Detail'
 import Footer from './components/Footer'
 import About from './components/About'
 import Contact from './components/Contact'
+import Profile from './components/Profile'
 import { Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ function App(props) {
 				<Route path="/" exact component={Grid} />
 				<Route path="/about" component={About} />
 				<Route path="/contact" component={Contact} />
+				<Route path="/profile" component={Profile} />
 				<Route path="/:url" component={Detail} />
 				
 			</Switch>
