@@ -1,9 +1,19 @@
+.detail {
+    padding-top: 90px;
+}
+
 .detail__title {
     width: 80%;
     margin: auto;
 }
 
 .detail__chart {
-    width: 80%;
+    width: 50%;
     margin: auto;
+}
+
+.detail__comments {
+    width: 50%;
+    margin: auto; 
+    padding-top: 40px;
 }
