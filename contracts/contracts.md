@@ -1,26 +1,26 @@
-#Contracts
+# Contracts
 
-##Landing page: check status
+## Landing page: check status
 
-###Request
+### Request
 {url: 'http://www.google.es'}
 on POST route: /status
 
-###Response
+### Response
 
 {stauts: 'UP',
 url: 'http://www.google.es',
 delay: 831}
 
-##Landing page: List websites
+## Landing page: List websites
 
-###Request
+### Request
 {page: 3}
 on POST route: /landing-list
 
 (10 results by page)
 
-###Response
+### Response
 {numUrls: 10214,
 data: [{web: yavendras.com,
 status: 'UP',
