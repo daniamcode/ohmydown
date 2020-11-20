@@ -4,7 +4,6 @@ import { loadStatus } from "../actions/loadStatus";
 import { showStatus } from "../actions/showStatus";
 import { hideStatus } from "../actions/hideStatus";
 import Spinner from "./Spinner";
-//import ControlledPaginationGrid from "./ControlledPaginationGrid";
 import EnhancedTable from "./EnhancedTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -17,10 +16,6 @@ const LandingPage = ({ show, status, isLoading }) => {
 
   function onFieldChange(value, setValue) {
     dispatch(hideStatus);
-    document.body.classList.remove("status__up");
-    document.body.classList.remove("status__down");
-    document.body.classList.remove("status__error");
-    document.body.classList.add("status__initial");
     setValue(value);
   }
 

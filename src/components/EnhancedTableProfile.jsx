@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -14,13 +14,13 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-//import Checkbox from "@material-ui/core/Checkbox";
+import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
-//import FilterListIcon from "@material-ui/icons/FilterList";
+import FilterListIcon from "@material-ui/icons/FilterList";
 
 function createData(name, uptime, delay) {
   return { name, uptime, delay };
@@ -30,19 +30,6 @@ const rows = [
   createData("sport.es", 97.32, 235),
   createData("yavendras.com", 96.21, 432),
   createData("google.com", 95.41, 211),
-  createData("upc.cat", 94.83, 421),
-  createData("fcb.cat", 89.54, 87),
-  createData("ups.com", 87.64, 127),
-  createData("yahoo.com", 86.23, 117),
-  createData("nyt.com", 84.29, 85),
-  createData("pepsi.cat", 82.43, 88),
-  createData("aavv.cat", 81.83, 155),
-  createData("gym.com", 81.64, 1112),
-  createData("cinema.com", 80.46, 768),
-  createData("rest.es", 79.23, 234),
-  createData("glovo.com", 78.12, 387),
-  createData("rakuten.com", 75.04, 890),
-  createData("cbs.com", 65.06, 843),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -94,14 +81,14 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {/* <TableCell padding="checkbox">
+        <TableCell padding="checkbox">
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{ "aria-label": "select all desserts" }}
           />
-        </TableCell> */}
+        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -161,6 +148,17 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
+ 
+  useEffect(() => {
+    console.log(rows.length)
+    
+    
+      }, []);
+
+  function handleDelete (event, url) {
+    rows.splice(1,1)
+    console.log(rows)
+}
 
   return (
     <Toolbar
@@ -184,14 +182,14 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Websites checked (click for detail):
+          Websites followed (click link for detail or select checkbox to delete):
         </Typography>
       )}
 
-      {/* {numSelected > 0 ? (
+      {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
-            <DeleteIcon />
+            <DeleteIcon onClick={handleDelete}/>
           </IconButton>
         </Tooltip>
       ) : (
@@ -201,7 +199,7 @@ const EnhancedTableToolbar = (props) => {
           </IconButton>
         </Tooltip>
         
-      )} */}
+      )}
     </Toolbar>
   );
 };
@@ -250,34 +248,37 @@ export default function EnhancedTable() {
     setOrderBy(property);
   };
 
-//   const handleSelectAllClick = (event) => {
-//     if (event.target.checked) {
-//       const newSelecteds = rows.map((n) => n.name);
-//       setSelected(newSelecteds);
-//       return;
-//     }
-//     setSelected([]);
-//   };
+  const handleSelectAllClick = (event) => {
+    if (event.target.checked) {
+      const newSelecteds = rows.map((n) => n.name);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
 
-//   const handleClick = (event, name) => {
-//     const selectedIndex = selected.indexOf(name);
-//     let newSelected = [];
+  
 
-//     if (selectedIndex === -1) {
-//       newSelected = newSelected.concat(selected, name);
-//     } else if (selectedIndex === 0) {
-//       newSelected = newSelected.concat(selected.slice(1));
-//     } else if (selectedIndex === selected.length - 1) {
-//       newSelected = newSelected.concat(selected.slice(0, -1));
-//     } else if (selectedIndex > 0) {
-//       newSelected = newSelected.concat(
-//         selected.slice(0, selectedIndex),
-//         selected.slice(selectedIndex + 1)
-//       );
-//     }
 
-//     setSelected(newSelected);
-//   };
+  const handleClick = (event, name) => {
+    const selectedIndex = selected.indexOf(name);
+    let newSelected = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, name);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+
+    setSelected(newSelected);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -294,8 +295,10 @@ export default function EnhancedTable() {
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+//   const emptyRows =
+//     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+
 
   return (
     <div className={classes.root}>
@@ -313,7 +316,7 @@ export default function EnhancedTable() {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              //onSelectAllClick={handleSelectAllClick}
+              onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
@@ -327,19 +330,19 @@ export default function EnhancedTable() {
                   return (
                     <TableRow
                       hover
-                      //onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      {/* <TableCell padding="checkbox">
+                      <TableCell padding="checkbox">
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ "aria-labelledby": labelId }}
                         />
-                      </TableCell> */}
+                      </TableCell>
                       <TableCell
                         component="th"
                         id={labelId}
@@ -353,16 +356,16 @@ export default function EnhancedTable() {
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
+              {/* {emptyRows > 0 && (
                 <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
-              )}
+              )} */}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[10]}
+          rowsPerPageOptions={[5]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}

@@ -1,3 +1,22 @@
 .profile {
     padding-top: 90px;
+    height: 700px;
+    width: 60rem;
+    margin: auto;
+    
+}
+
+.profile__add-title{
+    margin-top: 20px;
+}
+
+.profile__add{
+    width: 60%;
+    margin: 30px auto 60px auto;
+}
+
+.profile__table {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
