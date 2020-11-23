@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import Status from "./LandingPage";
 
 const Grid = () => {
-  const loadStatusResponse = useSelector((state) => state.loadStatus);
-  const show = useSelector((state) => state.showStatus);
+  const loadStatusResponse = useSelector((state) => state.statusReducer.loadStatus);
+  const show = useSelector((state) => state.statusReducer.showStatus);
 
   return (
     <section className="center">
