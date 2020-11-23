@@ -146,10 +146,12 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
+  const { numSelected, selected } = props;
 
-  function handleDelete() {
-    deleteProfileWebs();
+
+  function handleDelete(selected) {
+      console.log(selected.length)
+    deleteProfileWebs(selected);
   }
 
   return (
@@ -182,7 +184,7 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
-            <DeleteIcon onClick={handleDelete}/>
+            <DeleteIcon onClick={handleDelete(selected)}/>
           </IconButton>
         </Tooltip>
       ) : (
@@ -197,7 +199,7 @@ const EnhancedTableToolbar = (props) => {
 };
 
 EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
+  numSelected: PropTypes.number.isRequired
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -230,6 +232,7 @@ export default function EnhancedTable() {
   dispatch(loadProfileWebs());
   const rows = useSelector((state) => state.profileReducer.profileUrls);
   console.log(rows)
+  
 
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
@@ -238,8 +241,6 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  console.log(rows);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -297,7 +298,7 @@ export default function EnhancedTable() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} selected={selected} />
         <TableContainer>
           <Table
             className={classes.table}

@@ -33,6 +33,9 @@ export const loadStatus = (url) => {
                 }
             )
             .catch(error => {
+                if(!error.response) {
+                    error.response = 'Network Error'
+                }
                 isLoading = false;
                 dispatch({
                     type: actionTypes.LOAD_STATUS,

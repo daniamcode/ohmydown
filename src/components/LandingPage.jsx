@@ -74,7 +74,21 @@ const LandingPage = ({ show, loadStatusResponse }) => {
             {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was a
             timeout, try again!
           </h1>
-        ) : loadStatusResponse?.response?.data?.status === "UP" ? (
+        ) : (loadStatusResponse?.error?.response?.status >= 500 || loadStatusResponse?.error?.response?.status < 600) ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, our server is overloaded, please try again later!
+          </h1>
+        ) : loadStatusResponse?.error?.response === 'Network Error' ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, our server is down now, please try again later!
+          </h1>
+        ) : loadStatusResponse?.response?.data?.status === 'UP' ? (
           <h1>
             {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
             {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
@@ -85,7 +99,7 @@ const LandingPage = ({ show, loadStatusResponse }) => {
               There was a delay of {loadStatusResponse?.response?.data?.delay} ms.
             </p>
           </h1>
-        ) : loadStatusResponse?.response?.data?.status === "DOWN" ? (
+        ) : loadStatusResponse?.response?.data?.status === 'DOWN' ? (
           <h1>
             {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
             {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
@@ -93,15 +107,7 @@ const LandingPage = ({ show, loadStatusResponse }) => {
             {document.getElementById('status-message')?.classList.add("status__down")}
             {loadStatusResponse?.response?.data?.url} is {loadStatusResponse?.response?.data?.status}!
           </h1>
-        ) : (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was an
-            error, try again!
-          </h1>
-        )}
+        ) : <></>}
       </section>
       <p className="link-to-profile">
         Go to your <Link to="/profile">Profile</Link> and add up to 5 websites

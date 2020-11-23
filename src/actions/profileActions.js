@@ -11,11 +11,11 @@ export const loadProfileWebs = () => {
   )
 };
 
-export const deleteProfileWebs = (id) => {
+export const deleteProfileWebs = (name) => {
   return (
     {
       type: actionTypes.DELETE_PROFILE_WEBS,
-      payload: id
+      payload: name
     }
   )
 };
