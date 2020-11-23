@@ -229,7 +229,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EnhancedTable() {
   let dispatch = useDispatch();
   dispatch(loadProfileWebs());
-  const rows = useSelector((state) => state.loadProfileWebs);
+  const rows = useSelector((state) => state.profileReducer.loadProfileUrls);
   console.log(rows)
 
   const classes = useStyles();
