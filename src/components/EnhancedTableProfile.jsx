@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -147,11 +147,11 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected, selected } = props;
+  const dispatch = useDispatch();
+  const deleteWebsites = (selected) => dispatch( deleteProfileWebs(selected) ) 
 
-
-  function handleDelete(selected) {
-      console.log(selected.length)
-    deleteProfileWebs(selected);
+  function handleDelete() {
+    deleteWebsites(selected);
   }
 
   return (
@@ -184,7 +184,7 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
-            <DeleteIcon onClick={handleDelete(selected)}/>
+            <DeleteIcon onClick={handleDelete} />
           </IconButton>
         </Tooltip>
       ) : (
@@ -199,7 +199,7 @@ const EnhancedTableToolbar = (props) => {
 };
 
 EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired
+  numSelected: PropTypes.number.isRequired,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -228,11 +228,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
-  let dispatch = useDispatch();
-  dispatch(loadProfileWebs());
+  const dispatch = useDispatch();
   const rows = useSelector((state) => state.profileReducer.profileUrls);
-  console.log(rows)
-  
+
+  useEffect(() => {
+    dispatch(loadProfileWebs())
+  }, [dispatch]);
 
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
@@ -298,7 +299,10 @@ export default function EnhancedTable() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} selected={selected} />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          selected={selected}
+        />
         <TableContainer>
           <Table
             className={classes.table}
