@@ -11,7 +11,7 @@ const Header = () => {
   let dispatch = useDispatch();
 
   function handleClick() {
-    dispatch(hideStatus);
+    dispatch(hideStatus());
   }
   return (
     <section className="header">

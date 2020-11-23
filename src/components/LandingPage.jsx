@@ -10,22 +10,22 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
 
-const LandingPage = ({ show, status, isLoading }) => {
+const LandingPage = ({ show, loadStatusResponse }) => {
   let [url, setUrl] = useState("");
   let dispatch = useDispatch();
 
   function onFieldChange(value, setValue) {
-    dispatch(hideStatus);
+    dispatch(hideStatus());
     setValue(value);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
-    dispatch(showStatus);
+    dispatch(showStatus());
     dispatch(loadStatus(url));
   }
-
+ 
   return (
     <div className="status__form-container">
       <form className="status__form" onSubmit={handleSubmit}>
@@ -58,34 +58,50 @@ const LandingPage = ({ show, status, isLoading }) => {
       <section id="status-message" className="status__result">
         {!show ? (
           <></>
-        ) : isLoading === true ? (
+        ) : loadStatusResponse.isLoading === true ? (
           <Spinner />
-        ) : status === undefined ? (
+        ) : loadStatusResponse?.error?.response?.status === 400 ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was an
+            invalid domain name, try again!
+          </h1>
+        ) : loadStatusResponse?.error?.response?.status === 408 ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was a
+            timeout, try again!
+          </h1>
+        ) : loadStatusResponse?.response?.data?.status === "UP" ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__up")}
+            {loadStatusResponse?.response?.data?.url} is {loadStatusResponse?.response?.data?.status}!
+            <p className="status__delay">
+              There was a delay of {loadStatusResponse?.response?.data?.delay} ms.
+            </p>
+          </h1>
+        ) : loadStatusResponse?.response?.data?.status === "DOWN" ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__down")}
+            {loadStatusResponse?.response?.data?.url} is {loadStatusResponse?.response?.data?.status}!
+          </h1>
+        ) : (
           <h1>
             {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
             {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
             {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
             {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was an
             error, try again!
-          </h1>
-        ) : status.data.status === "UP" ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__up")}
-            {status.data.url} is {status.data.status}!
-            <p className="status__delay">
-              There was a delay of {status.data.delay} ms.
-            </p>
-          </h1>
-        ) : (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__down")}
-            {status.data.url} is {status.data.status}!
           </h1>
         )}
       </section>

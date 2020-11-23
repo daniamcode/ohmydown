@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     LOAD_STATUS: "LOAD_STATUS",
-    SHOW_STATUS: "SHOW_STATUS"
+    SHOW_STATUS: "SHOW_STATUS",
+    LOAD_PROFILE_WEBS: "LOAD_PROFILE_WEBS",
+    DELETE_PROFILE_WEBS: "DELETE_PROFILE_WEBS"
 }

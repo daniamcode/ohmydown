@@ -6,19 +6,33 @@ export const loadStatus = (url) => {
     let isLoading = true;
     dispatch({
       type: actionTypes.LOAD_STATUS,
-      payload: {isLoading}
+      payload: {
+        isLoading
+      }
     });
-    const status = await axios.post(
-      'http://localhost:8080/status', {url}
-      ).catch(error => {
-        console.log('Sorry, that was an error, try again!');
+    const response = await axios.post(
+        'http://localhost:8080/status', {
+          url
+        }
+      )
+      .catch(error => {
+        isLoading = false;
+        dispatch({
+          type: actionTypes.LOAD_STATUS,
+          payload: {
+            error, isLoading
+          }
+        })
       })
+    if (response !== undefined) {
       isLoading = false;
-    dispatch({
-      type: actionTypes.LOAD_STATUS,
-      payload: {status, isLoading}
-    });
+      dispatch({
+        type: actionTypes.LOAD_STATUS,
+        payload: {
+          response,
+          isLoading
+        }
+      });
+    }
   }
 };
-
-

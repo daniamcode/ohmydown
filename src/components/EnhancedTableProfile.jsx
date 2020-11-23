@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -21,16 +21,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
-
-function createData(name, uptime, delay) {
-  return { name, uptime, delay };
-}
-
-const rows = [
-  createData("sport.es", 97.32, 235),
-  createData("yavendras.com", 96.21, 432),
-  createData("google.com", 95.41, 211),
-];
+//import rows from '../data/mock-data';
+import { useSelector } from "react-redux";
+import { loadProfileWebs } from "../actions/loadProfileWebs";
+import { deleteProfileWebs } from "../actions/deleteProfileWebs";
+import { useDispatch } from "react-redux";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -61,7 +56,12 @@ function stableSort(array, comparator) {
 const headCells = [
   { id: "name", numeric: false, disablePadding: true, label: "Url" },
   { id: "uptime", numeric: true, disablePadding: false, label: "Uptime (%)" },
-  { id: "delay", numeric: true, disablePadding: false, label: "Avg. Delay (ms)" },
+  {
+    id: "delay",
+    numeric: true,
+    disablePadding: false,
+    label: "Avg. Delay (ms)",
+  },
 ];
 
 function EnhancedTableHead(props) {
@@ -148,17 +148,10 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
- 
-  useEffect(() => {
-    console.log(rows.length)
-    
-    
-      }, []);
 
-  function handleDelete (event, url) {
-    rows.splice(1,1)
-    console.log(rows)
-}
+  function handleDelete() {
+    deleteProfileWebs();
+  }
 
   return (
     <Toolbar
@@ -182,7 +175,8 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Websites followed (click link for detail or select checkbox to delete):
+          Websites followed (click link for detail or select checkbox to
+          delete):
         </Typography>
       )}
 
@@ -198,7 +192,6 @@ const EnhancedTableToolbar = (props) => {
             <FilterListIcon />
           </IconButton>
         </Tooltip>
-        
       )}
     </Toolbar>
   );
@@ -215,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: "100%",
     marginBottom: theme.spacing(2),
-    backgroundColor: 'transparent'
+    backgroundColor: "transparent",
   },
   table: {
     minWidth: 250,
@@ -234,6 +227,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
+  let dispatch = useDispatch();
+  dispatch(loadProfileWebs());
+  const rows = useSelector((state) => state.loadProfileWebs);
+  console.log(rows)
+
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("uptime");
@@ -241,6 +239,8 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  console.log(rows);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -256,9 +256,6 @@ export default function EnhancedTable() {
     }
     setSelected([]);
   };
-
-  
-
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -295,10 +292,8 @@ export default function EnhancedTable() {
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
-//   const emptyRows =
-//     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
-
+  //   const emptyRows =
+  //     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>

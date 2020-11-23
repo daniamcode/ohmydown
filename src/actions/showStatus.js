@@ -1,9 +1,9 @@
 import actionTypes from "./actionTypes";
 
 
-export const showStatus = (dispatch) => {
+export const showStatus = () => {
   let showStatus = true;
-  return dispatch({
+  return ({
     type: actionTypes.SHOW_STATUS,
     payload: showStatus
   });
