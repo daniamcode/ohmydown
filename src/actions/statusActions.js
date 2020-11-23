@@ -47,6 +47,9 @@ export const loadStatus = (url) => {
             })
         if (response !== undefined) {
             isLoading = false;
+            if(response.data.url.length > 35) {
+                response.data.url = response.data.url.slice(0, 35) + '...'
+            }
             dispatch({
                 type: actionTypes.LOAD_STATUS,
                 payload: {
