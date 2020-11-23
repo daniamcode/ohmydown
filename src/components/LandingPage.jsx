@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loadStatus } from "../actions/loadStatus";
-import { showStatus } from "../actions/showStatus";
-import { hideStatus } from "../actions/hideStatus";
+import { showStatus, hideStatus, loadStatus } from "../actions/statusActions";
 import Spinner from "./Spinner";
-import EnhancedTable from "./EnhancedTable";
+import EnhancedTable from "./EnhancedTableLanding";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";

@@ -10,3 +10,13 @@ export const loadProfileWebs = () => {
     }
   )
 };
+
+export const deleteProfileWebs = (id) => {
+  return (
+    {
+      type: actionTypes.DELETE_PROFILE_WEBS,
+      payload: id
+    }
+  )
+};
+

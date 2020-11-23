@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Accordion from "./SimpleAccordion";
 import LoginButton from "./Login";
 import "./Header.css";
-import { hideStatus } from "../actions/hideStatus";
+import { hideStatus } from "../actions/statusActions";
 import { useDispatch } from "react-redux";
 
 const Header = () => {

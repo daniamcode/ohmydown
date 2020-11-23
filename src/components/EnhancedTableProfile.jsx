@@ -23,8 +23,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 //import rows from '../data/mock-data';
 import { useSelector } from "react-redux";
-import { loadProfileWebs } from "../actions/loadProfileWebs";
-import { deleteProfileWebs } from "../actions/deleteProfileWebs";
+import { loadProfileWebs, deleteProfileWebs } from "../actions/profileActions";
 import { useDispatch } from "react-redux";
 
 function descendingComparator(a, b, orderBy) {
@@ -229,7 +228,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EnhancedTable() {
   let dispatch = useDispatch();
   dispatch(loadProfileWebs());
-  const rows = useSelector((state) => state.profileReducer.loadProfileUrls);
+  const rows = useSelector((state) => state.profileReducer.profileUrls);
   console.log(rows)
 
   const classes = useStyles();
