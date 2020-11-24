@@ -18,11 +18,9 @@ const profileReducers = (state = initialState, action) => {
         profileUrls: [...state.profileUrls, action.payload]
       };
     case actionTypes.DELETE_PROFILE_WEBS:
-      return {
+    return {
         ...state,
-        profileUrls: state.profileUrls.filter(url => (
-      
-          url.name !== action.payload[0])),
+        profileUrls: state.profileUrls.filter(x => !action.payload.includes(x.name))
       };
     default:
       return state;
