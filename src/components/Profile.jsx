@@ -25,7 +25,7 @@ const Profile = (props) => {
       <h1 className="profile__title">Alex Moleiro's Profile</h1>
       <div className="profile__add-title">
         <h3>Add a url to be followed (up to 5):</h3>
-        <form className="profile__add" onSubmit={handleSubmit}>
+        <form className="profile__add" key={url} onSubmit={handleSubmit}>
           <div className="status__form-inner-container">
             <TextField
               id="filled-basic"
