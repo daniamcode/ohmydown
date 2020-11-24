@@ -2,24 +2,42 @@
 // import thunk from 'redux-thunk';
 
 import {
-    showStatus
-} from "./showStatus";
+    showStatus, hideStatus, loadStatus
+} from "./statusActions";
 import actionTypes from "./actionTypes";
 
 
-describe('dispatch', () => {
+describe('showStatus', () => {
+    it('returns expected value', () => {
+    const result = showStatus();
+
+    expect(result.payload).toBe(true)
+})
+})
+
+describe('hideStatus', () => {
+    it('returns expected value', () => {
+    const result = hideStatus();
+
+    expect(result.payload).toBe(false)
+})
+})
+
+describe('dispatch loadStatus', () => {
     it('dispatches', () => {
     const dispatch = jest.fn();
-    showStatus(dispatch);
+    jest.mock('axios')
+    loadStatus(dispatch);
     
-    expect(dispatch.mock.calls.length).toBe(1);
+    expect(dispatch.mock.calls.length).toBe(2);
 
     expect(dispatch.mock.calls[0][0]).toEqual({
-        type: actionTypes.SHOW_STATUS,
+        type: actionTypes.LOAD_STATUS,
         payload: true
     })
 })
 })
+
 
 // const middlewares = [thunk];
 // const mockStore = configureMockStore(middlewares);

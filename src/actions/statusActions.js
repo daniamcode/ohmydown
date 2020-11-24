@@ -33,7 +33,7 @@ export const loadStatus = (url) => {
                 }
             )
             .catch(error => {
-                if(!error.response) {
+                if (!error.response) {
                     error.response = 'Network Error'
                 }
                 isLoading = false;
@@ -47,7 +47,7 @@ export const loadStatus = (url) => {
             })
         if (response !== undefined) {
             isLoading = false;
-            if(response.data.url.length > 35) {
+            if (response.data.url.length > 35) {
                 response.data.url = response.data.url.slice(0, 35) + '...'
             }
             dispatch({

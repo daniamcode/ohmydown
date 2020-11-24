@@ -348,7 +348,7 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="10px"
                       >
-                        <Link to={`/${row.name}`}>{row.name}</Link>
+                        <Link to={`/detail/${row.name}`}>{row.name}</Link>
                       </TableCell>
                       <TableCell align="right">{row.uptime}</TableCell>
                       <TableCell align="right">{row.delay}</TableCell>
