@@ -148,7 +148,7 @@ const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected, selected } = props;
   const dispatch = useDispatch();
-  const deleteWebsites = (selected) => dispatch( deleteProfileWebs(selected) ) 
+  const deleteWebsites = (selected) => dispatch(deleteProfileWebs(selected));
 
   function handleDelete() {
     deleteWebsites(selected);
@@ -232,7 +232,7 @@ export default function EnhancedTable() {
   const rows = useSelector((state) => state.profileReducer.profileUrls);
 
   useEffect(() => {
-    dispatch(loadProfileWebs())
+    dispatch(loadProfileWebs());
   }, [dispatch]);
 
   const classes = useStyles();

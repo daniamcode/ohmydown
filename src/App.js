@@ -7,8 +7,10 @@ import Footer from './components/Footer'
 import About from './components/About'
 import Contact from './components/Contact'
 import Profile from './components/Profile'
+import PageNotFound from "./components/PageNotFound";
 import { Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+
 
 
 function App(props) {
@@ -24,8 +26,8 @@ function App(props) {
 				<Route path="/about" component={About} />
 				<Route path="/contact" component={Contact} />
 				<Route path="/profile" component={Profile} />
-				<Route path="/:url" component={Detail} />
-				
+				<Route path="/detail/:url" component={Detail} />
+				<Route component={PageNotFound} />
 			</Switch>
 			
 		</div>

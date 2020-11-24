@@ -1,0 +1,15 @@
+.page-not-found__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-not-found__message {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
