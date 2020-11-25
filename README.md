@@ -11,7 +11,7 @@ Backend can be found at my mate's https://github.com/alexmoleiro/sitechecker
 408: Sorry, that was a timeout, try again!\
 495: Sorry, that SSL certificate expired, check it out!\
 500-599: Sorry, our server is overloaded, please try again later!\
-Network Error: Sorry, our server is down now, please try again later!\
+Network Error: Sorry, our server is down now, please try again later!
 
 # Getting Started with Create React App
 
