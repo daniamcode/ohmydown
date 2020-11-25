@@ -87,7 +87,7 @@ const LandingPage = ({ show, loadStatusResponse }) => {
             {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
             {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
             {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that
-            SSL certificate expired, try again!
+            SSL certificate expired, check it out!
           </h1>
         ) : (loadStatusResponse?.error?.response?.status >= 500 && loadStatusResponse?.error?.response?.status < 600) ? (
           <h1>
