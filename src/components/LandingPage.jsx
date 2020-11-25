@@ -66,6 +66,13 @@ const LandingPage = ({ show, loadStatusResponse }) => {
             {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was an
             invalid domain name, try again!
           </h1>
+        ) : loadStatusResponse?.error?.response?.status === 404 ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that page doesn't exist, try again!
+          </h1>
         ) : loadStatusResponse?.error?.response?.status === 408 ? (
           <h1>
             {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
@@ -74,7 +81,15 @@ const LandingPage = ({ show, loadStatusResponse }) => {
             {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was a
             timeout, try again!
           </h1>
-        ) : (loadStatusResponse?.error?.response?.status >= 500 || loadStatusResponse?.error?.response?.status < 600) ? (
+        ) : loadStatusResponse?.error?.response?.status === 495 ? (
+          <h1>
+            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
+            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
+            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that
+            SSL certificate expired, try again!
+          </h1>
+        ) : (loadStatusResponse?.error?.response?.status >= 500 && loadStatusResponse?.error?.response?.status < 600) ? (
           <h1>
             {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
             {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
