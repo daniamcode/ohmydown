@@ -4,7 +4,7 @@ const initialState = {
   profileUrls: []
 }
 
-const profileReducers = (state = initialState, action) => {
+const profileReducers = (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.LOAD_PROFILE_WEBS:
       return {
@@ -26,4 +26,5 @@ const profileReducers = (state = initialState, action) => {
   }
 }
 
+export { initialState };
 export default profileReducers
