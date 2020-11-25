@@ -22,7 +22,7 @@ const Profile = (props) => {
   }
   return (
     <main className="profile">
-      <h1 className="profile__title">Alex Moleiro's Profile</h1>
+      <h1 className="profile__title">Dani Alcalà's Profile</h1>
       <div className="profile__add-title">
         <h3 key={url}>Add a url to be followed (up to 5):</h3>
         <form className="profile__add" onSubmit={handleSubmit}>

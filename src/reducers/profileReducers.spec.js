@@ -24,8 +24,8 @@ describe('Profile reducer', () => {
   })
 
   it('should handle ADD_PROFILE_WEB', () => {
-    initialState.profileUrls = [{name: 'sport.es'}, {name: 'amazon.com'}]
-    let result = {profileUrls: [{name: 'sport.es'}, {name: 'amazon.com'}, {name: 'google.com'}]}
+    initialState.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
+    let result = {profileUrls: [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}, {name: 'amazon.com'}]}
     
     expect(
       profileReducers(
@@ -34,7 +34,7 @@ describe('Profile reducer', () => {
         },
         {
           type: actionTypes.ADD_PROFILE_WEB,
-          payload: {name:'google.com'}
+          payload: {name:'amazon.com'}
         },
       ),
     ).toEqual(
@@ -43,8 +43,8 @@ describe('Profile reducer', () => {
   })
 
   it('should handle DELETE_PROFILE_WEBS', () => {
-    initialState.profileUrls = [{name: 'sport.es'}, {name: 'amazon.com'}, {name: 'nyt.com'}]
-    let result = {profileUrls: [{name: 'sport.es'}]}
+    initialState.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
+    let result = {profileUrls: [{name: 'yavendras.com'}]}
     expect(
       profileReducers(
         {
@@ -52,7 +52,7 @@ describe('Profile reducer', () => {
         },
         {
           type: actionTypes.DELETE_PROFILE_WEBS,
-          payload: ['amazon.com', 'nyt.com']
+          payload: ['google.com', 'sport.es']
         },
       ),
     ).toEqual(
