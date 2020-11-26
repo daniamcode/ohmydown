@@ -16,7 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import "../styles/LandingPage.css";
+import "../styles/LandingPage.css"
 
 
 

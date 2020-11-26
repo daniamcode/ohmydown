@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './components/container/Header'
+import Header from './components/presentational/Header'
 import LandingPage from './components/container/LandingPage'
 import Detail from './components/container/Detail'
 import Footer from './components/presentational/Footer'
