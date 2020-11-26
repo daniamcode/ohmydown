@@ -1,5 +1,3 @@
-function onFieldChange(value, setValue) {
+export default function onFieldChange(value, setValue) {
     setValue(value);
-  }
-
-  export default onFieldChange
+}

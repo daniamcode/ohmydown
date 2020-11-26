@@ -2,7 +2,7 @@ import actionTypes from "./actionTypes";
 import axios from "axios";
 
 
-export const loadLandingList = (page) => {
+export const loadLandingList = () => {
     return async function (dispatch) {
         let isLoading = true;
         dispatch({
@@ -12,9 +12,7 @@ export const loadLandingList = (page) => {
             }
         });
         const response = await axios.post(
-                'http://localhost:8080/landing-list', {
-                    page
-                }
+                'http://localhost:8080/landing-list'
             )
             .catch(error => {
                 if (!error.response) {

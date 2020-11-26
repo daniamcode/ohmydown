@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "../img/logo.png";
+import logo from "../../img/logo.png";
 import { Link } from "react-router-dom";
-import Accordion from "./SimpleAccordion";
-import LoginButton from "./Login";
-import "./Header.css";
-import { hideStatus } from "../actions/statusActions";
+import Accordion from "../presentational/SimpleAccordion";
+import LoginButton from "../presentational/Login";
+import "../styles/Header.css";
+import { hideStatus } from "../../actions/statusActions";
 import { useDispatch } from "react-redux";
 
 const Header = () => {

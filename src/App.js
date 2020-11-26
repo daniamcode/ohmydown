@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header'
-import LandingPage from './components/LandingPage'
-import Detail from './components/Detail'
-import Footer from './components/Footer'
-import About from './components/About'
-import Contact from './components/Contact'
-import Profile from './components/Profile'
-import PageNotFound from "./components/PageNotFound";
+import Header from './components/container/Header'
+import LandingPage from './components/container/LandingPage'
+import Detail from './components/container/Detail'
+import Footer from './components/presentational/Footer'
+import About from './components/presentational/About'
+import Contact from './components/presentational/Contact'
+import Profile from './components/container/Profile'
+import PageNotFound from "./components/presentational/PageNotFound";
 import { Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -21,9 +21,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
-//import rows from '../data/mock-data';
-import { useSelector } from "react-redux";
-import { loadProfileWebs, deleteProfileWebs } from "../actions/profileActions";
+import { deleteProfileWebs } from "../../actions/profileActions";
+
+
 import { useDispatch } from "react-redux";
 
 function descendingComparator(a, b, orderBy) {
@@ -227,14 +227,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTableProfile() {
-  const dispatch = useDispatch();
-  const rows = useSelector((state) => state.profileReducer.profileUrls);
-
-  useEffect(() => {
-    dispatch(loadProfileWebs());
-  }, [dispatch]);
-
+export default function EnhancedTableProfile({rows}) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("uptime");

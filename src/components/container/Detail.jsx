@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import "./Detail.css";
+import "../styles/Detail.css";
 import Disqus from "disqus-react";
 
 const Detail = (props) => {

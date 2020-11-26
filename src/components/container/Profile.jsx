@@ -1,23 +1,30 @@
-import React, { useState } from "react";
-import "./Profile.css";
-import EnhancedTableProfile from "./EnhancedTableProfile";
+import React, { useState, useEffect } from "react";
+import "../styles/Profile.css";
+import EnhancedTableProfile from "../presentational/EnhancedTableProfile";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { addProfileWeb } from "../actions/profileActions";
+import { addProfileWeb } from "../../actions/profileActions";
 import { useDispatch } from "react-redux";
-import basicOnFieldChange from '../scripts/basicOnFieldChange'
+import basicOnFieldChange from '../../scripts/basicOnFieldChange';
+import { useSelector } from "react-redux";
+import { loadProfileWebs } from "../../actions/profileActions";
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const addWebsite = (url) => dispatch(addProfileWeb(url));
+  const rows = useSelector((state) => state.profileReducer.profileUrls);
 
+  useEffect(() => {
+    dispatch(loadProfileWebs());
+  }, [dispatch]);
+ 
   function handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
     addWebsite(url);
   }
-  
+ 
   return (
     <main className="profile">
       <h1 className="profile__title">Dani Alcalà's Profile</h1>
@@ -47,7 +54,7 @@ const Profile = (props) => {
         </form>
       </div>
       <div className="profile__table">
-        <EnhancedTableProfile />
+        <EnhancedTableProfile rows={rows}/>
       </div>
     </main>
   );

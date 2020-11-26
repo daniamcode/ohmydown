@@ -26,7 +26,7 @@
 }
 
 .header__login {
-    background-image: url(../icons/login.svg);
+    background-image: url(../../icons/login.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -56,7 +56,7 @@
 
 .header__logo-icon {
     display: inline-block;
-    background-image: url(../icons/login.svg);
+    background-image: url(../../icons/login.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

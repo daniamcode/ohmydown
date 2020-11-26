@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { showStatus, hideStatus, loadStatus } from "../actions/statusActions";
-import EnhancedTableLanding from "./EnhancedTableLanding";
+import { showStatus, hideStatus, loadStatus } from "../../actions/statusActions";
+import EnhancedTableLanding from "../presentational/EnhancedTableLanding";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import "./LandingPage.css";
-import LoadStatusMessage from "./LoadStatusMessage";
+import "../styles/LandingPage.css";
+import LoadStatusMessage from "../presentational/LoadStatusMessage";
 import { useSelector } from "react-redux";
-import { loadLandingList } from "../actions/landingListActions";
+import { loadLandingList } from "../../actions/landingListActions";
 
 
 const LandingPage = () => {
@@ -16,7 +16,7 @@ const LandingPage = () => {
   let dispatch = useDispatch();
   const loadStatusResponse = useSelector((state) => state.statusReducer.loadStatus);
   const show = useSelector((state) => state.statusReducer.showStatus);
-  const landingList = useSelector((state) => state.landingListReducer.landingList);
+  const rawRows = useSelector((state) => state.landingListReducer.landingList);
 
   useEffect(() => {
     dispatch(loadLandingList());
@@ -75,7 +75,7 @@ const LandingPage = () => {
         if you want to.
       </p>
       <h3 className="landingTable__title">Analyzed websites:</h3>
-      <EnhancedTableLanding landingList={landingList}/>
+      <EnhancedTableLanding rawRows={rawRows}/>
       <br></br>
     </div>
     </section>

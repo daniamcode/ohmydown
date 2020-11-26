@@ -16,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import "../styles/LandingPage.css";
 
 
 
@@ -36,18 +37,18 @@ function getComparator(order, orderBy) {
 }
 
 function stableSort(array, comparator) {
-  const stabilizedThis = array?.map((el, index) => [el, index]);
-  stabilizedThis?.sort((a, b) => {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis?.map((el) => el[0]);
+  return stabilizedThis.map((el) => el[0]);
 }
 
 const headCells = [
   { id: "url", numeric: false, disablePadding: true, label: "Url" },
-  { id: "uptime", numeric: true, disablePadding: false, label: "Uptime (%)" },
+  { id: "siteStatus", numeric: true, disablePadding: false, label: "Status" },
   {
     id: "delay",
     numeric: true,
@@ -183,14 +184,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTableLanding(landingList) {
+export default function EnhancedTableLanding({rawRows}) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("uptime");
+  const [orderBy, setOrderBy] = React.useState("delay");
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const rows = landingList?.landingList?.response?.data?.siteResults
+  const rows = rawRows?.response?.data?.siteResults
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -252,7 +253,12 @@ export default function EnhancedTableLanding(landingList) {
                       >
                         <Link to={`/detail/${row.url}`}>{row.url}</Link>
                       </TableCell>
-                      <TableCell align="right">{row.uptime}</TableCell>
+                      {row.siteStatus === 'UP' ? 
+                      <TableCell className="status__up" align="right">{row.siteStatus}</TableCell> :
+                      row.siteStatus === 'DOWN' ?
+                      <TableCell className="status__down" align="right">{row.siteStatus}</TableCell> :
+                      <TableCell className="status__error" align="right">{row.siteStatus}</TableCell>
+                    }
                       <TableCell align="right">{row.delay}</TableCell>
                     </TableRow>
                   );
