@@ -1,5 +1,5 @@
-import profileReducers, { initialState } from './profileReducers';
-import actionTypes from '../actions/actionTypes';
+import profileReducers, { initialState } from '../profileReducers';
+import actionTypes from '../../actions/actionTypes';
 
 describe('Profile reducer', () => {
   it('should return initial state', () => {

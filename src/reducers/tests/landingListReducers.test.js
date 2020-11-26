@@ -1,5 +1,5 @@
-import landingListReducers, { initialState } from './landingListReducers';
-import actionTypes from '../actions/actionTypes';
+import landingListReducers, { initialState } from '../landingListReducers';
+import actionTypes from '../../actions/actionTypes';
 
 describe('Landing list reducer', () => {
   it('should return initial state', () => {

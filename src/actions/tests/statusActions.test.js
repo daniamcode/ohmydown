@@ -3,8 +3,8 @@
 
 import {
     showStatus, hideStatus, loadStatus
-} from "./statusActions";
-import actionTypes from "./actionTypes";
+} from "../statusActions";
+import actionTypes from "../actionTypes";
 
 
 describe('showStatus', () => {

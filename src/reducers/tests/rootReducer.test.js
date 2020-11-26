@@ -1,8 +1,8 @@
-import rootReducer from './rootReducer';
+import rootReducer from '../rootReducer';
 import {createStore} from "redux";
-import statusReducer from './statusReducers'
-import profileReducer from './profileReducers'
-import landingListReducer from './landingListReducers'
+import statusReducer from '../statusReducers'
+import profileReducer from '../profileReducers'
+import landingListReducer from '../landingListReducers'
 
 describe('rootReducer', () => {
     it('tests rootReducer', () => {

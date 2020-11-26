@@ -1,5 +1,5 @@
-import statusReducers, { initialState } from './statusReducers';
-import actionTypes from '../actions/actionTypes';
+import statusReducers, { initialState } from '../statusReducers';
+import actionTypes from '../../actions/actionTypes';
 
 describe('Status reducer', () => {
   it('should return initial state', () => {

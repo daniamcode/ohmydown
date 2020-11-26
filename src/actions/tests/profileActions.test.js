@@ -1,6 +1,6 @@
 import {
     loadProfileWebs, addProfileWeb, deleteProfileWebs
-} from "./profileActions";
+} from "../profileActions";
 
 
 describe('loadProfileWebs', () => {
