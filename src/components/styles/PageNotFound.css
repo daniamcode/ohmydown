@@ -9,7 +9,15 @@
     display: flex;
     flex-direction: column;
     width: 500px;
-    height: 500px;
+    height: 720px;
     justify-content: center;
     align-items: center;
 }
+
+.page-not-found__text {
+    margin-top: 15px
+} 
+
+.page-not-found__link {
+    margin-top: 30px
+} 
