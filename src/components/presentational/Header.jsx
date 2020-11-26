@@ -2,16 +2,30 @@ import React from "react";
 import logo from "../../img/logo.png";
 import { Link } from "react-router-dom";
 import Accordion from "./SimpleAccordion";
-import LoginButton from "./Login";
 import "../styles/Header.css";
 import { hideStatus } from "../../actions/statusActions";
 import { useDispatch } from "react-redux";
+import FaceIcon from '@material-ui/icons/Face';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    fontSize: 32,
+    color: '#3F51B5',
+    marginRight: '2vw',
+    cursor: 'pointer'
+  },
+}));
 
 const Header = () => {
   let dispatch = useDispatch();
+  const classes = useStyles();
 
   function handleClick() {
     dispatch(hideStatus());
+ 
   }
   return (
     <section className="header">
@@ -29,7 +43,8 @@ const Header = () => {
         <Accordion />
       </div>
       <div className="separator"></div>
-      <LoginButton className="header__profile" />
+      <FaceIcon className={classes.root} />
+      <LockOpenIcon className={classes.root} />
     </section>
   );
 };
