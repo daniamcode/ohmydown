@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { showStatus, hideStatus, loadStatus } from "../../actions/statusActions";
-import EnhancedTableLanding from "../presentational/EnhancedTableLanding";
+import EnhancedTableLanding from "../presentational/LandingTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";

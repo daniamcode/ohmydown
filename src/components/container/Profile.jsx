@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Profile.css";
-import EnhancedTableProfile from "../presentational/EnhancedTableProfile";
+import EnhancedTableProfile from "../presentational/ProfileTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { addProfileWeb } from "../../actions/profileActions";
