@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header'
-import Grid from './components/Grid'
+import LandingPage from './components/LandingPage'
 import Detail from './components/Detail'
 import Footer from './components/Footer'
 import About from './components/About'
@@ -22,7 +22,7 @@ function App(props) {
       <div>
 			
 			<Switch>
-				<Route path="/" exact component={Grid} />
+				<Route path="/" exact component={LandingPage} />
 				<Route path="/about" component={About} />
 				<Route path="/contact" component={Contact} />
 				<Route path="/profile" component={Profile} />

@@ -17,28 +17,7 @@ import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
-function createData(name, uptime, delay) {
-  return { name, uptime, delay };
-}
 
-const rows = [
-  createData("sport.es", 97.32, 235),
-  createData("yavendras.com", 96.21, 432),
-  createData("google.com", 95.41, 211),
-  createData("upc.cat", 94.83, 421),
-  createData("fcb.cat", 89.54, 87),
-  createData("ups.com", 87.64, 127),
-  createData("yahoo.com", 86.23, 117),
-  createData("nyt.com", 84.29, 85),
-  createData("pepsi.cat", 82.43, 88),
-  createData("aavv.cat", 81.83, 155),
-  createData("gym.com", 81.64, 1112),
-  createData("cinema.com", 80.46, 768),
-  createData("rest.es", 79.23, 234),
-  createData("glovo.com", 78.12, 387),
-  createData("rakuten.com", 75.04, 890),
-  createData("cbs.com", 65.06, 843),
-];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -57,17 +36,17 @@ function getComparator(order, orderBy) {
 }
 
 function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
+  const stabilizedThis = array?.map((el, index) => [el, index]);
+  stabilizedThis?.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis?.map((el) => el[0]);
 }
 
 const headCells = [
-  { id: "name", numeric: false, disablePadding: true, label: "Url" },
+  { id: "url", numeric: false, disablePadding: true, label: "Url" },
   { id: "uptime", numeric: true, disablePadding: false, label: "Uptime (%)" },
   {
     id: "delay",
@@ -204,13 +183,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable() {
+export default function EnhancedTableLanding(landingList) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("uptime");
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const rows = landingList?.landingList?.response?.data?.siteResults
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -232,7 +212,7 @@ export default function EnhancedTable() {
   };
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, rows?.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
@@ -249,10 +229,10 @@ export default function EnhancedTable() {
               order={order}
               orderBy={orderBy}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={rows?.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {rows && stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
@@ -262,7 +242,7 @@ export default function EnhancedTable() {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.url}
                     >
                       <TableCell
                         component="th"
@@ -270,7 +250,7 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="10px"
                       >
-                        <Link to={`/detail/${row.name}`}>{row.name}</Link>
+                        <Link to={`/detail/${row.url}`}>{row.url}</Link>
                       </TableCell>
                       <TableCell align="right">{row.uptime}</TableCell>
                       <TableCell align="right">{row.delay}</TableCell>
@@ -288,7 +268,7 @@ export default function EnhancedTable() {
         <TablePagination
           rowsPerPageOptions={[10]}
           component="div"
-          count={rows.length}
+          count={rows?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

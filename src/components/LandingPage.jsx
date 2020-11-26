@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { showStatus, hideStatus, loadStatus } from "../actions/statusActions";
-import Spinner from "./Spinner";
-import EnhancedTable from "./EnhancedTableLanding";
+import EnhancedTableLanding from "./EnhancedTableLanding";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
+import LoadStatusMessage from "./LoadStatusMessage";
+import { useSelector } from "react-redux";
+import { loadLandingList } from "../actions/landingListActions";
 
-const LandingPage = ({ show, loadStatusResponse }) => {
+
+const LandingPage = () => {
   let [url, setUrl] = useState("");
   let dispatch = useDispatch();
+  const loadStatusResponse = useSelector((state) => state.statusReducer.loadStatus);
+  const show = useSelector((state) => state.statusReducer.showStatus);
+  const landingList = useSelector((state) => state.landingListReducer.landingList);
+
+  useEffect(() => {
+    dispatch(loadLandingList());
+  }, [dispatch]);
+  
 
   function onFieldChange(value, setValue) {
     dispatch(hideStatus());
@@ -25,6 +36,7 @@ const LandingPage = ({ show, loadStatusResponse }) => {
   }
  
   return (
+    <section className="center">
     <div className="status__form-container">
       <form className="status__form" onSubmit={handleSubmit}>
         <label className="status__form-label">
@@ -54,84 +66,19 @@ const LandingPage = ({ show, loadStatusResponse }) => {
         </div>
       </form>
       <section id="status-message" className="status__result">
-        {!show ? (
-          <></>
-        ) : loadStatusResponse.isLoading === true ? (
-          <Spinner />
-        ) : loadStatusResponse?.error?.response?.status === 400 ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was an
-            invalid domain name, try again!
-          </h1>
-        ) : loadStatusResponse?.error?.response?.status === 404 ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that page doesn't exist, try again!
-          </h1>
-        ) : loadStatusResponse?.error?.response?.status === 408 ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that was a
-            timeout, try again!
-          </h1>
-        ) : loadStatusResponse?.error?.response?.status === 495 ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, that
-            SSL certificate expired, check it out!
-          </h1>
-        ) : (loadStatusResponse?.error?.response?.status >= 500 && loadStatusResponse?.error?.response?.status < 600) ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, our server is overloaded, please try again later!
-          </h1>
-        ) : loadStatusResponse?.error?.response === 'Network Error' ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__error")}Sorry, our server is down now, please try again later!
-          </h1>
-        ) : loadStatusResponse?.response?.data?.status === 'UP' ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__down")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__up")}
-            {loadStatusResponse?.response?.data?.url} is {loadStatusResponse?.response?.data?.status}!
-            <p className="status__delay">
-              There was a delay of {loadStatusResponse?.response?.data?.delay} ms.
-            </p>
-          </h1>
-        ) : loadStatusResponse?.response?.data?.status === 'DOWN' ? (
-          <h1>
-            {document.getElementById('status-message')?.classList.remove("status__initial")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__error")}{" "}
-            {document.getElementById('status-message')?.classList.remove("status__up")}{" "}
-            {document.getElementById('status-message')?.classList.add("status__down")}
-            {loadStatusResponse?.response?.data?.url} is {loadStatusResponse?.response?.data?.status}!
-          </h1>
-        ) : <></>}
+      <LoadStatusMessage
+      show = {show} loadStatusResponse={loadStatusResponse} />
       </section>
       <p className="link-to-profile">
         Go to your <Link to="/profile">Profile</Link> and add up to 5 websites
         to follow their uptimes for free, with free monitoring and notifications
         if you want to.
       </p>
-      <EnhancedTable />
+      <h3 className="landingTable__title">Analyzed websites:</h3>
+      <EnhancedTableLanding landingList={landingList}/>
       <br></br>
     </div>
+    </section>
   );
 };
 

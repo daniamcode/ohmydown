@@ -227,7 +227,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable() {
+export default function EnhancedTableProfile() {
   const dispatch = useDispatch();
   const rows = useSelector((state) => state.profileReducer.profileUrls);
 

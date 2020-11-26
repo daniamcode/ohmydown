@@ -5,21 +5,19 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { addProfileWeb } from "../actions/profileActions";
 import { useDispatch } from "react-redux";
+import basicOnFieldChange from '../scripts/basicOnFieldChange'
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const addWebsite = (url) => dispatch(addProfileWeb(url));
 
-  function onFieldChange(value, setValue) {
-    setValue(value);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
     addWebsite(url);
   }
+  
   return (
     <main className="profile">
       <h1 className="profile__title">Dani Alcalà's Profile</h1>
@@ -35,7 +33,7 @@ const Profile = (props) => {
               name="url"
               required
               value={url}
-              onChange={(event) => onFieldChange(event.target.value, setUrl)}
+              onChange={(event) => basicOnFieldChange(event.target.value, setUrl)}
             />
             <Button
               variant="contained"
