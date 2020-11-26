@@ -16,8 +16,6 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import "../styles/LandingPage.css"
-
 
 
 function descendingComparator(a, b, orderBy) {
@@ -182,6 +180,15 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  statusUp: {
+    color: 'green'
+  },
+  statusDown: {
+    color: 'red'
+  },
+  statusError: {
+    color: 'goldenrod'
+  }
 }));
 
 export default function EnhancedTableLanding({rawRows}) {
@@ -254,10 +261,10 @@ export default function EnhancedTableLanding({rawRows}) {
                         <Link to={`/detail/${row.url}`}>{row.url}</Link>
                       </TableCell>
                       {row.siteStatus === 'UP' ? 
-                      <TableCell className="status__up" align="right">{row.siteStatus}</TableCell> :
+                      <TableCell className={classes.statusUp} align="right">{row.siteStatus}</TableCell> :
                       row.siteStatus === 'DOWN' ?
-                      <TableCell className="status__down" align="right">{row.siteStatus}</TableCell> :
-                      <TableCell className="status__error" align="right">{row.siteStatus}</TableCell>
+                      <TableCell className={classes.statusDown} align="right">{row.siteStatus}</TableCell> :
+                      <TableCell className={classes.statusError} align="right">{row.siteStatus}</TableCell>
                     }
                       <TableCell align="right">{row.delay}</TableCell>
                     </TableRow>
