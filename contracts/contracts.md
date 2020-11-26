@@ -15,13 +15,11 @@ delay: 831}
 ## Landing page: List websites
 
 ### Request
-{page: 3}
+without payload for the moment
 on POST route: /landing-list
 
-(10 results by page)
-
 ### Response
-{numUrls: 10214,
+{numUrls: 100,
 data: [{web: http://www.yavendras.com,
 status: 'UP',
 delay: 234,
@@ -30,6 +28,10 @@ status: 'DOWN',
 delay: 34,
 {web: http://www.pepito.com,
 status: 'UP',
-delay: 444}]}
+delay: 444
+}
+etc
+]}
 
-(10 objects in total)
+
+(all the objects for the moment, without order)
