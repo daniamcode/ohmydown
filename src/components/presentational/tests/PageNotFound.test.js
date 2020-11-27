@@ -3,8 +3,10 @@ import PageNotFound from "../PageNotFound";
 
 import { render } from "@testing-library/react";
 
-xit("matches snapshot", () => {
-  const { asFragment } = render(<PageNotFound />);
+import { BrowserRouter } from 'react-router-dom';
 
-  expect(asFragment()).toMatchSnapshot();
+it("matches snapshot", () => {
+  const { asFragment } = render(<BrowserRouter><PageNotFound /></BrowserRouter>);
+
+  expect(asFragment()).toMatchSnapshot()
 })
