@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "../styles/PageNotFound.css";
 
 
-function PageNotFound(props) {
+function PageNotFound() {
 	return (
 		<main className="page-not-found__container">
             <section className="page-not-found__message">

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="footer"
+  >
+    <p>
+      We show in real time if a given website is up or down.
+    </p>
+  </footer>
+</DocumentFragment>
+`;

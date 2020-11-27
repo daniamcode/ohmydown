@@ -8,8 +8,6 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/x-grid-data-generator": "^4.0.0-alpha.9",
-    "@testing-library/jest-dom": "^5.11.5",
-    "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "chart.js": "^2.9.4",
@@ -60,6 +58,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
     "css-loader": "^5.0.1",
     "style-loader": "^2.0.0"
   }
