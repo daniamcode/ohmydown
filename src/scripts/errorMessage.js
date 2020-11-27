@@ -1,5 +1,5 @@
 export default function errorMessage(errorResponse) {
-    let message = 'a';
+    let message = '';
       switch(true) {
         case errorResponse.status === 400:
         message = 'Sorry, that was an invalid domain name, try again!';
