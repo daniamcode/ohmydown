@@ -1,6 +1,6 @@
 //import axios from "axios";
 import actionTypes from "./actionTypes";
-import rows from '../data/mock-data'
+import rows from '../../data/mock-data'
 
 export const loadProfileWebs = () => {
   return (

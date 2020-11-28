@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { showStatus, hideStatus, loadStatus } from "../../actions/statusActions";
+import { showStatus, hideStatus, loadStatus } from "../../redux/actions/statusActions";
 import EnhancedTableLanding from "../presentational/LandingTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import "../styles/LandingPage.css";
 import LoadStatusMessage from "../presentational/LoadStatusMessage";
 import { useSelector } from "react-redux";
-import { loadLandingList } from "../../actions/landingListActions";
+import { loadLandingList } from "../../redux/actions/landingListActions";
 
 
 const LandingPage = () => {

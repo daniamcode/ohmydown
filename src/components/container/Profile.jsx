@@ -3,11 +3,11 @@ import "../styles/Profile.css";
 import EnhancedTableProfile from "../presentational/ProfileTable";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { addProfileWeb } from "../../actions/profileActions";
+import { addProfileWeb } from "../../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
 import basicOnFieldChange from '../../scripts/basicOnFieldChange';
 import { useSelector } from "react-redux";
-import { loadProfileWebs } from "../../actions/profileActions";
+import { loadProfileWebs } from "../../redux/actions/profileActions";
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");

@@ -3,7 +3,7 @@ import logo from "../../img/logo.png";
 import { Link } from "react-router-dom";
 import Accordion from "./SimpleAccordion";
 import "../styles/Header.css";
-import { hideStatus } from "../../actions/statusActions";
+import { hideStatus } from "../../redux/actions/statusActions";
 import { useDispatch } from "react-redux";
 import FaceIcon from '@material-ui/icons/Face';
 import LockOpenIcon from '@material-ui/icons/LockOpen';

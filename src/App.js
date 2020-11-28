@@ -9,13 +9,9 @@ import Contact from './components/presentational/Contact'
 import Profile from './components/container/Profile'
 import PageNotFound from "./components/presentational/PageNotFound";
 import { Route, Switch } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-
-
 
 function App(props) {
   return (
-    <Router>
     <div className="container">
       <Header />
       
@@ -34,7 +30,6 @@ function App(props) {
 
       <Footer />
     </div>
-    </Router>
   );
 }
 
