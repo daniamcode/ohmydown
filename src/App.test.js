@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import {Provider} from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './redux/reducers/rootReducer';
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from 'redux-thunk';
 

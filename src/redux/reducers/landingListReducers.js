@@ -1,8 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
-const initialState = {landingList: {response: {}, isLoading: false, error: {}}}
-
-const statusReducers = (state = initialState, action = {}) => {
+const landingListReducers = (state = {}, action = {}) => {
     switch (action.type) {
         case actionTypes.LOAD_LANDING_LIST:
         return {
@@ -14,5 +12,4 @@ const statusReducers = (state = initialState, action = {}) => {
     }
   }
   
-  export { initialState };
-  export default statusReducers
+  export default landingListReducers

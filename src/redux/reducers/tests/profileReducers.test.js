@@ -1,9 +1,14 @@
-import profileReducers, { initialState } from '../profileReducers';
+import profileReducers from '../profileReducers';
+import { initialState } from '../../configureStore';
 import actionTypes from '../../actions/actionTypes';
 
 describe('Profile reducer', () => {
-  it('should return initial state', () => {
-    expect(profileReducers()).toEqual(initialState);
+  it('should handle no initial state and no action', () => {
+    expect(profileReducers()).toEqual({});
+  });
+
+  it('should handle initial state and no action', () => {
+    expect(profileReducers(initialState.profileReducer)).toEqual({ profileUrls: [] });
   });
 
   it('should handle LOAD_PROFILE_WEBS', () => {
@@ -11,7 +16,7 @@ describe('Profile reducer', () => {
     expect(
       profileReducers(
         {
-          ...initialState,
+          ...initialState.profileReducer,
         },
         {
           type: actionTypes.LOAD_PROFILE_WEBS,
@@ -24,13 +29,13 @@ describe('Profile reducer', () => {
   })
 
   it('should handle ADD_PROFILE_WEB', () => {
-    initialState.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
+    initialState.profileReducer.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
     let result = {profileUrls: [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}, {name: 'amazon.com'}]}
     
     expect(
       profileReducers(
         {
-          ...initialState,
+          ...initialState.profileReducer,
         },
         {
           type: actionTypes.ADD_PROFILE_WEB,
@@ -43,12 +48,12 @@ describe('Profile reducer', () => {
   })
 
   it('should handle DELETE_PROFILE_WEBS', () => {
-    initialState.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
+    initialState.profileReducer.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
     let result = {profileUrls: [{name: 'yavendras.com'}]}
     expect(
       profileReducers(
         {
-          ...initialState,
+          ...initialState.profileReducer,
         },
         {
           type: actionTypes.DELETE_PROFILE_WEBS,
@@ -64,11 +69,11 @@ it('should handle default', () => {
     expect(
       profileReducers(
         {
-          ...initialState,
+          ...initialState.profileReducer,
         }
       ),
     ).toEqual({
-      ...initialState
+      ...initialState.profileReducer
     });
   })
 

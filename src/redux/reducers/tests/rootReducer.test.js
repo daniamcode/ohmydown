@@ -1,17 +1,14 @@
 import rootReducer from '../rootReducer';
-import {createStore} from "redux";
-import statusReducer from '../statusReducers'
-import profileReducer from '../profileReducers'
-import landingListReducer from '../landingListReducers'
+import {
+    createStore
+} from "redux";
 
 describe('rootReducer', () => {
-    it('tests rootReducer', () => {
+    it('initial situation', () => {
         let store = createStore(rootReducer)
 
-        // check that initial state of the root reducer matches what child reducers return given an empty action
-        
-        expect(store.getState().statusReducer).toEqual(statusReducer({showStatus: false, loadStatus: {response: {}, isLoading: false, error: {}}}, {}))
-        expect(store.getState().profileReducer).toEqual(profileReducer( {profileUrls: []}, {}))
-        expect(store.getState().landingListReducer).toEqual(landingListReducer( {landingList: {response: {}, isLoading: false, error: {}}}, {}))
-})
+        expect(store.getState().statusReducer).toEqual({})
+        expect(store.getState().profileReducer).toEqual({})
+        expect(store.getState().landingListReducer).toEqual({})
+    })
 })

@@ -1,8 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
-const initialState = {showStatus: false, loadStatus: {response: {}, isLoading: false, error: {}}}
-
-const statusReducers = (state = initialState, action = {}) => {
+const statusReducers = (state = {}, action = {}) => {
     switch (action.type) {
       case actionTypes.SHOW_STATUS:
         return {
@@ -19,5 +17,4 @@ const statusReducers = (state = initialState, action = {}) => {
     }
   }
   
-  export { initialState };
   export default statusReducers
