@@ -7,11 +7,11 @@ import LoadStatusMessage from '../LoadStatusMessage';
 
 jest.mock('../../../redux/actions/statusActions');
 
-xdescribe('LandingPage Component', () => {
+describe('LandingPage Component', () => {
   let wrapper = null;
   let store = null;
-  const wrapperFactory = () => {
-    store = configureStore();
+  const wrapperFactory = (wrapperState) => {
+    store = configureStore(wrapperState);
     store.dispatch = jest.fn();
 
     return ({ children }) => (
@@ -28,12 +28,63 @@ xdescribe('LandingPage Component', () => {
     wrapper = null;
   });
 
-  test('Should render status message', () => {
-    
-    wrapper = wrapperFactory();
+  test('Should render isLoading case', () => {
 
-    render(<LoadStatusMessage />, { wrapper });
+    const state = {
+        statusReducer: {showStatus: true, loadStatus: {response: {}, isLoading: true, error: {}}},
+      };
+    wrapper = wrapperFactory(state);
 
-    expect(document.querySelector('.status__message')).toBeInTheDocument();
+    render(<LoadStatusMessage show={true} loadStatusResponse={state.statusReducer.loadStatus} />, { wrapper });
+
+    expect(document.querySelector('.spinner-active')).toBeInTheDocument();
+  })
+
+  test('Should render status error', () => {
+
+    const state = {
+        statusReducer: {showStatus: true, loadStatus: {response: {}, isLoading: false, error: {response: 500}}},
+      };
+    wrapper = wrapperFactory(state);
+
+    render(<LoadStatusMessage show={true} loadStatusResponse={state.statusReducer.loadStatus} />, { wrapper });
+
+    expect(document.querySelector('.error-case')).toBeInTheDocument();
+  })
+
+  test('Should render status up', () => {
+
+    const state = {
+        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 'UP' } }}, isLoading: false, error: {}},
+      };
+    wrapper = wrapperFactory(state);
+
+    render(<LoadStatusMessage show={true} loadStatusResponse={state.statusReducer.loadStatus} />, { wrapper });
+
+    expect(document.querySelector('.up-case')).toBeInTheDocument();
+  })
+
+  test('Should render status down', () => {
+
+    const state = {
+        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 'DOWN' } }}, isLoading: false, error: {}},
+      };
+    wrapper = wrapperFactory(state);
+
+    render(<LoadStatusMessage show={true} loadStatusResponse={state.statusReducer.loadStatus} />, { wrapper });
+
+    expect(document.querySelector('.down-case')).toBeInTheDocument();
+  })
+
+  test('Should render default case', () => {
+
+    const state = {
+        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 'ANOTHER-RESPONSE' } }}, isLoading: false, error: {}},
+      };
+    wrapper = wrapperFactory(state);
+
+    render(<LoadStatusMessage show={true} loadStatusResponse={state.statusReducer.loadStatus} />, { wrapper });
+
+    expect(document.querySelector('.default-case')).toBeInTheDocument();
   })
 })
