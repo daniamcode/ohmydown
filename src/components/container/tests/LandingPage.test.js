@@ -1,10 +1,11 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../../../redux/configureStore';
 import LandingPage from '../LandingPage';
 import { showStatus, hideStatus, loadStatus } from "../../../redux/actions/statusActions";
+import userEvent from '@testing-library/user-event'
 
 jest.mock('../../../redux/actions/statusActions');
 
@@ -54,18 +55,15 @@ describe('LandingPage Component', () => {
     expect(loadStatus).toHaveBeenCalled();
   });
 
-  test('Should execute onFieldChange and call hideStatus when changing input field', () => {
+  test('Input field changes', () => {
     const state = {
       
     };
     wrapper = wrapperFactory(state);
 
-    const { getByPlaceholderText } = render(<LandingPage />, { wrapper });
+    render(<LandingPage />, { wrapper });
 
-    //const text = document.querySelector('.status__form-input');
-
-    fireEvent.change(getByPlaceholderText("Write any url here"), {target: { name: "url" }});
-
-    expect(hideStatus).toHaveBeenCalled();
+    userEvent.type(screen.getByRole('textbox'), 'google.com')
+    expect(screen.getByRole('textbox')).toHaveValue('google.com')
   });
 })
