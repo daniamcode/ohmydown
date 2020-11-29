@@ -9,8 +9,10 @@ import thunk from 'redux-thunk';
 test('renders some text', () => {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+  
   render(<Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>);
   const textElement = screen.getByText(/We show in real time/);
+  
   expect(textElement).toBeInTheDocument();
 });
 

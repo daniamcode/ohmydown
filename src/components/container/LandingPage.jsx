@@ -23,12 +23,12 @@ const LandingPage = () => {
   }, [dispatch]);
   
 
-  function onFieldChange(value, setValue) {
+  const onFieldChange = (value, setValue) => {
     dispatch(hideStatus());
     setValue(value);
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     event.target.reset();
     dispatch(showStatus());
