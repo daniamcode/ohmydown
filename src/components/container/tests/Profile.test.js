@@ -3,13 +3,13 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../../../redux/configureStore';
-import LandingPage from '../LandingPage';
-import { showStatus, loadStatus } from "../../../redux/actions/statusActions";
+import Profile from '../Profile';
+import { addProfileWeb } from "../../../redux/actions/profileActions";
 import userEvent from '@testing-library/user-event'
 
-jest.mock('../../../redux/actions/statusActions');
+jest.mock('../../../redux/actions/profileActions');
 
-describe('LandingPage Component', () => {
+describe('Profile Component', () => {
   let wrapper = null;
   let store = null;
   const wrapperFactory = (wrapperState) => {
@@ -30,40 +30,42 @@ describe('LandingPage Component', () => {
     wrapper = null;
   });
 
-  test('Should render status form', () => {
-    const state = {}
-    wrapper = wrapperFactory(state);
-
-    render(<LandingPage />, { wrapper });
-
-    expect(document.querySelector('.status__form')).toBeInTheDocument();
-  })
-
-  test('Should execute handleSubmit and call showStatus and loadStatus when clicking "Check"', () => {
+  test('Should render profile', () => {
     const state = {
-      
+      profileReducer: { profileUrls: [{url:'yavendras.com'}] },
     };
     wrapper = wrapperFactory(state);
 
-    render(<LandingPage />, { wrapper });
+    render(<Profile />, { wrapper });
 
-    const form = document.querySelector('.status__form');
+    expect(document.querySelector('.profile')).toBeInTheDocument();
+  })
+
+  test('Should execute handleSubmit and call addWebsite when clicking "Add"', () => {
+    const state = {
+      profileReducer: { profileUrls: [{url:'yavendras.com'}] },
+    };
+    wrapper = wrapperFactory(state);
+
+    render(<Profile />, { wrapper });
+
+    const form = document.querySelector('.profile__add');
 
     fireEvent.submit(form);
 
-    expect(showStatus).toHaveBeenCalled();
-    expect(loadStatus).toHaveBeenCalled();
+    expect(addProfileWeb).toHaveBeenCalled();
   });
 
   test('Manage input field', () => {
     const state = {
-      
+      profileReducer: { profileUrls: [{url:'yavendras.com'}] },
     };
     wrapper = wrapperFactory(state);
 
-    render(<LandingPage />, { wrapper });
+    render(<Profile />, { wrapper });
 
     userEvent.type(screen.getByRole('textbox'), 'google.com')
     expect(screen.getByRole('textbox')).toHaveValue('google.com')
   });
+
 })
