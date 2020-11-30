@@ -256,7 +256,7 @@ export default function EnhancedTableLanding({rawRows}) {
                         scope="row"
                         padding="10px"
                       >
-                        <Link to={`/detail/${row.url}`}>{row.url.split("https://").pop().split("http://").pop().split("www.").pop()}</Link>
+                        <Link to={`/detail/${row.url.split("https://").pop().split("http://").pop().split("www.").pop()}`}>{row.url.split("https://").pop().split("http://").pop().split("www.").pop()}</Link>
                       </TableCell>
                       {row.siteStatus === 'UP' ? 
                       <TableCell className={classes.statusUp} align="right">{row.siteStatus}</TableCell> :

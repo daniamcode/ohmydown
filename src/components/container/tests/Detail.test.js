@@ -5,13 +5,13 @@ import { Provider } from 'react-redux';
 import configureStore from '../../../redux/configureStore';
 import Detail from '../Detail';
 
-xdescribe('Detail Component', () => {
+describe('Detail Component', () => {
   let wrapper = null;
   let store = null;
   const wrapperFactory = (wrapperState) => {
     store = configureStore(wrapperState);
     store.dispatch = jest.fn();
-
+    
     return ({ children }) => (
       <Provider store={store}>
         <BrowserRouter>
@@ -33,7 +33,7 @@ xdescribe('Detail Component', () => {
 
     wrapper = wrapperFactory(state);
 
-    render(<Detail />, { wrapper });
+    render(<Detail match={{params: {url: 'yavendras.com'}}}/>, { wrapper });
 
     expect(document.querySelector('.detail')).toBeInTheDocument();
   })
