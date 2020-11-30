@@ -1,27 +1,11 @@
 import axios from 'axios'
 import {
-    showStatus, hideStatus, loadStatus
-} from "../statusActions";
+    loadLandingList
+} from "../landingListActions";
 
 jest.mock('axios');
 
-describe('showStatus', () => {
-    it('returns expected value', () => {
-    const result = showStatus();
-
-    expect(result.payload).toBe(true)
-})
-})
-
-describe('hideStatus', () => {
-    it('returns expected value', () => {
-    const result = hideStatus();
-
-    expect(result.payload).toBe(false)
-})
-})
-
-describe('dispatch loadStatus', () => {
+describe('dispatch loadLandingList', () => {
     let dispatch = null;
     beforeEach(() => {
         dispatch = jest.fn();
@@ -33,13 +17,13 @@ describe('dispatch loadStatus', () => {
       });
 
     test('dispatches', () => {
-        loadStatus()(dispatch);
+        loadLandingList()(dispatch);
 
         expect(dispatch).toHaveBeenCalled();
     })
 
     test('Should dispatch isLoading true when still loading', async () => {
-        loadStatus()(dispatch);
+        loadLandingList()(dispatch);
       
         expect(dispatch.mock.calls[0][0].payload.isLoading).toBe(true);
         });
@@ -47,7 +31,7 @@ describe('dispatch loadStatus', () => {
     test('Should dispatch error when axios throws a generic error', async () => {
         axios.post.mockReturnValueOnce(Promise.reject({response: 'some error'}));
       
-        await loadStatus()(dispatch);
+        await loadLandingList()(dispatch);
       
         expect(dispatch.mock.calls[1][0].payload.error).toStrictEqual({response: 'some error'});
         });
@@ -55,24 +39,16 @@ describe('dispatch loadStatus', () => {
     test('Should dispatch error when axios throws a network error', async () => {
         axios.post.mockReturnValueOnce(Promise.reject({}));
         
-        await loadStatus()(dispatch);
+        await loadLandingList()(dispatch);
         
         expect(dispatch.mock.calls[1][0].payload.error).toStrictEqual({response: 'Network Error'});
         });
 
-    test('Should dispatch response when axios returns short url', async () => {
+    test('Should dispatch response when axios returns response', async () => {
         axios.post.mockReturnValueOnce(Promise.resolve({data:{url:'yavendras.com'}}));
           
-        await loadStatus()(dispatch);
+        await loadLandingList()(dispatch);
           
         expect(dispatch.mock.calls[1][0].payload.response).toStrictEqual({data:{url:'yavendras.com'}});
-        });
-
-    test('Should dispatch response when axios returns long url', async () => {
-        axios.post.mockReturnValueOnce(Promise.resolve({data:{url:'abcdefghijklmnopqrstuvwxyzabcdefghijklmn.com'}}));
-              
-        await loadStatus()(dispatch);
-              
-        expect(dispatch.mock.calls[1][0].payload.response).toStrictEqual({data:{url:'abcdefghijklmnopqrstuvwxyzabcdefghi...'}});
         });
 })
