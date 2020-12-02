@@ -13,7 +13,6 @@ describe('Detail Component', () => {
   let store = null;
   const wrapperFactory = (wrapperState) => {
     store = configureStore(wrapperState);
-    store.dispatch = jest.fn();
     
     return ({ children }) => (
       <Provider store={store}>

@@ -20,8 +20,14 @@ const LandingPage = () => {
 
   useEffect(() => {
     dispatch(loadLandingList());
+    const interval = setInterval(()=>{
+      dispatch(loadLandingList());
+     },10000)
+       
+       
+     return()=>clearInterval(interval)
+
   }, [dispatch]);
-  
 
   const onFieldChange = (value, setValue) => {
     dispatch(hideStatus());
