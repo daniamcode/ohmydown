@@ -35,3 +35,21 @@ etc
 
 
 (all the objects for the moment, without order)
+
+
+## Detail
+
+### Request
+{url: 'http://www.google.es'}
+on POST route: /detail
+
+### Response
+{url='https://www.adgrafics.eu/',
+        "numTicks":4, 
+          [
+            {status=200, delay=126, timestamp=1},
+            {status=200, delay=2076, timestamp=2},
+            {status=200, delay=26, timestamp=3},
+            {status=503, delay=26, timestamp=4}
+            ]
+        }

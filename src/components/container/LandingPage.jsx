@@ -9,6 +9,7 @@ import "../styles/LandingPage.css";
 import LoadStatusMessage from "../presentational/LoadStatusMessage";
 import { useSelector } from "react-redux";
 import { loadLandingList } from "../../redux/actions/landingListActions";
+import Countdown from 'react-countdown';
 
 
 const LandingPage = () => {
@@ -18,12 +19,13 @@ const LandingPage = () => {
   const show = useSelector((state) => state.statusReducer.showStatus);
   const rawRows = useSelector((state) => state.landingListReducer.landingList);
 
+  let date = Date.now() + 110000000
+
   useEffect(() => {
     dispatch(loadLandingList());
     const interval = setInterval(()=>{
       dispatch(loadLandingList());
-     },10000)
-       
+     },100000000)
        
      return()=>clearInterval(interval)
 
@@ -81,6 +83,8 @@ const LandingPage = () => {
         if you want to.
       </p>
       <h3 className="landingTable__title">Analyzed websites:</h3>
+      <p>(New data in <span> </span>
+      <Countdown date={date} />)</p>
       <EnhancedTableLanding rawRows={rawRows}/>
       <br></br>
     </div>
