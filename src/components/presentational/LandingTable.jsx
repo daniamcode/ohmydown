@@ -46,7 +46,7 @@ function stableSort(array, comparator) {
 
 const headCells = [
   { id: "url", numeric: false, disablePadding: true, label: "Url" },
-  { id: "siteStatus", numeric: true, disablePadding: false, label: "Status" },
+  { id: "status", numeric: true, disablePadding: false, label: "Status" },
   {
     id: "delay",
     numeric: true,
@@ -259,10 +259,10 @@ export default function EnhancedTableLanding({rawRows}) {
                         <Link to={`/detail/${row.url.split("https://").pop().split("http://").pop().split("www.").pop()}`}>{row.url.split("https://").pop().split("http://").pop().split("www.").pop()}</Link>
                       </TableCell>
                       {row.status === 200 ? 
-                      <TableCell className={classes.statusUp} align="right">{row.status}</TableCell> :
-                      row.status === 400 ?
-                      <TableCell className={classes.statusDown} align="right">{row.status}</TableCell> :
-                      <TableCell className={classes.statusError} align="right">{row.status}</TableCell>
+                      <TableCell className={classes.statusUp} align="right">UP</TableCell> :
+                      (row.status >= 500 && row.status < 600) ?
+                      <TableCell className={classes.statusDown} align="right">DOWN</TableCell> :
+                      <TableCell className={classes.statusError} align="right">ISSUE {row.status}</TableCell>
                     }
                       <TableCell align="right">{row.delay}</TableCell>
                     </TableRow>

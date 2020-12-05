@@ -19,16 +19,16 @@ const LandingPage = () => {
   const show = useSelector((state) => state.statusReducer.showStatus);
   const rawRows = useSelector((state) => state.landingListReducer.landingList);
 
-  let date = Date.now() + 300000
+  let date = Date.now() + 10000
 
   useEffect(() => {
     dispatch(loadLandingList());
     const interval = setInterval(()=>{
       dispatch(loadLandingList());
-     },300000)
-       
-     return()=>clearInterval(interval)
-
+    },10000)
+    
+    return()=>clearInterval(interval)
+    
   }, [dispatch]);
 
   const onFieldChange = (value, setValue) => {
@@ -82,9 +82,9 @@ const LandingPage = () => {
         to follow their uptimes for free, with free monitoring and notifications
         if you want to.
       </p>
-      <h3 className="landingTable__title">Analyzed websites:</h3>
+      <h3 className="landingTable__title">Looking after 1000+ website's health:</h3>
       <p>(New data in <span> </span>
-      <Countdown date={date} />)</p>
+      <Countdown date={date} daysInHours={true} overtime={true}/>)</p>
       <EnhancedTableLanding rawRows={rawRows}/>
       <br></br>
     </div>
