@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import * as Zoom from 'chartjs-plugin-zoom';
-import Hammer from "hammerjs";
 import "../styles/Detail.css";
 import Disqus from "disqus-react";
+import Chart from "react-google-charts";
+import Spinner from '../presentational/Spinner'
 
 const Detail = (props) => {
-  const [chartData, setChartData] = useState({});
-
-  const chart = () => {
-    setChartData({
-      labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"],
-      datasets: [
-        {
-          label: "Delay",
-          data: [98, 134, 213, 99, 89, 740, 254, 123, 677, 67, 98, 134, 213, 99, 89, 740, 254, 123, 677, 67, 98, 134, 213, 99, 89, 740, 254, 123, 677, 67],
-          backgroundColor: ["rgba(75, 192, 192, 0.6"],
-          borderWidth: 4,
-        },
-      ],
-    });
-  };
-
-  useEffect(() => {
-    chart();
-  }, []);
+  const chartData = [
+    ['Date', 'Value'],
+    [new Date(1996, 1, 1), 2000 * Math.random()],
+    [new Date(1996, 7, 1), 2000 * Math.random()],
+    [new Date(1997, 1, 1), 2000 * Math.random()],
+    [new Date(1997, 7, 1), 2000 * Math.random()],
+    [new Date(1998, 1, 1), 2000 * Math.random()],
+    [new Date(1998, 7, 1), 2000 * Math.random()],
+    [new Date(1999, 1, 1), 2000 * Math.random()],
+    [new Date(1999, 7, 1), 2000 * Math.random()],
+    [new Date(2000, 1, 1), 2000 * Math.random()],
+    [new Date(2000, 7, 1), 2000 * Math.random()],
+    [new Date(2001, 1, 1), 2000 * Math.random()],
+    [new Date(2001, 7, 1), 2000 * Math.random()],
+    [new Date(2002, 1, 1), 2000 * Math.random()],
+    [new Date(2002, 7, 1), 2000 * Math.random()],
+    [new Date(2003, 1, 1), 2000 * Math.random()],
+    [new Date(2003, 7, 1), 2000 * Math.random()],
+    [new Date(2004, 1, 1), 2000 * Math.random()],
+    [new Date(2004, 7, 1), 2000 * Math.random()],
+    [new Date(2005, 1, 1), 2000 * Math.random()],
+    [new Date(2005, 7, 1), 2000 * Math.random()],
+    [new Date(2016, 1, 1), 2000 * Math.random()],
+    [new Date(2016, 7, 1), 2000 * Math.random()],
+    [new Date(2017, 1, 1), 2000 * Math.random()],
+    [new Date(2017, 7, 1), 2000 * Math.random()],
+    [new Date(2018, 1, 1), 2000 * Math.random()],
+    [new Date(2018, 7, 1), 2000 * Math.random()],
+    [new Date(2019, 1, 1), 2000 * Math.random()],
+    [new Date(2021, 7, 1), 2000 * Math.random()],
+  ]
 
   const disqusShortname = "caucana";
   const disqusConfig = {
@@ -39,57 +50,44 @@ const Detail = (props) => {
         Delay of {props.match.params.url} over time:
       </h1>
       <div className="detail__chart">
-        <Line data={chartData} 
-        options={{
-          responsive: true,
-          title: { text: "THICCNESS SCALE", display: true },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 100,
-                  beginAtZero: true,
-                },
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
-            xAxes: [
-              {
-                gridLines: {
-                  display: false,
-                },
-              },
-            ],
+      <Chart 
+  width={'100%'}
+  chartType="LineChart"
+  loader={<Spinner />}
+  data={chartData}
+  options={{
+    // Use the same chart area width as the control for axis alignment.
+    chartArea: { height: '75%', width: '80%' },
+    hAxis: { slantedText: false },
+    vAxis: { viewWindow: { min: 0, max: 2000 } },
+    legend: { position: 'none' },
+  }}
+  rootProps={{ 'data-testid': '3' }}
+  chartPackages={['corechart', 'controls']}
+  controls={[
+    {
+      controlType: 'ChartRangeFilter',
+      options: {
+        filterColumnIndex: 0,
+        ui: {
+          chartType: 'LineChart',
+          chartOptions: {
+            chartArea: { width: '100%', height: '70%' },
+            hAxis: { baselineColor: 'none' },
           },
-          pan: {
-            enabled: true,
-            mode: "x",
-            speed: 10,
-            threshold: 0.1,
-          },
-          zoom: {
-            enabled: true,
-            drag: true,
-            mode: "x",
-            limits: {
-              max: 10000,
-              min: 1,
-            },
-            rangeMin: {
-              x: 1,
-              y: 1
-            },
-            rangeMax: {
-              x: 10000,
-              y: 10000
-            },
-          },
-        }}
-        />
-      </div>
+        },
+      },
+      controlPosition: 'bottom',
+      controlWrapperParams: {
+        state: {
+          range: { start: new Date(2018, 1, 9), end: new Date() },
+        },
+      },
+    },
+  ]}
+/>
+</div>
+      
       <p className="detail__comments-title">
         Is {props.match.params.url} down for you right now? You can submit your
         comments about their service status or report an issue below to let

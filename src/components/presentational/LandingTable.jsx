@@ -196,7 +196,7 @@ export default function EnhancedTableLanding({rawRows}) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const rows = rawRows?.response?.data?.siteResults
+  const rows = rawRows?.response?.data?.responses
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -258,11 +258,11 @@ export default function EnhancedTableLanding({rawRows}) {
                       >
                         <Link to={`/detail/${row.url.split("https://").pop().split("http://").pop().split("www.").pop()}`}>{row.url.split("https://").pop().split("http://").pop().split("www.").pop()}</Link>
                       </TableCell>
-                      {row.siteStatus === 'UP' ? 
-                      <TableCell className={classes.statusUp} align="right">{row.siteStatus}</TableCell> :
-                      row.siteStatus === 'DOWN' ?
-                      <TableCell className={classes.statusDown} align="right">{row.siteStatus}</TableCell> :
-                      <TableCell className={classes.statusError} align="right">{row.siteStatus}</TableCell>
+                      {row.status === 200 ? 
+                      <TableCell className={classes.statusUp} align="right">{row.status}</TableCell> :
+                      row.status === 400 ?
+                      <TableCell className={classes.statusDown} align="right">{row.status}</TableCell> :
+                      <TableCell className={classes.statusError} align="right">{row.status}</TableCell>
                     }
                       <TableCell align="right">{row.delay}</TableCell>
                     </TableRow>
