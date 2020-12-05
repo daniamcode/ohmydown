@@ -50,6 +50,7 @@ export const loadStatus = (url) => {
             if (response.data.url.length > 35) {
                 response.data.url = response.data.url.slice(0, 35) + '...'
             }
+            console.log(response)
             dispatch({
                 type: actionTypes.LOAD_STATUS,
                 payload: {

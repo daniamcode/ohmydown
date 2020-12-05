@@ -39,7 +39,7 @@ describe('LandingPage Component', () => {
     expect(document.querySelector('.spinner-active')).toBeInTheDocument();
   })
 
-  test('Should render status error', () => {
+  test('Should render own error', () => {
     const state = {
         statusReducer: {showStatus: true, loadStatus: {response: {}, isLoading: false, error: {response: 500}}},
       };
@@ -50,9 +50,20 @@ describe('LandingPage Component', () => {
     expect(document.querySelector('.error-case')).toBeInTheDocument();
   })
 
+  test('Should render issue', () => {
+    const state = {
+        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 404 } }}, isLoading: false, error: {}},
+      };
+    wrapper = wrapperFactory(state);
+
+    render(<LoadStatusMessage show={true} loadStatusResponse={state.statusReducer.loadStatus} />, { wrapper });
+
+    expect(document.querySelector('.error-case')).toBeInTheDocument();
+  })
+
   test('Should render status up', () => {
     const state = {
-        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 'UP' } }}, isLoading: false, error: {}},
+        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 200 } }}, isLoading: false, error: {}},
       };
     wrapper = wrapperFactory(state);
 
@@ -63,7 +74,7 @@ describe('LandingPage Component', () => {
 
   test('Should render status down', () => {
     const state = {
-        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 'DOWN' } }}, isLoading: false, error: {}},
+        statusReducer: {showStatus: true, loadStatus: {response: { data: { status: 500 } }}, isLoading: false, error: {}},
       };
     wrapper = wrapperFactory(state);
 

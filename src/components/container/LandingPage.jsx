@@ -19,13 +19,13 @@ const LandingPage = () => {
   const show = useSelector((state) => state.statusReducer.showStatus);
   const rawRows = useSelector((state) => state.landingListReducer.landingList);
 
-  let date = Date.now() + 10000
+  let date = Date.now() + 300000
 
   useEffect(() => {
     dispatch(loadLandingList());
     const interval = setInterval(()=>{
       dispatch(loadLandingList());
-    },10000)
+    },300000)
     
     return()=>clearInterval(interval)
     
