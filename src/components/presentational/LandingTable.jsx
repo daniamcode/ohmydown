@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -16,7 +16,9 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-
+import SearchIcon from "@material-ui/icons/Search";
+import { TextField } from "@material-ui/core";
+import "../styles/LandingTable.css";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -179,24 +181,29 @@ const useStyles = makeStyles((theme) => ({
     width: 1,
   },
   statusUp: {
-    color: 'green'
+    color: "green",
   },
   statusDown: {
-    color: 'red'
+    color: "red",
   },
   statusError: {
-    color: 'goldenrod'
-  }
+    color: "goldenrod",
+  },
 }));
 
-export default function EnhancedTableLanding({rawRows}) {
+export default function EnhancedTableLanding({ rawRows }) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("delay");
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const rows = rawRows?.response?.data?.responses
+  const rows = rawRows?.response?.data?.responses;
+  const [filter, setFilter] = useState("");
+
+  const handleSearchChange = (event) => {
+    setFilter(event.target.value);
+  };
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -221,75 +228,132 @@ export default function EnhancedTableLanding({rawRows}) {
     rowsPerPage - Math.min(rowsPerPage, rows?.length - page * rowsPerPage);
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <TableContainer>
-          <Table
-            className={classes.table}
-            aria-labelledby="tableTitle"
-            size={dense ? "small" : "medium"}
-            aria-label="enhanced table"
-          >
-            <EnhancedTableHead
-              classes={classes}
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-              rowCount={rows?.length}
-            />
-            <TableBody>
-              {rows && stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const labelId = `enhanced-table-checkbox-${index}`;
+    <div className="landingTable">
+      <div className="landingTable__subtitle">
+        <div className="list__search">
+          <SearchIcon style={{ fontSize: 30, fill: "#3F51B5" }} />
+          <TextField
+            label="Search here by url"
+            InputLabelProps={{
+              style: { color: "#000000" },
+            }}
+            InputProps={{
+              style: { color: "#000000" },
+            }}
+            onChange={handleSearchChange}
+          />
+        </div>
+        <p> If the url doesn't appear, register and add it to your profile!</p>
+      </div>
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <TableContainer>
+            <Table
+              className={classes.table}
+              aria-labelledby="tableTitle"
+              size={dense ? "small" : "medium"}
+              aria-label="enhanced table"
+            >
+              <EnhancedTableHead
+                classes={classes}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+                rowCount={rows?.length}
+              />
+              <TableBody>
+                {rows &&
+                  stableSort(rows, getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.url}
-                    >
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="10px"
-                      >
-                        <Link to={`/detail/${row.url.split("https://").pop().split("http://").pop().split("www.").pop()}`}>{row.url.split("https://").pop().split("http://").pop().split("www.").pop()}</Link>
-                      </TableCell>
-                      {row.status === 200 ? 
-                      <TableCell className={classes.statusUp} align="right">UP</TableCell> :
-                      (row.status >= 500 && row.status < 600) ?
-                      <TableCell className={classes.statusDown} align="right">DOWN</TableCell> :
-                      <TableCell className={classes.statusError} align="right">ISSUE {row.status}</TableCell>
-                    }
-                      <TableCell align="right">{row.delay}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10]}
-          component="div"
-          count={rows?.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+                      return (
+                        <>
+                          {row.url.includes(filter) && (
+                            <TableRow
+                              hover
+                              role="checkbox"
+                              tabIndex={-1}
+                              key={row.url}
+                            >
+                              <TableCell
+                                component="th"
+                                id={labelId}
+                                scope="row"
+                                padding="10px"
+                              >
+                                <Link
+                                  to={`/detail/${row.url
+                                    .split("https://")
+                                    .pop()
+                                    .split("http://")
+                                    .pop()
+                                    .split("www.")
+                                    .pop()}`}
+                                >
+                                  {row.url
+                                    .split("https://")
+                                    .pop()
+                                    .split("http://")
+                                    .pop()
+                                    .split("www.")
+                                    .pop()}
+                                </Link>
+                              </TableCell>
+                              {row.status === 200 ? (
+                                <TableCell
+                                  className={classes.statusUp}
+                                  align="right"
+                                >
+                                  UP
+                                </TableCell>
+                              ) : row.status >= 500 && row.status < 600 ? (
+                                <TableCell
+                                  className={classes.statusDown}
+                                  align="right"
+                                >
+                                  DOWN
+                                </TableCell>
+                              ) : (
+                                <TableCell
+                                  className={classes.statusError}
+                                  align="right"
+                                >
+                                  ISSUE {row.status}
+                                </TableCell>
+                              )}
+                              <TableCell align="right">{row.delay}</TableCell>
+                            </TableRow>
+                          )}
+                        </>
+                      );
+                    })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {filter === "" && (
+            <TablePagination
+              rowsPerPageOptions={[10]}
+              component="div"
+              count={rows?.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+          )}
+        </Paper>
+        <FormControlLabel
+          control={<Switch checked={dense} onChange={handleChangeDense} />}
+          label="Dense padding"
         />
-      </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
+      </div>
     </div>
   );
 }
