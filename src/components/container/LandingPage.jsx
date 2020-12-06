@@ -50,7 +50,7 @@ const LandingPage = () => {
         <label className="status__form-label">
           Welcome to Caucana!
           <br />
-          Is your site up or down?
+          Is your site up or down right now?
         </label>
         <div className="status__form-inner-container">
           <TextField
