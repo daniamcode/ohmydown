@@ -84,7 +84,7 @@ const LandingPage = () => {
       </p>
       <h3 className="landingTable__title">Looking after 1000+ website's health:</h3>
       <p>(New real-time data in <span> </span>
-      <Countdown className="landingPage__countdown" date={date} daysInHours={true} overtime={true}/>)</p>
+      <Countdown className="landingPage__countdown" date={date} daysInHours={true} overtime={true} />)</p>
       <EnhancedTableLanding rawRows={rawRows}/>
       <br></br>
     </div>
