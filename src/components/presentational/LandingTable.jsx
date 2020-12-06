@@ -233,7 +233,7 @@ export default function EnhancedTableLanding({ rawRows }) {
         <div className="list__search">
           <SearchIcon style={{ fontSize: 30, fill: "#3F51B5" }} />
           <TextField
-            label="Search a url from the list"
+            label="Search a web from the list"
             InputLabelProps={{
               style: { color: "#000000" },
             }}
@@ -243,7 +243,7 @@ export default function EnhancedTableLanding({ rawRows }) {
             onChange={handleSearchChange}
           />
         </div>
-        <p> Write at least 3 characters. If the web doesn't appear, you can register and add it to your profile!</p>
+        <p> Write at least 3 characters (without http or www). If the site doesn't appear, you can register and add it to your profile!</p>
       </div>
       <div className={classes.root}>
         <Paper className={classes.paper}>
@@ -269,7 +269,12 @@ export default function EnhancedTableLanding({ rawRows }) {
 
                       return (
                         <>
-                          {filter !== "" && filter.length >= 3 && row.url.includes(filter) && (
+                          {filter !== "" && filter.length >= 3 && row.url.split("https://")
+                                    .pop()
+                                    .split("http://")
+                                    .pop()
+                                    .split("www.")
+                                    .pop().startsWith(filter) && (
                             <TableRow
                               hover
                               role="checkbox"
