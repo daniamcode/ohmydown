@@ -233,7 +233,7 @@ export default function EnhancedTableLanding({ rawRows }) {
         <div className="list__search">
           <SearchIcon style={{ fontSize: 30, fill: "#3F51B5" }} />
           <TextField
-            label="Search here by url"
+            label="Search a url from the list"
             InputLabelProps={{
               style: { color: "#000000" },
             }}
@@ -243,7 +243,7 @@ export default function EnhancedTableLanding({ rawRows }) {
             onChange={handleSearchChange}
           />
         </div>
-        <p> If the url doesn't appear, register and add it to your profile!</p>
+        <p> Write at least 3 characters. If the web doesn't appear, you can register and add it to your profile!</p>
       </div>
       <div className={classes.root}>
         <Paper className={classes.paper}>
@@ -264,13 +264,86 @@ export default function EnhancedTableLanding({ rawRows }) {
               <TableBody>
                 {rows &&
                   stableSort(rows, getComparator(order, orderBy))
+                    .map((row, index) => {
+                      const labelId = `enhanced-table-checkbox-${index}`;
+
+                      return (
+                        <>
+                          {filter !== "" && filter.length >= 3 && row.url.includes(filter) && (
+                            <TableRow
+                              hover
+                              role="checkbox"
+                              tabIndex={-1}
+                              key={row.url}
+                            >
+                              <TableCell
+                                component="th"
+                                id={labelId}
+                                scope="row"
+                                padding="10px"
+                              >
+                                <Link
+                                  to={`/detail/${row.url
+                                    .split("https://")
+                                    .pop()
+                                    .split("http://")
+                                    .pop()
+                                    .split("www.")
+                                    .pop()}`}
+                                >
+                                  {row.url
+                                    .split("https://")
+                                    .pop()
+                                    .split("http://")
+                                    .pop()
+                                    .split("www.")
+                                    .pop()}
+                                </Link>
+                              </TableCell>
+                              {row.status === 200 ? (
+                                <TableCell
+                                  className={classes.statusUp}
+                                  align="right"
+                                >
+                                  UP
+                                </TableCell>
+                              ) : row.status >= 500 && row.status < 600 ? (
+                                <TableCell
+                                  className={classes.statusDown}
+                                  align="right"
+                                >
+                                  DOWN
+                                </TableCell>
+                              ) : (
+                                <TableCell
+                                  className={classes.statusError}
+                                  align="right"
+                                >
+                                  ISSUE {row.status}
+                                </TableCell>
+                              )}
+                              <TableCell align="right">{row.delay}</TableCell>
+                            </TableRow>
+                          )}
+                        </>
+                      );
+                    })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+              <TableBody>
+                {rows &&
+                  stableSort(rows, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => {
                       const labelId = `enhanced-table-checkbox-${index}`;
 
                       return (
                         <>
-                          {row.url.includes(filter) && (
+                          {filter === "" && (
                             <TableRow
                               hover
                               role="checkbox"
