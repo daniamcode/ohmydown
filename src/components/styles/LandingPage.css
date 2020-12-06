@@ -1,77 +1,88 @@
-
 .status__form-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+
+.status__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.status__form-label {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  font-size: larger;
+}
+
+.status__form-inner-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.status__form-input {
+  width: 80%;
+}
+
+.status__form-button {
+  width: 80%;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.status__result {
+  font-size: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.status__up {
+  color: green
+}
+
+.status__down {
+  color: red;
+}
+
+.status__error {
+  color: goldenrod;
+}
+
+.status__initial {
+  color: #000;
+}
+
+.status__delay {
+  font-size: 20px;
+  color: #000;
+  margin-top: 20px;
+}
+
+.link-to-profile {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.landingTable__title {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 600px) {
+  .status__form-container {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .status__form-container {
     width: 50%;
   }
-  
-  .status__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
-  
-  .status__form-label {
-    margin-top: 5px;
-    margin-bottom: 25px;
-    font-size: larger;
-  }
-  
-  .status__form-inner-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-  }
-  
-  .status__form-input {
-    width: 80%;
-  }
-  
-  .status__form-button {
-    width: 80%;
-  }
-  
-  ::-webkit-input-placeholder {
-    text-align: center;
-  }
-  
-  .status__result {
-    font-size: 24px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  } 
-  
-  .status__up {
-    color:green
-  }
-  
-  .status__down {
-    color: red;
-  }
-  
-  .status__error {
-    color: goldenrod;
-  }
-  
-  .status__initial {
-    color: #000;
-  }
-  
-  .status__delay {
-    font-size: 20px;
-    color: #000;
-    margin-top: 20px;
-  }
-  
-  .link-to-profile {
-    width: 70%;
-    margin: auto; 
-    margin-bottom: 30px;
-  }
-
-  .landingTable__title {
-    margin-top: 30px;
-    margin-bottom: 10px;
-  }
+}
