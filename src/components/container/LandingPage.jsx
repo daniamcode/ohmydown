@@ -79,7 +79,7 @@ const LandingPage = () => {
       </section>
       <p className="link-to-profile">
         You can go to your <Link to="/profile">Profile</Link> and add up to 5 websites
-        to follow their uptimes and delays for free, with free monitoring and notifications.
+        to follow their uptimes and delays for free, with customized monitoring and notifications.
       </p>
       <h3 className="landingTable__title">Looking after 1000+ website's health:</h3>
       <p>(New real-time data in <span> </span>
