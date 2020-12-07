@@ -4,7 +4,7 @@ import '../styles/Footer.css'
 const Footer = () => {
     return (
         <footer className='footer'>
-            <p>We do independent health checks on your websites so you and your provider can sleep without worries.</p>
+            <p>Sleep without worries! We check the health of your websites and notify issues only in the cases you want to.</p>
         </footer>
     )
 }
