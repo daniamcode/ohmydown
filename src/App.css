@@ -1,7 +1,12 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+.margin-body {
+  padding-top: 80px;
+  min-height: calc(100vh - 140px - 0px); 
 }
 
 html,
@@ -37,7 +42,6 @@ a {
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
-  padding-top: 80px;
 }
 
 .search {

@@ -15,8 +15,7 @@ function App(props) {
     <div className="container">
       <Header />
       
-      <div>
-			
+      <div className="margin-body">
 			<Switch>
 				<Route path="/" exact component={LandingPage} />
 				<Route path="/about" component={About} />

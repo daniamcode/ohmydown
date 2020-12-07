@@ -11,7 +11,7 @@ test('renders some text', () => {
   const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
   
   render(<Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>);
-  const textElement = screen.getByText(/We show in real time/);
+  const textElement = screen.getByText(/Sleep without worries/);
   
   expect(textElement).toBeInTheDocument();
 });
