@@ -77,8 +77,10 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-css-modules-transform": "^1.6.2",
     "babel-preset-es2020": "^1.0.2",
     "css-loader": "^5.0.1",
+    "isomorphic-style-loader": "^5.1.0",
     "jest-canvas-mock": "^2.3.0",
     "style-loader": "^2.0.0"
   }
