@@ -20,15 +20,18 @@ on POST route: /landing-list
 
 ### Response
 {numUrls: 100,
-data: [{web: http://www.yavendras.com,
+data: [{url: http://www.yavendras.com,
 status: 'UP',
 delay: 234,
-{web: http://www.sport.es,
+id: 1
+{url: http://www.sport.es,
 status: 'DOWN',
 delay: 34,
-{web: http://www.pepito.com,
+id:2
+{url: http://www.pepito.com,
 status: 'UP',
-delay: 444
+delay: 444,
+id: 3
 }
 etc
 ]}

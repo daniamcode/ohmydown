@@ -9,7 +9,7 @@ import configureStore, { initialState } from './redux/configureStore'
 
 const store = configureStore(initialState);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>

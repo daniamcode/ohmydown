@@ -2,6 +2,10 @@ import rootReducer from "../redux/reducers/rootReducer";
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from 'redux-thunk';
 
+if (typeof window === 'undefined') {
+  global.window = {}
+}
+
 const initialState = {
     statusReducer: {showStatus: false, loadStatus: {response: {}, isLoading: false, error: {}}},
     profileReducer: { profileUrls: [] },
