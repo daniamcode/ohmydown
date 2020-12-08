@@ -21,6 +21,7 @@ import { TextField } from "@material-ui/core";
 import "../styles/LandingTable.css";
 import Spinner from "./Spinner";
 import ownErrorMessage from "../../scripts/ownErrorMessage";
+import '../styles/LandingPage.css'
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -251,22 +252,22 @@ export default function EnhancedTableLanding({ rawRows }) {
           appear, you can register and add it to your profile!
         </p>
       </div>
-      <div className={classes.root}>
+      <div id="landing-table" className={classes.root}>
         {rawRows.isLoading === true ? (
           <div className="spinner-active">
             <Spinner />
           </div>
         ) : rawRows.error?.response ? (
-          <h1 className="error-case">
+          <h1>
             {document
-              .getElementById("status-message")
+              .getElementById("landing-table")
               ?.classList.remove(
                 "status__initial",
                 "status__up",
                 "status__down"
               )}
             {document
-              .getElementById("status-message")
+              .getElementById("landing-table")
               ?.classList.add("status__error")}
             {ownErrorMessage(rawRows.error.response)}
           </h1>
