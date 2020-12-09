@@ -10,7 +10,7 @@
 
 .detail__chart {
     width: 60%;
-    margin: auto;
+    margin: 0 auto 50px auto;
 }
 
 .detail__comments-title {
