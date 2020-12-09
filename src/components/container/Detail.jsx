@@ -4,6 +4,8 @@ import Disqus from "disqus-react";
 import Chart from "react-google-charts";
 import Spinner from '../presentational/Spinner';
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { loadDetailDelayGraph } from "../../redux/actions/detailActions";
 
 const Detail = (props) => {
   const chartData = [
@@ -42,18 +44,22 @@ const Detail = (props) => {
     [new Date(2021, 7, 1), 2000 * Math.random()],
   ]
 
+  const id = props.match.params.url
+
   const disqusShortname = "caucana";
   const disqusConfig = {
-    url: `http://localhost:3000/${props.match.params.url}`,
-    identifier: `http://localhost:3000/${props.match.params.url}`,
+    url: `http://localhost:3000/${id}`,
+    identifier: `http://localhost:3000/${id}`,
     title: "Title",
   };
   let dispatch = useDispatch();
+  const detailDelayGraph = useSelector((state) => state.detailReducer.detailDelayGraph);
+  console.log(detailDelayGraph)
 
   useEffect(() => {
-    dispatch(loadLandingList());
+    dispatch(loadDetailDelayGraph(id));
     const interval = setInterval(()=>{
-      dispatch(loadLandingList());
+      dispatch(loadDetailDelayGraph(id));
     },300000)
     
     return()=>clearInterval(interval)
