@@ -252,7 +252,7 @@ export default function EnhancedTableLanding({ rawRows }) {
           appear, you can register and add it to your profile!
         </p>
       </div>
-      <div id="landing-table" className={classes.root}>
+      <div id="landingTable__table" className={classes.root}>
         {rawRows.isLoading === true ? (
           <div className="spinner-active">
             <Spinner />
@@ -260,14 +260,14 @@ export default function EnhancedTableLanding({ rawRows }) {
         ) : rawRows.error?.response ? (
           <h1>
             {document
-              .getElementById("landing-table")
+              .getElementById("landingTable__table")
               ?.classList.remove(
                 "status__initial",
                 "status__up",
                 "status__down"
               )}
             {document
-              .getElementById("landing-table")
+              .getElementById("landingTable__table")
               ?.classList.add("status__error")}
             {ownErrorMessage(rawRows.error.response)}
           </h1>
@@ -298,19 +298,13 @@ export default function EnhancedTableLanding({ rawRows }) {
                             <>
                               {filter !== "" &&
                                 filter.length >= 3 &&
-                                row.url
-                                  .split("https://")
-                                  .pop()
-                                  .split("http://")
-                                  .pop()
-                                  .split("www.")
-                                  .pop()
+                                row.id
                                   .startsWith(filter) && (
                                   <TableRow
                                     hover
                                     role="checkbox"
                                     tabIndex={-1}
-                                    key={row.url}
+                                    key={row.id}
                                   >
                                     <TableCell
                                       component="th"
@@ -319,21 +313,9 @@ export default function EnhancedTableLanding({ rawRows }) {
                                       padding="10px"
                                     >
                                       <Link
-                                        to={`/detail/${row.url
-                                          .split("https://")
-                                          .pop()
-                                          .split("http://")
-                                          .pop()
-                                          .split("www.")
-                                          .pop()}`}
+                                        to={`/detail/${row.id}`}
                                       >
-                                        {row.url
-                                          .split("https://")
-                                          .pop()
-                                          .split("http://")
-                                          .pop()
-                                          .split("www.")
-                                          .pop()}
+                                        {row.id}
                                       </Link>
                                     </TableCell>
                                     {row.status === 200 ? (
@@ -393,7 +375,7 @@ export default function EnhancedTableLanding({ rawRows }) {
                                   hover
                                   role="checkbox"
                                   tabIndex={-1}
-                                  key={row.url}
+                                  key={row.id}
                                 >
                                   <TableCell
                                     component="th"
@@ -402,21 +384,9 @@ export default function EnhancedTableLanding({ rawRows }) {
                                     padding="10px"
                                   >
                                     <Link
-                                      to={`/detail/${row.url
-                                        .split("https://")
-                                        .pop()
-                                        .split("http://")
-                                        .pop()
-                                        .split("www.")
-                                        .pop()}`}
+                                      to={`/detail/${row.id}`}
                                     >
-                                      {row.url
-                                        .split("https://")
-                                        .pop()
-                                        .split("http://")
-                                        .pop()
-                                        .split("www.")
-                                        .pop()}
+                                      {row.id}
                                     </Link>
                                   </TableCell>
                                   {row.status === 200 ? (

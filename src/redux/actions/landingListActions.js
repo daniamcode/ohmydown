@@ -29,6 +29,7 @@ export const loadLandingList = () => {
             })
         if (response !== undefined) {
             isLoading = false;
+            console.log(response.data)
             dispatch({
                 type: actionTypes.LOAD_LANDING_LIST,
                 payload: {

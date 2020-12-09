@@ -5,12 +5,14 @@
 .detail__title {
     width: 80%;
     margin: auto;
-    margin-bottom: 30px;
 }
 
 .detail__chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 60%;
-    margin: 0 auto 50px auto;
+    margin: 20px auto 50px auto;
 }
 
 .detail__comments-title {
@@ -20,6 +22,6 @@
 
 .detail__comments {
     width: 50%;
-    margin: auto; 
+    margin: auto;
     padding-top: 20px;
 }
