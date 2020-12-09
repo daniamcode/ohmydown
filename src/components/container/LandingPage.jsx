@@ -19,7 +19,7 @@ const LandingPage = () => {
   const show = useSelector((state) => state.statusReducer.showStatus);
   const rawRows = useSelector((state) => state.landingListReducer.landingList);
 
-  let date = Date.now() + 300000
+  let timer = Date.now() + 300000
 
   useEffect(() => {
     dispatch(loadLandingList());
@@ -83,7 +83,7 @@ const LandingPage = () => {
       </p>
       <h3 className="landingTable__title">Looking after 1000+ website's health:</h3>
       <p>(New real-time data in <span> </span>
-      <Countdown className="landingPage__countdown" date={date} daysInHours={true} overtime={true} />)</p>
+      <Countdown className="landingPage__countdown" timer={timer} daysInHours={true} overtime={true} />)</p>
       <EnhancedTableLanding rawRows={rawRows}/>
       <br></br>
     </div>
