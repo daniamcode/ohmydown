@@ -6,9 +6,14 @@ import Spinner from '../presentational/Spinner';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { loadDetailDelayGraph } from "../../redux/actions/detailActions";
+import mapDetailDelayGraph from "../../scripts/mapDetailDelayGraph";
+import ownErrorMessage from "../../scripts/ownErrorMessage";
 
 const Detail = (props) => {
+  const detailDelayGraph = useSelector((state) => state.detailReducer.detailDelayGraph);
+  
   const chartData = [
+    
     ['Date', 'Value'],
     [new Date(2006, 1, 1), 2000 * Math.random()],
     [new Date(2006, 7, 1), 2000 * Math.random()],
@@ -53,8 +58,10 @@ const Detail = (props) => {
     title: "Title",
   };
   let dispatch = useDispatch();
-  const detailDelayGraph = useSelector((state) => state.detailReducer.detailDelayGraph);
-  console.log(detailDelayGraph)
+  // console.log(detailDelayGraph)
+  // console.log(detailDelayGraph.response?.data[0].delay)
+  let detailDelayGraphMapped = mapDetailDelayGraph(detailDelayGraph)
+  console.log(detailDelayGraphMapped.response?.data[2].delay)
 
   useEffect(() => {
     dispatch(loadDetailDelayGraph(id));
@@ -71,43 +78,54 @@ const Detail = (props) => {
       <h1 className="detail__title">
         Delay of {props.match.params.url} over time:
       </h1>
-      <div className="detail__chart">
-      <Chart 
-  width={'100%'}
+      <div id="detail-delay-chart" className="detail__chart">
+      {detailDelayGraph.isLoading === true ? (
+          <div className="spinner-active">
+            <Spinner />
+          </div>
+        ) : detailDelayGraph.error?.response ? (
+          <h1>
+            {document
+              .getElementById("detail-delay-chart")
+              ?.classList.remove(
+                "status__initial",
+                "status__up",
+                "status__down"
+              )}
+            {document
+              .getElementById("detail-delay-chart")
+              ?.classList.add("status__error")}
+            {ownErrorMessage(detailDelayGraph.error.response)}
+          </h1>
+        ) : (
+      <Chart
+  width={'600px'}
+  height={'400px'}
   chartType="LineChart"
   loader={<Spinner />}
-  data={chartData}
-  options={{
-    // Use the same chart area width as the control for axis alignment.
-    chartArea: { height: '75%', width: '80%' },
-    hAxis: { slantedText: false },
-    vAxis: { viewWindow: { min: 0, max: 2000 } },
-    legend: { position: 'none' },
-  }}
-  rootProps={{ 'data-testid': '3' }}
-  chartPackages={['corechart', 'controls']}
-  controls={[
-    {
-      controlType: 'ChartRangeFilter',
-      options: {
-        filterColumnIndex: 0,
-        ui: {
-          chartType: 'LineChart',
-          chartOptions: {
-            chartArea: { width: '100%', height: '70%' },
-            hAxis: { baselineColor: 'none' },
-          },
-        },
-      },
-      controlPosition: 'bottom',
-      controlWrapperParams: {
-        state: {
-          range: { start: new Date(2018, 1, 9), end: new Date() },
-        },
-      },
-    },
+  data={[
+    ['x', `${id}`],
+    [detailDelayGraph?.response?.data[0].time, detailDelayGraph?.response?.data[0].delay],
+    [detailDelayGraph?.response?.data[1].time, detailDelayGraph?.response?.data[1].delay],
+    [detailDelayGraph?.response?.data[2].time, detailDelayGraph?.response?.data[2].delay],
+    [detailDelayGraph?.response?.data[3].time, detailDelayGraph?.response?.data[3].delay],
+    [detailDelayGraph?.response?.data[4].time, detailDelayGraph?.response?.data[4].delay],
+    [detailDelayGraph?.response?.data[5].time, detailDelayGraph?.response?.data[5].delay],
+    [detailDelayGraph?.response?.data[6].time, detailDelayGraph?.response?.data[6].delay],
+    [detailDelayGraph?.response?.data[7].time, detailDelayGraph?.response?.data[7].delay],
+    [detailDelayGraph?.response?.data[8].time, detailDelayGraph?.response?.data[8].delay],
+    [detailDelayGraph?.response?.data[9].time, detailDelayGraph?.response?.data[9].delay],
   ]}
-/>
+  options={{
+    hAxis: {
+      title: 'Time',
+    },
+    vAxis: {
+      title: 'Delay',
+    },
+  }}
+  rootProps={{ 'data-testid': '1' }}
+/>)}
 </div>
       
       <p className="detail__comments-title">
