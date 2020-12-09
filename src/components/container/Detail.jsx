@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../styles/Detail.css";
 import Disqus from "disqus-react";
 import Chart from "react-google-charts";
-import Spinner from '../presentational/Spinner'
+import Spinner from '../presentational/Spinner';
+import { useDispatch } from "react-redux";
 
 const Detail = (props) => {
   const chartData = [
@@ -47,6 +48,17 @@ const Detail = (props) => {
     identifier: `http://localhost:3000/${props.match.params.url}`,
     title: "Title",
   };
+  let dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadLandingList());
+    const interval = setInterval(()=>{
+      dispatch(loadLandingList());
+    },300000)
+    
+    return()=>clearInterval(interval)
+    
+  }, [dispatch]);
 
   return (
     <section className="detail">
