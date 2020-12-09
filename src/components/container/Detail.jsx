@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Detail.css";
 import Disqus from "disqus-react";
-import Chart from "react-google-charts";
-import Spinner from "../presentational/Spinner";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { loadDetailDelayGraph } from "../../redux/actions/detailActions";
 import mapDetailDelayGraph from "../../scripts/mapDetailDelayGraph";
-import ownErrorMessage from "../../scripts/ownErrorMessage";
+import DetailDelayGraph from '../presentational/DetailDelayGraph'
 
 const Detail = (props) => {
   const id = props.match.params.url;
@@ -42,43 +40,7 @@ const Detail = (props) => {
         Delay of {props.match.params.url} over time:
       </h1>
       <div id="detail-delay-chart" className="detail__chart">
-        {detailDelayGraph.isLoading === true ? (
-          <div className="spinner-active">
-            <Spinner />
-          </div>
-        ) : detailDelayGraph.error?.response ? (
-          <h1>
-            {document
-              .getElementById("detail-delay-chart")
-              ?.classList.remove(
-                "status__initial",
-                "status__up",
-                "status__down"
-              )}
-            {document
-              .getElementById("detail-delay-chart")
-              ?.classList.add("status__error")}
-            {ownErrorMessage(detailDelayGraph.error.response)}
-          </h1>
-        ) : detailDelayGraph.response?.data ? (
-          <Chart
-            height={"400px"}
-            chartType="LineChart"
-            loader={<Spinner />}
-            data={detailDelayGraphMapped}
-            options={{
-              hAxis: {
-                title: "Time",
-              },
-              vAxis: {
-                title: "Delay (ms)",
-              },
-            }}
-            rootProps={{ "data-testid": "1" }}
-          />
-        ) : (
-          <></>
-        )}
+        <DetailDelayGraph detailDelayGraph={detailDelayGraph} detailDelayGraphMapped={detailDelayGraphMapped} />
       </div>
 
       <p className="detail__comments-title">
