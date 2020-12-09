@@ -58,10 +58,10 @@ const Detail = (props) => {
     title: "Title",
   };
   let dispatch = useDispatch();
-  // console.log(detailDelayGraph)
+  console.log(detailDelayGraph)
   // console.log(detailDelayGraph.response?.data[0].delay)
-  let detailDelayGraphMapped = mapDetailDelayGraph(detailDelayGraph)
-  console.log(detailDelayGraphMapped.response?.data[2].delay)
+  let detailDelayGraphMapped = mapDetailDelayGraph(detailDelayGraph.response?.data)
+  console.log(detailDelayGraphMapped)
 
   useEffect(() => {
     dispatch(loadDetailDelayGraph(id));
@@ -71,7 +71,7 @@ const Detail = (props) => {
     
     return()=>clearInterval(interval)
     
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <section className="detail">
@@ -97,7 +97,7 @@ const Detail = (props) => {
               ?.classList.add("status__error")}
             {ownErrorMessage(detailDelayGraph.error.response)}
           </h1>
-        ) : (
+        ) : detailDelayGraph.response?.data ? (
       <Chart
   width={'600px'}
   height={'400px'}
@@ -125,7 +125,7 @@ const Detail = (props) => {
     },
   }}
   rootProps={{ 'data-testid': '1' }}
-/>)}
+/>) : (<></>)}
 </div>
       
       <p className="detail__comments-title">
