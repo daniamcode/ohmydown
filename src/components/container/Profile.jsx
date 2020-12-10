@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import basicOnFieldChange from '../../scripts/basicOnFieldChange';
 import { useSelector } from "react-redux";
 import { loadProfileWebs } from "../../redux/actions/profileActions";
+import ProfileDelayGraph from '../presentational/ProfileDelayGraph'
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");
@@ -55,6 +56,12 @@ const Profile = (props) => {
       </div>
       <div className="profile__table">
         <EnhancedTableProfile rows={rows}/>
+      </div>
+      <div id="profile-delay-chart" className="profile__chart">
+      <h2 className="profile-delay-chart__title">
+        Delay of Dani Alcalà's webs over time:
+      </h2>
+        <ProfileDelayGraph />
       </div>
     </main>
   );

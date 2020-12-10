@@ -20,3 +20,7 @@
     flex-direction: column;
     text-align: center;
 }
+
+.profile__chart {
+    margin-top: 50px;
+}
