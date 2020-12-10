@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { loadDetailDelayGraph } from "../../redux/actions/detailActions";
 import mapDetailDelayGraph from "../../scripts/mapDetailDelayGraph";
-import DetailDelayGraph from '../presentational/DetailDelayGraph'
+import DetailDelayGraph from '../presentational/DetailDelayGraph';
+import Countdown from 'react-countdown';
 
 const Detail = (props) => {
   const id = props.match.params.url;
@@ -17,6 +18,7 @@ const Detail = (props) => {
     id
   );
   let dispatch = useDispatch();
+  let timer = Date.now() + 300000
 
   const disqusShortname = "caucana";
   const disqusConfig = {
@@ -39,6 +41,8 @@ const Detail = (props) => {
       <h1 className="detail__title">
         Delay of {props.match.params.url} over time:
       </h1>
+      <p>(New real-time data in <span> </span>
+      <Countdown className="detail__countdown" date={timer} daysInHours={true} overtime={true} />)</p>
       <div id="detail-delay-chart" className="detail__chart">
         <DetailDelayGraph detailDelayGraph={detailDelayGraph} detailDelayGraphMapped={detailDelayGraphMapped} />
       </div>
