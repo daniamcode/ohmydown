@@ -199,7 +199,7 @@ export default function EnhancedTableLanding({ rawRows }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("delay");
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const rows = rawRows?.response?.data?.responses;
   const [filter, setFilter] = useState("");
