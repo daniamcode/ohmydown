@@ -6,7 +6,7 @@ import "../styles/Header.css";
 import { hideStatus } from "../../redux/actions/statusActions";
 import { useDispatch } from "react-redux";
 import FaceIcon from '@material-ui/icons/Face';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import LockIcon from '@material-ui/icons/Lock';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -44,7 +44,7 @@ const Header = () => {
       </div>
       <div className="separator"></div>
       <FaceIcon className={classes.root} />
-      <LockOpenIcon className={classes.root} />
+      <LockIcon className={classes.root} />
     </section>
   );
 };
