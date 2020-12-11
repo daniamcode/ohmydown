@@ -27,6 +27,7 @@ const DetailDelayGraph = ({detailDelayGraph, detailDelayGraphMapped}) => {
         ) : detailDelayGraph.response?.data ? (
           <Chart
             height={"400px"}
+            width={"100%"}
             chartType="LineChart"
             loader={<Spinner />}
             data={detailDelayGraphMapped}
