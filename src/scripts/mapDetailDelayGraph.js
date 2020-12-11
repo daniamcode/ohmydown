@@ -1,12 +1,13 @@
 export default function mapDetailDelayGraph(response, id) {
+    //convert java date format into javascript date format
     let dateFormatted = (response) => {
-        for(let i = 0; i < response?.data?.length; i++) {
-            response.data[i].time = response?.data[i]?.time.toTimeString()
-            console.log(response?.data[i]?.time)
+        for(let i = 0; i < response?.length; i++) {
+            response[i].time = new Date(response[i].time)
         }
     return response
     }
 
+    //then map
     let firstArray = [['x', `${id}`]]
     let result = firstArray.concat(dateFormatted(response)?.map(function(obj) {
         return Object.keys(obj).sort().reverse().filter(x => (x ==='delay' || x ==='time')).map(function(key) { 
