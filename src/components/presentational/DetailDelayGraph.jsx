@@ -26,7 +26,7 @@ const DetailDelayGraph = ({detailDelayGraph, detailDelayGraphMapped}) => {
           </h1>
         ) : detailDelayGraph.response?.data ? (
         <>
-        <h3>Showing data from: {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric'})} (London Time)</h3>
+        <h3>Showing data from {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric'})} (London Time)</h3>
           <Chart
             height={"400px"}
             width={"100%"}
