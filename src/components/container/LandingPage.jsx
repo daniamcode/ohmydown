@@ -48,7 +48,7 @@ const LandingPage = () => {
     <div className="status__form-container">
       <form className="status__form" onSubmit={handleSubmit}>
         <label className="status__form-label">
-          Welcome to Caucana!
+          Welcome to Ohmydown!
           <br />
           Is your site up or down right now?
         </label>
