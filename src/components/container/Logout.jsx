@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import LockIcon from "@material-ui/icons/Lock";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogout } from "react-google-login";
 import { GOOGLE_CLIENT_ID } from "../../data/constants";
 import { googleOAuth2 } from "../../redux/actions/authActions";
 
@@ -15,30 +15,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+const Logout = () => {
   const classes = useStyles();
   let dispatch = useDispatch();
   
   return (
     <>
-      <GoogleLogin
+      <GoogleLogout
         clientId={GOOGLE_CLIENT_ID}
         render={(renderProps) => (
-          <LockIcon
+          <LockOpenIcon
             className={classes.root}
             onClick={renderProps.onClick}
           />
         )}
-        onSuccess={(response) => {
+        onLogoutSuccess={(response) => {
             dispatch(googleOAuth2(response))}}
-        onFailure={(response) => {
-            dispatch(googleOAuth2(response))}}
-        cookiePolicy={"single_host_origin"}
-        isSignedIn={true}
-        redirectUri='/profile'
       />
     </>
   );
 };
 
-export default Login;
+export default Logout;

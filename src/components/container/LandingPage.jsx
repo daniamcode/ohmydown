@@ -20,6 +20,7 @@ const LandingPage = () => {
   const loadStatusResponse = useSelector((state) => state.statusReducer.loadStatus);
   const show = useSelector((state) => state.statusReducer.showStatus);
   const rawRows = useSelector((state) => state.landingListReducer.landingList);
+  const token = useSelector((state) => state.googleReducer.authResponse.accessToken);
 
   let timer = Date.now() + 300000
 
@@ -42,7 +43,7 @@ const LandingPage = () => {
     event.preventDefault();
     event.target.reset();
     dispatch(showStatus());
-    dispatch(loadStatus(url));
+    dispatch(loadStatus(url, token));
   }
  
   return (

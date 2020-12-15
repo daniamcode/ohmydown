@@ -18,7 +18,7 @@ export const hideStatus = () => {
     });
 }
 
-export const loadStatus = (url) => {
+export const loadStatus = (url, token) => {
     return async function (dispatch) {
         let isLoading = true;
         dispatch({
@@ -27,9 +27,12 @@ export const loadStatus = (url) => {
                 isLoading
             }
         });
+        console.log(token)
         const response = await axios.post(
                 'http://localhost:8080/status', {
                     url
+                }, {
+                    headers: token
                 }
             )
             .catch(error => {
