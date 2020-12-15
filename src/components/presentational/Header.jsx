@@ -20,10 +20,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const Header = () => {
-  const token = useSelector((state) => state.googleReducer.authResponse?.accessToken);
-  console.log(token)
+  const token = useSelector(
+    (state) => state.googleReducer.authResponse?.accessToken
+  );
+  console.log(token);
   let dispatch = useDispatch();
   const classes = useStyles();
 
@@ -47,11 +48,17 @@ const Header = () => {
         <Accordion />
       </div>
       <div className="separator"></div>
-      <FaceIcon className={classes.root} />
-      {token ?
-      <Logout /> :
-      <Login />
-      }
+
+      {token ? (
+        <>
+          <Link to="/profile">
+            <FaceIcon className={classes.root} />
+          </Link>
+          <Logout />
+        </>
+      ) : (
+        <Login />
+      )}
     </section>
   );
 };
