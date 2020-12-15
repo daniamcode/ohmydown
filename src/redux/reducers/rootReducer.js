@@ -2,6 +2,7 @@ import statusReducer from './statusReducers'
 import profileReducer from './profileReducers'
 import landingListReducer from './landingListReducers'
 import detailReducer from './detailReducers'
+import googleReducer from './googleReducers'
 import {
     combineReducers
 } from 'redux';
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
     statusReducer,
     profileReducer,
     landingListReducer,
-    detailReducer
+    detailReducer,
+    googleReducer
 })
 
 export const setMessage = messageText => ({ type: 'SET_MESSAGE', message: messageText });

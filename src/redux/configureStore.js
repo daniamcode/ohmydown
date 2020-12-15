@@ -10,7 +10,8 @@ const initialState = {
     statusReducer: {showStatus: false, loadStatus: {response: {}, isLoading: false, error: {}}},
     profileReducer: { profileUrls: [] },
     landingListReducer: {landingList: {response: {}, isLoading: false, error: {}}},
-    detailReducer: {detailDelayGraph: {response: {}, isLoading: false, error: {}}}
+    detailReducer: {detailDelayGraph: {response: {}, isLoading: false, error: {}}},
+    googleReducer: {authResponse: []}
   };
 
 const configureStore = (initialState) => {

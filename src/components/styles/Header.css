@@ -42,16 +42,6 @@
     margin-left: 2vw;
 }
 
-.header__logo-icon {
-    display: inline-block;
-    background-image: url(../../icons/login.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 40px;
-    height: 40px;
-}
-
 .separator {
     flex-grow: 1;
   }

@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import basicOnFieldChange from '../../scripts/basicOnFieldChange';
 import { useSelector } from "react-redux";
 import { loadProfileWebs } from "../../redux/actions/profileActions";
-import ProfileDelayGraph from '../presentational/ProfileDelayGraph'
+import ProfileDelayGraph from '../presentational/ProfileDelayGraph';
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");

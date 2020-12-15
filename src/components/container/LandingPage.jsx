@@ -10,8 +10,8 @@ import LoadStatusMessage from "../presentational/LoadStatusMessage";
 import { useSelector } from "react-redux";
 import { loadLandingList } from "../../redux/actions/landingListActions";
 import Countdown from 'react-countdown';
-import {landingPageTitle} from '../../data/constants'
-import {landingPageSubTitle} from '../../data/constants'
+import {LANDING_PAGE_TITLE} from '../../data/constants'
+import {LANDING_PAGE_SUBTITLE} from '../../data/constants'
 
 
 const LandingPage = () => {
@@ -50,9 +50,9 @@ const LandingPage = () => {
     <div className="status__form-container">
       <form className="status__form" onSubmit={handleSubmit}>
         <label className="status__form-label">
-          {landingPageTitle}
+          {LANDING_PAGE_TITLE}
           <br />
-          {landingPageSubTitle}
+          {LANDING_PAGE_SUBTITLE}
         </label>
         <div className="status__form-inner-container">
           <TextField
