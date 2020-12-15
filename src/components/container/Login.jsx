@@ -27,6 +27,7 @@ const Login = () => {
           <LockIcon
             className={classes.root}
             onClick={renderProps.onClick}
+            disabled={renderProps.disabled}
           />
         )}
         onSuccess={(response) => {
@@ -35,7 +36,6 @@ const Login = () => {
             dispatch(googleOAuth2(response))}}
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
-        redirectUri='/profile'
       />
     </>
   );
