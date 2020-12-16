@@ -22,28 +22,26 @@ const Login = () => {
   let history = useHistory();
 
   return (
-    <>
-      <GoogleLogin
-        clientId={GOOGLE_CLIENT_ID}
-        render={(renderProps) => (
-          <LockIcon
-            className={classes.root}
-            onClick={renderProps.onClick}
-            disabled={renderProps.disabled}
-          />
-        )}
-        onSuccess={(response) => {
-          dispatch(googleOAuth2(response));
-          history.push("/profile");
-        }}
-        onFailure={(response) => {
-          dispatch(googleOAuth2(response));
-          history.push("/");
-        }}
-        cookiePolicy={"single_host_origin"}
-        isSignedIn={true}
-      />
-    </>
+    <GoogleLogin
+      clientId={GOOGLE_CLIENT_ID}
+      render={(renderProps) => (
+        <LockIcon
+          className={classes.root}
+          onClick={renderProps.onClick}
+          disabled={renderProps.disabled}
+        />
+      )}
+      onSuccess={(response) => {
+        dispatch(googleOAuth2(response));
+        history.push("/profile");
+      }}
+      onFailure={(response) => {
+        dispatch(googleOAuth2(response));
+        history.push("/");
+      }}
+      cookiePolicy={"single_host_origin"}
+      isSignedIn={true}
+    />
   );
 };
 

@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#3F51B5",
     marginRight: "2vw",
     cursor: "pointer",
+    marginTop: "0vw"
   },
 }));
 

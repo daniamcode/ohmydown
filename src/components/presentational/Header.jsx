@@ -50,14 +50,16 @@ const Header = () => {
       <div className="separator"></div>
 
       {token ? (
-        <>
+        <div className="header__buttons">
           <Link to="/profile">
             <FaceIcon className={classes.root} />
           </Link>
           <Logout />
-        </>
+        </div>
       ) : (
-        <Login />
+        <div className="header__buttons">
+          <Login />
+        </div>
       )}
     </section>
   );
