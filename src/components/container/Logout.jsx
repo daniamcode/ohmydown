@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { GoogleLogout } from "react-google-login";
 import { GOOGLE_CLIENT_ID } from "../../data/constants";
 import { googleOAuth2 } from "../../redux/actions/authActions";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 const Logout = () => {
   const classes = useStyles();
   let dispatch = useDispatch();
+  let history = useHistory();
   
   return (
     <>
@@ -31,7 +33,8 @@ const Logout = () => {
           />
         )}
         onLogoutSuccess={(response) => {
-            dispatch(googleOAuth2(response))}}
+            dispatch(googleOAuth2(response))
+            history.push("/");}}
       />
     </>
   );
