@@ -7,10 +7,13 @@ import Footer from './components/presentational/Footer'
 import About from './components/presentational/About'
 import Contact from './components/presentational/Contact'
 import Profile from './components/container/Profile'
+import AutoLogin from './components/container/AutoLogin'
 import PageNotFound from "./components/presentational/PageNotFound";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 function App(props) {
+	const token = useSelector((state) => state.googleReducer.authResponse.accessToken);
   return (
     <div className="container">
       <Header />
@@ -20,7 +23,7 @@ function App(props) {
 				<Route path="/" exact component={LandingPage} />
 				<Route path="/about" component={About} />
 				<Route path="/contact" component={Contact} />
-				<Route path="/profile" component={Profile} />
+				{token ? <Route path="/profile" component={Profile} /> : <Route path="/profile" component={AutoLogin} />}
 				<Route path="/detail/:url" component={Detail} />
 				<Route component={PageNotFound} />
 			</Switch>

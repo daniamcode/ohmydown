@@ -45,3 +45,7 @@
 .separator {
     flex-grow: 1;
   }
+
+.header__buttons {
+    margin-top: 7px;
+}

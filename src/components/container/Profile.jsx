@@ -5,30 +5,33 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { addProfileWeb } from "../../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
-import basicOnFieldChange from '../../scripts/basicOnFieldChange';
+import basicOnFieldChange from "../../scripts/basicOnFieldChange";
 import { useSelector } from "react-redux";
 import { loadProfileWebs } from "../../redux/actions/profileActions";
-import ProfileDelayGraph from '../presentational/ProfileDelayGraph';
+import ProfileDelayGraph from "../presentational/ProfileDelayGraph";
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const addWebsite = (url) => dispatch(addProfileWeb(url));
   const rows = useSelector((state) => state.profileReducer.profileUrls);
+  const name = useSelector(
+    (state) => state.googleReducer.authResponse?.profileObj?.name
+  );
 
   useEffect(() => {
     dispatch(loadProfileWebs());
   }, [dispatch]);
- 
+
   function handleSubmit(event) {
     event.preventDefault();
     event.target.reset();
     addWebsite(url);
   }
- 
+
   return (
     <main className="profile">
-      <h1 className="profile__title">Dani Alcalà's Profile</h1>
+      <h1 className="profile__title">Profile of {name}</h1>
       <div className="profile__add-title">
         <h3 key={url}>Add a url to be followed (up to 5):</h3>
         <form className="profile__add" onSubmit={handleSubmit}>
@@ -41,7 +44,9 @@ const Profile = (props) => {
               name="url"
               required
               value={url}
-              onChange={(event) => basicOnFieldChange(event.target.value, setUrl)}
+              onChange={(event) =>
+                basicOnFieldChange(event.target.value, setUrl)
+              }
             />
             <Button
               variant="contained"
@@ -55,12 +60,12 @@ const Profile = (props) => {
         </form>
       </div>
       <div className="profile__table">
-        <EnhancedTableProfile rows={rows}/>
+        <EnhancedTableProfile rows={rows} />
       </div>
       <div id="profile-delay-chart" className="profile__chart">
-      <h2 className="profile-delay-chart__title">
-        Delay of Dani Alcalà's webs over time:
-      </h2>
+        <h2 className="profile-delay-chart__title">
+          Delay of {name}'s webs over time:
+        </h2>
         <ProfileDelayGraph />
       </div>
     </main>

@@ -24,7 +24,7 @@ const Header = () => {
   const token = useSelector(
     (state) => state.googleReducer.authResponse?.accessToken
   );
-  console.log(token);
+  console.log(token)
   let dispatch = useDispatch();
   const classes = useStyles();
 
