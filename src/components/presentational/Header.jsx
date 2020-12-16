@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    fontSize: 32,
+    fontSize: 40,
     color: "#3F51B5",
     marginRight: "2vw",
     cursor: "pointer",
