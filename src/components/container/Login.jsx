@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { GoogleLogin } from "react-google-login";
 import { GOOGLE_CLIENT_ID } from "../../data/constants";
 import { googleOAuth2 } from "../../redux/actions/authActions";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   let dispatch = useDispatch();
-  
+  let history = useHistory();
+
   return (
     <>
       <GoogleLogin
@@ -31,9 +33,13 @@ const Login = () => {
           />
         )}
         onSuccess={(response) => {
-            dispatch(googleOAuth2(response))}}
+          dispatch(googleOAuth2(response));
+          history.push("/profile");
+        }}
         onFailure={(response) => {
-            dispatch(googleOAuth2(response))}}
+          dispatch(googleOAuth2(response));
+          history.push("/");
+        }}
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />
