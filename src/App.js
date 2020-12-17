@@ -20,10 +20,12 @@ function App(props) {
       
       <div className="margin-body">
 			<Switch>
-				<Route path="/" exact component={LandingPage} />
+				<Route exact path="/" component={LandingPage} />
 				<Route path="/about" component={About} />
 				<Route path="/contact" component={Contact} />
-				{token ? <Route path="/profile" component={Profile} /> : <Route path="/profile" component={AutoLogin} />}
+				{/* <Route path="/profile">{token ? <Profile /> : <Redirect to='/' />}</Route> */}
+				{/* {token ? <Route path="/profile" component={Profile} /> : <Route path="/profile" component={AutoLogin} />} */}
+				<Route path="/profile" component={Profile} />
 				<Route path="/detail/:url" component={Detail} />
 				<Route component={PageNotFound} />
 			</Switch>

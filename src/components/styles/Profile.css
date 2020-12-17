@@ -3,14 +3,14 @@
     height: 700px;
     width: 60rem;
     margin: auto;
-    
+
 }
 
-.profile__add-title{
+.profile__add-title {
     margin-top: 20px;
 }
 
-.profile__add{
+.profile__add {
     width: 60%;
     margin: 30px auto 60px auto;
 }
@@ -23,4 +23,21 @@
 
 .profile__chart {
     margin-top: 50px;
+}
+
+.profile__message__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__message {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 100px;
+    margin-top: 200px;
+    justify-content: center;
+    align-items: center;
 }
