@@ -10,6 +10,7 @@ import Countdown from 'react-countdown';
 
 const Detail = (props) => {
   const id = props.match.params.url;
+  const token = useSelector((state) => state.googleReducer.authResponse.accessToken);
   const detailDelayGraph = useSelector(
     (state) => state.detailReducer.detailDelayGraph
   );
@@ -28,9 +29,9 @@ const Detail = (props) => {
   };
 
   useEffect(() => {
-    dispatch(loadDetailDelayGraph(id));
+    dispatch(loadDetailDelayGraph(id, token));
     const interval = setInterval(() => {
-      dispatch(loadDetailDelayGraph(id));
+      dispatch(loadDetailDelayGraph(id, token));
     }, 300000);
 
     return () => clearInterval(interval);

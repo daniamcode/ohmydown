@@ -2,7 +2,7 @@ import actionTypes from "./actionTypes";
 import axios from "axios";
 
 
-export const loadDetailDelayGraph = (id) => {
+export const loadDetailDelayGraph = (id, token) => {
     return async function (dispatch) {
         let isLoading = true;
         dispatch({
@@ -12,8 +12,10 @@ export const loadDetailDelayGraph = (id) => {
             }
         });
         const response = await axios.get(
-                `http://localhost:8080/historical/${id}`,{
+                `http://localhost:8080/historical/${id}`, {
                     id
+                },{
+                    headers: token
                 }
             )
             .catch(error => {
