@@ -13,7 +13,7 @@ export const loadLandingList = (token) => {
         });
         const response = await axios.post(
                 'http://localhost:8080/landing-list', {
-                    headers: token
+                    headers: {token}
                 }
             )
             .catch(error => {
@@ -31,7 +31,6 @@ export const loadLandingList = (token) => {
             })
         if (response !== undefined) {
             isLoading = false;
-            console.log(response.data)
             dispatch({
                 type: actionTypes.LOAD_LANDING_LIST,
                 payload: {

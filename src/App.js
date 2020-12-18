@@ -13,7 +13,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 function App(props) {
-	const token = useSelector((state) => state.googleReducer.authResponse.accessToken);
+	const token = useSelector((state) => state.googleReducer.authResponse.tokenId);
   return (
     <div className="container">
       <Header />
@@ -23,8 +23,12 @@ function App(props) {
 				<Route exact path="/" component={LandingPage} />
 				<Route path="/about" component={About} />
 				<Route path="/contact" component={Contact} />
-				{/* <Route path="/profile">{token ? <Profile /> : <Redirect to='/' />}</Route> */}
-				{/* {token ? <Route path="/profile" component={Profile} /> : <Route path="/profile" component={AutoLogin} />} */}
+	
+				
+				{/* {token ? <Route path="/profile" component={Profile} /> : <Route path='/profile' component={() => { 
+     window.location.href = 'https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=permission%20id_token&scope=email%20profile%20openid&openid.realm&client_id=97800569171-m8ksj0r9al1sda4qk5la1puhajlmthgk.apps.googleusercontent.com&ss_domain=http%3A%2F%2Flocalhost%3A3000&prompt&fetch_basic_profile=true&gsiwebsdk=2&flowName=GeneralOAuthFlow'; 
+     return null;
+}}/>} */}
 				<Route path="/profile" component={Profile} />
 				<Route path="/detail/:url" component={Detail} />
 				<Route component={PageNotFound} />

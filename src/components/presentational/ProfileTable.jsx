@@ -22,6 +22,8 @@ import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { deleteProfileWebs } from "../../redux/actions/profileActions";
+import ownErrorMessage from "../../scripts/ownErrorMessage";
+import Spinner from "./Spinner";
 
 
 import { useDispatch } from "react-redux";
@@ -227,7 +229,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTableProfile({rows}) {
+export default function EnhancedTableProfile({rawRows}) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("uptime");
@@ -235,6 +237,7 @@ export default function EnhancedTableProfile({rows}) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const rows = rawRows?.response?.data?.responses;
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -290,7 +293,33 @@ export default function EnhancedTableProfile({rows}) {
   //     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <div className={classes.root}>
+    <div className="profileTable">
+      
+      <div id="profileTable__table" className={classes.root}>
+        {rawRows.isLoading === true ? (
+          <div className="spinner-active">
+            <Spinner />
+          </div>
+        ) : rawRows.error?.response ? (
+          <h1>
+            {document
+              .getElementById("profileTable__table")
+              ?.classList.remove(
+                "status__initial",
+                "status__up",
+                "status__down"
+              )}
+            {document
+              .getElementById("profileTable__table")
+              ?.classList.add("status__error")}
+            {ownErrorMessage(rawRows.error.response)}
+          </h1>
+        ) : (
+
+
+
+
+    <>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar
           numSelected={selected.length}
@@ -310,7 +339,7 @@ export default function EnhancedTableProfile({rows}) {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={rows?.length}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
@@ -370,6 +399,9 @@ export default function EnhancedTableProfile({rows}) {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+      </>
+        )}
+    </div>
     </div>
   );
 }

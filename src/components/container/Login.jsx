@@ -31,6 +31,8 @@ const Login = () => {
           disabled={renderProps.disabled}
         />
       )}
+      // uxMode="redirect"
+      // redirectUri="http://localhost:3000/"
       onSuccess={(response) => {
         dispatch(googleOAuth2(response));
         history.push("/profile");

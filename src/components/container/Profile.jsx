@@ -15,17 +15,21 @@ const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const addWebsite = (url) => dispatch(addProfileWeb(url));
-  const rows = useSelector((state) => state.profileReducer.profileUrls);
+  const rawRows = useSelector((state) => state.profileReducer.profileUrls);
   const name = useSelector(
     (state) => state.googleReducer.authResponse?.profileObj?.name
   );
   const token = useSelector(
-    (state) => state.googleReducer.authResponse.accessToken
+    (state) => state.googleReducer.authResponse?.tokenId
   );
+  const testName = useSelector(
+    (state) => state.profileReducer?.profileUrls?.response?.data?.name
+  );
+  console.log(testName)
 
   useEffect(() => {
-    dispatch(loadProfileWebs());
-  }, [dispatch]);
+    dispatch(loadProfileWebs(token));
+  }, [dispatch, token]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -40,11 +44,12 @@ const Profile = (props) => {
           <p className="profile__message">
             Open the padlock to get access to your profile:
           </p>
-            <Login />
+          <Login />
         </div>
       ) : (
         <main className="profile">
           <h1 className="profile__title">Profile of {name}</h1>
+          <h2 className="profile__title">Profile of {testName}</h2>
           <div className="profile__add-title">
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <form className="profile__add" onSubmit={handleSubmit}>
@@ -72,9 +77,9 @@ const Profile = (props) => {
               </div>
             </form>
           </div>
-          <div className="profile__table">
-            <EnhancedTableProfile rows={rows} />
-          </div>
+          {/* <div className="profile__table">
+            <EnhancedTableProfile rawRows={rawRows} />
+          </div> */}
           <div id="profile-delay-chart" className="profile__chart">
             <h2 className="profile-delay-chart__title">
               Delay of {name}'s webs over time:

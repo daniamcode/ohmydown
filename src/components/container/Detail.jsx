@@ -10,7 +10,7 @@ import Countdown from 'react-countdown';
 
 const Detail = (props) => {
   const id = props.match.params.url;
-  const token = useSelector((state) => state.googleReducer.authResponse.accessToken);
+  const token = useSelector((state) => state.googleReducer.authResponse.tokenId);
   const detailDelayGraph = useSelector(
     (state) => state.detailReducer.detailDelayGraph
   );
@@ -35,7 +35,7 @@ const Detail = (props) => {
     }, 300000);
 
     return () => clearInterval(interval);
-  }, [dispatch, id]);
+  }, [dispatch, id, token]);
 
   return (
     <section className="detail">

@@ -27,12 +27,11 @@ export const loadStatus = (url, token) => {
                 isLoading
             }
         });
-        console.log(token)
         const response = await axios.post(
                 'http://localhost:8080/status', {
                     url
                 }, {
-                    headers: token
+                    headers: {token}
                 }
             )
             .catch(error => {
@@ -53,7 +52,6 @@ export const loadStatus = (url, token) => {
             if (response.data.url.length > 35) {
                 response.data.url = response.data.url.slice(0, 35) + '...'
             }
-            console.log(response)
             dispatch({
                 type: actionTypes.LOAD_STATUS,
                 payload: {
