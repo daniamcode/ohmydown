@@ -34,7 +34,7 @@ const Login = () => {
       // uxMode="redirect"
       // redirectUri="http://localhost:3000/"
       onSuccess={(response) => {
-        document.cookie = `token = ${response.tokenId}; expires=` + new Date(9999, 0, 1).toUTCString
+        document.cookie = `token = ${response.tokenId}; expires=` + new Date(9999, 0, 1).toUTCString; 
         document.cookie = `name = ${response.profileObj.name}; expires=` + new Date(9999, 0, 1).toUTCString
         dispatch(googleOAuth2());
         // history.push("/profile");

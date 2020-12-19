@@ -10,12 +10,12 @@ const profileReducers = (state = {}, action = {}) => {
     case actionTypes.ADD_PROFILE_WEB:
       return {
         ...state,
-        profileUrls: [...state.profileUrls, action.payload]
+        profileUrls: [...state.profile, action.payload]
       };
     case actionTypes.DELETE_PROFILE_WEBS:
       return {
         ...state,
-        profileUrls: state.profileUrls.filter(x => !action.payload.includes(x.name))
+        profileUrls: state.profile.filter(x => !action.payload.includes(x.name))
       };
     default:
       return state;

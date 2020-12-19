@@ -253,11 +253,11 @@ export default function EnhancedTableLanding({ rawRows }) {
         </p>
       </div>
       <div id="landingTable__table" className={classes.root}>
-        {rawRows.isLoading === true ? (
+        {rawRows && rawRows.isLoading === true ? (
           <div className="spinner-active">
             <Spinner />
           </div>
-        ) : rawRows.error?.response ? (
+        ) : rawRows && rawRows.error?.response ? (
           <h1>
             {document
               .getElementById("landingTable__table")

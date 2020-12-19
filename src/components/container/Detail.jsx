@@ -15,7 +15,7 @@ const Detail = (props) => {
     (state) => state.detailReducer.detailDelayGraph
   );
   let detailDelayGraphMapped = mapDetailDelayGraph(
-    detailDelayGraph.response?.data,
+    detailDelayGraph?.response?.data,
     id
   );
   let dispatch = useDispatch();

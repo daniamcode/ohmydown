@@ -8,11 +8,11 @@ describe('Profile reducer', () => {
   });
 
   it('should handle initial state and no action', () => {
-    expect(profileReducers(initialState.profileReducer)).toEqual({ profileUrls: [] });
+    expect(profileReducers(initialState.profileReducer)).toEqual({ profile: {response: {}, isLoading: false, error: {}} });
   });
 
   it('should handle LOAD_PROFILE_WEBS', () => {
-    let result = {profileUrls: [{name: 'sport.es'}, {name: 'amazon.com'}]}
+    let result = {profile: [{name: 'sport.es'}, {name: 'amazon.com'}]}
     expect(
       profileReducers(
         {
@@ -29,8 +29,8 @@ describe('Profile reducer', () => {
   })
 
   it('should handle ADD_PROFILE_WEB', () => {
-    initialState.profileReducer.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
-    let result = {profileUrls: [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}, {name: 'amazon.com'}]}
+    initialState.profileReducer.profile = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
+    let result = {profile: [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}, {name: 'amazon.com'}]}
     
     expect(
       profileReducers(
@@ -48,8 +48,8 @@ describe('Profile reducer', () => {
   })
 
   it('should handle DELETE_PROFILE_WEBS', () => {
-    initialState.profileReducer.profileUrls = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
-    let result = {profileUrls: [{name: 'yavendras.com'}]}
+    initialState.profileReducer.profile = [{name: 'sport.es'}, {name: 'yavendras.com'}, {name: 'google.com'}]
+    let result = {profile: [{name: 'yavendras.com'}]}
     expect(
       profileReducers(
         {

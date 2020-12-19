@@ -1,11 +1,11 @@
 import {
-    loadProfileWebs, addProfileWeb, deleteProfileWebs
+    loadProfile, addProfileWeb, deleteProfileWebs
 } from "../profileActions";
 
 
 describe('loadProfileWebs', () => {
     it('returns expected value', () => {
-    const result = loadProfileWebs();
+    const result = loadProfile();
 
     expect(result.payload[0].name).toEqual('sport.es')
 })

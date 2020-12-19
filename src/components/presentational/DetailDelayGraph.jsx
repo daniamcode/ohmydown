@@ -6,11 +6,11 @@ import ownErrorMessage from "../../scripts/ownErrorMessage";
 const DetailDelayGraph = ({detailDelayGraph, detailDelayGraphMapped}) => {
   return (
     <>
-        {detailDelayGraph.isLoading === true ? (
+        {detailDelayGraph && detailDelayGraph.isLoading === true ? (
           <div className="spinner-active">
             <Spinner />
           </div>
-        ) : detailDelayGraph.error?.response ? (
+        ) : detailDelayGraph && detailDelayGraph.error?.response ? (
           <h1>
             {document
               .getElementById("detail-delay-chart")
@@ -24,7 +24,7 @@ const DetailDelayGraph = ({detailDelayGraph, detailDelayGraphMapped}) => {
               ?.classList.add("status__error")}
             {ownErrorMessage(detailDelayGraph.error.response)}
           </h1>
-        ) : detailDelayGraph.response?.data ? (
+        ) : detailDelayGraph && detailDelayGraph.response?.data ? (
         <>
         <h3>Showing data until {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric'})} (London Time)</h3>
           <Chart
