@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#3F51B5",
     marginRight: "2vw",
     cursor: "pointer",
-    marginTop: "0vw"
+    marginTop: "0vw",
   },
 }));
 
@@ -21,7 +21,7 @@ const Logout = () => {
   const classes = useStyles();
   let dispatch = useDispatch();
   let history = useHistory();
-  
+
   return (
     <>
       <GoogleLogout
@@ -33,10 +33,13 @@ const Logout = () => {
           />
         )}
         onLogoutSuccess={(response) => {
-          document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          dispatch(googleOAuth2())
-            history.push("/");}}
+          document.cookie =
+            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+          document.cookie =
+            "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+          dispatch(googleOAuth2());
+          history.push("/");
+        }}
       />
     </>
   );
