@@ -31,7 +31,7 @@ export const loadStatus = (url, token) => {
                 'http://localhost:8080/status', {
                     url
                 }, {
-                    headers: {token}
+                    headers: {Token: token}
                 }
             )
             .catch(error => {

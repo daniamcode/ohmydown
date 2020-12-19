@@ -13,7 +13,7 @@ export const loadLandingList = (token) => {
         });
         const response = await axios.post(
                 'http://localhost:8080/landing-list', {
-                    headers: {token}
+                    headers: {Token: token}
                 }
             )
             .catch(error => {

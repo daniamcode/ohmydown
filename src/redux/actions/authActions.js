@@ -1,11 +1,32 @@
 import actionTypes from "./actionTypes";
 
-export const googleOAuth2 = (googleResponse) => {
+export const googleOAuth2 = () => {
     return async (dispatch) => {
-        if (typeof googleResponse === 'undefined') {
-            googleResponse = [];
-        }
+        // if (typeof googleResponse === 'undefined') {
+        //     googleResponse = [];
+        // }
+        const cookies = document.cookie.split(';')
+            .map(cookie => cookie.split('='))
+            .reduce((accumulator, [key, value]) =>
+                ({
+                    ...accumulator,
+                    [key.trim()]: decodeURIComponent(value)
 
-        dispatch({ type: actionTypes.GOOGLE_OAUTH2, payload: googleResponse });
+                }), {})
+        
+        let token = '';
+        let name = '';
+        if(cookies.token !== undefined) {
+            token = cookies.token;
+            name = cookies.name
+        }
+        dispatch({
+            type: actionTypes.GOOGLE_OAUTH2,
+            payload: {
+                token,
+                name
+           }
+            
+        });
     };
 };

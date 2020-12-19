@@ -2,10 +2,10 @@ import actionTypes from '../actions/actionTypes';
 
 const profileReducers = (state = {}, action = {}) => {
   switch (action.type) {
-    case actionTypes.LOAD_PROFILE_WEBS:
+    case actionTypes.LOAD_PROFILE:
       return {
         ...state,
-        profileUrls: action.payload
+        profile: action.payload
       };
     case actionTypes.ADD_PROFILE_WEB:
       return {

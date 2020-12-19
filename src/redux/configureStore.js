@@ -8,10 +8,10 @@ if (typeof window === 'undefined') {
 
 const initialState = {
     statusReducer: {showStatus: false, loadStatus: {response: {}, isLoading: false, error: {}}},
-    profileReducer: { profileUrls: {response: {}, isLoading: false, error: {}} },
+    profileReducer: { profile: {response: {}, isLoading: false, error: {}}},
     landingListReducer: {landingList: {response: {}, isLoading: false, error: {}}},
     detailReducer: {detailDelayGraph: {response: {}, isLoading: false, error: {}}},
-    googleReducer: {authResponse: []}
+    googleReducer: {}
   };
 
 const configureStore = (initialState) => {

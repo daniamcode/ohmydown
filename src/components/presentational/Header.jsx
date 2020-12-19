@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const token = useSelector(
-    (state) => state.googleReducer.authResponse?.tokenId
+    (state) => state.googleReducer.authResponse?.token
   );
   let dispatch = useDispatch();
   const classes = useStyles();

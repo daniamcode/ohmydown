@@ -7,28 +7,37 @@ import { addProfileWeb } from "../../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
 import basicOnFieldChange from "../../scripts/basicOnFieldChange";
 import { useSelector } from "react-redux";
-import { loadProfileWebs } from "../../redux/actions/profileActions";
+import {
+  loadProfile,
+} from "../../redux/actions/profileActions";
 import ProfileDelayGraph from "../presentational/ProfileDelayGraph";
 import Login from "./Login";
+import Spinner from "../presentational/Spinner";
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const addWebsite = (url) => dispatch(addProfileWeb(url));
-  const rawRows = useSelector((state) => state.profileReducer.profileUrls);
+  const rawRows = useSelector((state) => state.profileReducer.profile);
   const name = useSelector(
-    (state) => state.googleReducer.authResponse?.profileObj?.name
+    (state) =>
+      state.googleReducer.authResponse?.name
   );
   const token = useSelector(
-    (state) => state.googleReducer.authResponse?.tokenId
+    (state) => state.googleReducer.authResponse?.token
   );
+  const isLoading = useSelector(
+    (state) => state.profileReducer.profile?.isLoading
+  );
+  const error = useSelector((state) => state.profileReducer.profile?.error);
   const testName = useSelector(
-    (state) => state.profileReducer?.profileUrls?.response?.data?.name
+    (state) => state.profileReducer?.profile?.response?.data?.email
   );
-  console.log(testName)
 
   useEffect(() => {
-    dispatch(loadProfileWebs(token));
+    if (token) {
+      dispatch(loadProfile(token));
+    }
   }, [dispatch, token]);
 
   function handleSubmit(event) {
@@ -36,15 +45,19 @@ const Profile = (props) => {
     event.target.reset();
     addWebsite(url);
   }
-
+console.log(token)
   return (
     <>
-      {!token ? (
+      {(!token) ? (
         <div className="profile__message__container">
           <p className="profile__message">
             Open the padlock to get access to your profile:
           </p>
           <Login />
+        </div>
+      ) : isLoading ? (
+        <div className="spinner-active">
+          <Spinner />
         </div>
       ) : (
         <main className="profile">
@@ -77,9 +90,9 @@ const Profile = (props) => {
               </div>
             </form>
           </div>
-          {/* <div className="profile__table">
+          <div className="profile__table">
             <EnhancedTableProfile rawRows={rawRows} />
-          </div> */}
+          </div>
           <div id="profile-delay-chart" className="profile__chart">
             <h2 className="profile-delay-chart__title">
               Delay of {name}'s webs over time:

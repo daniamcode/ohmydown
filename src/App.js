@@ -13,7 +13,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 function App(props) {
-	const token = useSelector((state) => state.googleReducer.authResponse.tokenId);
+	const token = useSelector((state) => state.googleReducer.authResponse?.token);
   return (
     <div className="container">
       <Header />

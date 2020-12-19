@@ -10,7 +10,7 @@ import Countdown from 'react-countdown';
 
 const Detail = (props) => {
   const id = props.match.params.url;
-  const token = useSelector((state) => state.googleReducer.authResponse.tokenId);
+  const token = useSelector((state) => state.googleReducer.authResponse?.token);
   const detailDelayGraph = useSelector(
     (state) => state.detailReducer.detailDelayGraph
   );

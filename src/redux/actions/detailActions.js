@@ -15,7 +15,7 @@ export const loadDetailDelayGraph = (id, token) => {
                 `http://localhost:8080/historical/${id}`, {
                     id
                 },{
-                    headers: {token}
+                    headers: {Token: token}
                 }
             )
             .catch(error => {
@@ -32,6 +32,7 @@ export const loadDetailDelayGraph = (id, token) => {
                 })
             })
         if (response !== undefined) {
+            
             isLoading = false;
             dispatch({
                 type: actionTypes.LOAD_DETAIL_DELAY_GRAPH,

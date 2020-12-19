@@ -237,7 +237,7 @@ export default function EnhancedTableProfile({rawRows}) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const rows = rawRows?.response?.data?.responses;
+  const rows = rawRows?.response?.data?.rows
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -342,7 +342,7 @@ export default function EnhancedTableProfile({rawRows}) {
               rowCount={rows?.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
+              {rows && stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.name);
@@ -388,7 +388,7 @@ export default function EnhancedTableProfile({rawRows}) {
         <TablePagination
           rowsPerPageOptions={[5]}
           component="div"
-          count={rows.length}
+          count={rows?.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
