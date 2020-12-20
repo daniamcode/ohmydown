@@ -51,12 +51,12 @@ function stableSort(array, comparator) {
 
 const headCells = [
   { id: "url", numeric: false, disablePadding: true, label: "Url" },
-  { id: "status", numeric: true, disablePadding: false, label: "Status" },
+  { id: "status", numeric: true, disablePadding: false, label: "Last Status" },
   {
     id: "delay",
     numeric: true,
     disablePadding: false,
-    label: "Avg. Delay (ms)",
+    label: "Last Delay (ms)",
   },
 ];
 

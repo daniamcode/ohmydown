@@ -19,6 +19,7 @@ const Profile = (props) => {
   const dispatch = useDispatch();
   const addWebsite = (url) => dispatch(addProfileWeb(url));
   const rawRows = useSelector((state) => state.profileReducer.profile);
+  console.log(rawRows)
   const name = useSelector(
     (state) =>
       state.googleReducer.authResponse?.name
@@ -30,9 +31,6 @@ const Profile = (props) => {
     (state) => state.profileReducer.profile?.isLoading
   );
   const error = useSelector((state) => state.profileReducer.profile?.error);
-  const testName = useSelector(
-    (state) => state.profileReducer?.profile?.response?.data?.email
-  );
 
   useEffect(() => {
     if (token) {
@@ -45,7 +43,6 @@ const Profile = (props) => {
     event.target.reset();
     addWebsite(url);
   }
-console.log(token)
   return (
     <>
       {(!token) ? (
@@ -62,7 +59,6 @@ console.log(token)
       ) : (
         <main className="profile">
           <h1 className="profile__title">Profile of {name}</h1>
-          <h2 className="profile__title">Profile of {testName}</h2>
           <div className="profile__add-title">
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <form className="profile__add" onSubmit={handleSubmit}>

@@ -55,13 +55,13 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "name", numeric: false, disablePadding: true, label: "Url" },
-  { id: "uptime", numeric: true, disablePadding: false, label: "Uptime (%)" },
+  { id: "url", numeric: false, disablePadding: true, label: "Url" },
+  { id: "status", numeric: true, disablePadding: false, label: "Last Status" },
   {
     id: "delay",
     numeric: true,
     disablePadding: false,
-    label: "Avg. Delay (ms)",
+    label: "Last Delay (ms)",
   },
 ];
 
@@ -237,8 +237,8 @@ export default function EnhancedTableProfile({rawRows}) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const rows = rawRows?.response?.data?.rows
-
+  const rows = rawRows?.response?.data?.responses
+console.log(rows)
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -345,17 +345,17 @@ export default function EnhancedTableProfile({rawRows}) {
               {rows && stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -370,10 +370,10 @@ export default function EnhancedTableProfile({rawRows}) {
                         scope="row"
                         padding="10px"
                       >
-                        <Link to={`/detail/${row.name}`}>{row.name}</Link>
+                        <Link to={`/detail/${row.id.value}`}>{row.id.value}</Link>
                       </TableCell>
-                      <TableCell align="right">{row.uptime}</TableCell>
-                      <TableCell align="right">{row.delay}</TableCell>
+                      <TableCell align="right">{row.healthCheckResponse[row.healthCheckResponse.length - 1].status}</TableCell>
+                      <TableCell align="right">{row.healthCheckResponse[row.healthCheckResponse.length - 1].delay}</TableCell>
                     </TableRow>
                   );
                 })}
