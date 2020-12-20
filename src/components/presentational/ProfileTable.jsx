@@ -232,13 +232,13 @@ const useStyles = makeStyles((theme) => ({
 export default function EnhancedTableProfile({rawRows}) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("uptime");
+  const [orderBy, setOrderBy] = React.useState("delay");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const rows = rawRows?.response?.data?.responses
-console.log(rows)
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");

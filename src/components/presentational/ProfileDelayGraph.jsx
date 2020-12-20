@@ -3,7 +3,7 @@ import Chart from "react-google-charts";
 import Spinner from "./Spinner";
 import ownErrorMessage from "../../scripts/ownErrorMessage";
 
-const ProfileDelayGraph = () => {
+const ProfileDelayGraph = ({rawRows, profileDelayGraphMapped}) => {
   return (
     <>
         {/* {detailDelayGraph.isLoading === true ? (
@@ -29,19 +29,7 @@ const ProfileDelayGraph = () => {
             height={"400px"}
             chartType="LineChart"
             loader={<Spinner />}
-            data={[
-              ['x', 'google.com', 'yavendras.com', 'sport.es'],
-              [1, 34, 23, 15],
-              [2, 134, 27, 95],
-              [3, 65, 35, 37],
-              [4, 74, 17, 34],
-              [5, 121, 12, 82],
-              [6, 90, 65, 37],
-              [7, 92, 5, 165],
-              [8, 120, 131, 65],
-              [9, 3, 39, 67],
-              [10, 66, 66, 65],
-            ]}
+            data={profileDelayGraphMapped}
             options={{
               legend: { position: 'top' },
               hAxis: {

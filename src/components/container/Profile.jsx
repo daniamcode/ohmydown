@@ -13,13 +13,18 @@ import {
 import ProfileDelayGraph from "../presentational/ProfileDelayGraph";
 import Login from "./Login";
 import Spinner from "../presentational/Spinner";
+import mapProfileDelayGraph from "../../scripts/mapProfileDelayGraph";
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
   const addWebsite = (url) => dispatch(addProfileWeb(url));
   const rawRows = useSelector((state) => state.profileReducer.profile);
-  console.log(rawRows)
+  
+  let profileDelayGraphMapped = mapProfileDelayGraph(
+    rawRows?.response?.data?.responses, 'a.com', 'b.com', 'c.com'
+  );
+  console.log(profileDelayGraphMapped)
   const name = useSelector(
     (state) =>
       state.googleReducer.authResponse?.name
@@ -93,7 +98,7 @@ const Profile = (props) => {
             <h2 className="profile-delay-chart__title">
               Delay of {name}'s webs over time:
             </h2>
-            <ProfileDelayGraph />
+            <ProfileDelayGraph rawRows={rawRows} profileDelayGraphMapped={profileDelayGraphMapped}/>
           </div>
         </main>
       )}

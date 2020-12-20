@@ -20,8 +20,6 @@ export const googleOAuth2 = () => {
             token = cookies.token;
             name = cookies.name
         }
-        console.log(token)
-        console.log(name)
         dispatch({
             type: actionTypes.GOOGLE_OAUTH2,
             payload: {

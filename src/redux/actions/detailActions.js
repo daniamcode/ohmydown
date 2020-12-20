@@ -32,7 +32,6 @@ export const loadDetailDelayGraph = (id, token) => {
                 })
             })
         if (response !== undefined) {
-            
             isLoading = false;
             dispatch({
                 type: actionTypes.LOAD_DETAIL_DELAY_GRAPH,
