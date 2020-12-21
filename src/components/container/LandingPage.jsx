@@ -2,16 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { showStatus, hideStatus, loadStatus } from "../../redux/actions/statusActions";
 import EnhancedTableLanding from "../presentational/LandingTable";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import "../styles/LandingPage.css";
 import LoadStatusMessage from "../presentational/LoadStatusMessage";
 import { useSelector } from "react-redux";
 import { loadLandingList } from "../../redux/actions/landingListActions";
 import Countdown from 'react-countdown';
-import {LANDING_PAGE_TITLE} from '../../data/constants'
-import {LANDING_PAGE_SUBTITLE} from '../../data/constants'
+import LandingForm from '../presentational/LandingForm'
 
 
 const LandingPage = () => {
@@ -49,33 +46,7 @@ const LandingPage = () => {
   return (
     <section className="center">
     <div className="status__form-container">
-      <form className="status__form" onSubmit={handleSubmit}>
-        <label className="status__form-label">
-          {LANDING_PAGE_TITLE}
-          <br />
-          {LANDING_PAGE_SUBTITLE}
-        </label>
-        <div className="status__form-inner-container">
-          <TextField
-            id="filled-basic"
-            variant="filled"
-            className="status__form-input"
-            placeholder="Write any url here"
-            name="url"
-            required
-            value={url}
-            onChange={(event) => onFieldChange(event.target.value, setUrl)}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            className="status__form-button"
-            type="submit"
-          >
-            Check
-          </Button>
-        </div>
-      </form>
+      <LandingForm url={url} setUrl={setUrl} onFieldChange={onFieldChange} handleSubmit={handleSubmit}/>
       <section id="status-message" className="status__result">
       <LoadStatusMessage
       show = {show} loadStatusResponse={loadStatusResponse} />

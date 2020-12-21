@@ -55,7 +55,7 @@ describe('LandingPage Component', () => {
     expect(loadStatus).toHaveBeenCalled();
   });
 
-  test('Manage input field', () => {
+  xtest('Manage input field', () => {
     const state = {
       
     };

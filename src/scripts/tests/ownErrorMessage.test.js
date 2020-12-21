@@ -7,6 +7,12 @@ describe('ErrorMessage function', () => {
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
+  it('should return right message for case 403', () => {
+    const errorResponse = {status: 403};
+    const message = "Please, sign in again!";
+
+    expect(errorMessage(errorResponse)).toEqual(message);
+  })
   it('should return right message for case 500-599', () => {
     const errorResponse = {status: 500};
     const message = "Sorry, our server is overloaded, please try again later!";

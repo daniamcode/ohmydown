@@ -53,7 +53,12 @@
       "src/reportWebVitals",
       "src/serviceWorker",
       "src/appDispatcher",
-      "src/data/mock-data"
+      "src/redux/actions/dist",
+      "src/redux/actions/tests/dist",
+      "src/redux/reducers/tests/dist",
+      "src/scripts/dist",
+      "src/scripts/tests/dist",
+      "src/data"
     ]
   },
   "eslintConfig": {
