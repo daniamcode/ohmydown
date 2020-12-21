@@ -11,34 +11,26 @@ describe('ErrorMessage function', function () {
     var errorResponse = {
       status: 400
     };
-    var message = {
-      OWN_400: _constants.OWN_400
-    };
+    var message = _constants.OWN_400;
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for case 403', function () {
     var errorResponse = {
       status: 403
     };
-    var message = {
-      OWN_403: _constants.OWN_403
-    };
+    var message = _constants.OWN_403;
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for case 500-599', function () {
     var errorResponse = {
       status: 500
     };
-    var message = {
-      OWN_500_599: _constants.OWN_500_599
-    };
+    var message = _constants.OWN_500_599;
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for case Netword Error', function () {
     var errorResponse = 'Network Error';
-    var message = {
-      OWN_NETWORK_ERROR: _constants.OWN_NETWORK_ERROR
-    };
+    var message = _constants.OWN_NETWORK_ERROR;
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for default case', function () {

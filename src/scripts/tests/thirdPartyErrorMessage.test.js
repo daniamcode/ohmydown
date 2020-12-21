@@ -15,61 +15,61 @@ import {
 describe('ErrorMessage function', () => {
   it('should return right message for case 301', () => {
     const errorResponse = {status: 301};
-    const message = {THIRD_PARTY_301}
+    const message = THIRD_PARTY_301
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 302', () => {
     const errorResponse = {status: 302};
-    const message = {THIRD_PARTY_302}
+    const message = THIRD_PARTY_302
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 400', () => {
     const errorResponse = {status: 400};
-    const message = {THIRD_PARTY_400}
+    const message = THIRD_PARTY_400
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 403', () => {
     const errorResponse = {status: 403};
-    const message = {THIRD_PARTY_403}
+    const message = THIRD_PARTY_403
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 404', () => {
     const errorResponse = {status: 404};
-    const message = {THIRD_PARTY_404}
+    const message = THIRD_PARTY_404
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 406', () => {
     const errorResponse = {status: 406};
-    const message = {THIRD_PARTY_406}
+    const message = THIRD_PARTY_406
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 408', () => {
     const errorResponse = {status: 408};
-    const message = {THIRD_PARTY_408}
+    const message = THIRD_PARTY_408
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 421', () => {
     const errorResponse = {status: 421};
-    const message = {THIRD_PARTY_421}
+    const message = THIRD_PARTY_421
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 429', () => {
     const errorResponse = {status: 429};
-    const message = {THIRD_PARTY_429}
+    const message = THIRD_PARTY_429
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })
   it('should return right message for case 495', () => {
     const errorResponse = {status: 495};
-    const message = {THIRD_PARTY_495}
+    const message = THIRD_PARTY_495
 
     expect(errorMessage(errorResponse)).toEqual(message);
   })

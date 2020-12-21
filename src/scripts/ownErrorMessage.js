@@ -9,24 +9,20 @@ export default function errorMessage(errorResponse) {
   let message = '';
   switch (true) {
     case errorResponse.status === 400:
-      message = {
-        OWN_400
-      };
+      message =
+        OWN_400;
       break;
     case errorResponse.status === 403:
-      message = {
-        OWN_403
-      };
+      message =
+        OWN_403;
       break;
     case errorResponse.status >= 500 && errorResponse.status < 600:
-      message = {
-        OWN_500_599
-      };
+      message =
+        OWN_500_599;
       break;
     case errorResponse === 'Network Error':
-      message = {
-        OWN_NETWORK_ERROR
-      };
+      message =
+        OWN_NETWORK_ERROR;
       break;
     default:
       break;
