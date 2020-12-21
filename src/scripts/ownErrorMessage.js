@@ -1,17 +1,32 @@
+import {
+  OWN_400,
+  OWN_403,
+  OWN_500_599,
+  OWN_NETWORK_ERROR
+} from '../data/constants'
+
 export default function errorMessage(errorResponse) {
   let message = '';
   switch (true) {
     case errorResponse.status === 400:
-      message = "Sorry, that page doesn't exist, try again!";
+      message = {
+        OWN_400
+      };
       break;
     case errorResponse.status === 403:
-      message = "Please, sign in again!";
+      message = {
+        OWN_403
+      };
       break;
     case errorResponse.status >= 500 && errorResponse.status < 600:
-      message = "Sorry, our server is overloaded, please try again later!";
+      message = {
+        OWN_500_599
+      };
       break;
     case errorResponse === 'Network Error':
-      message = "Sorry, our server is down now, please try later!";
+      message = {
+        OWN_NETWORK_ERROR
+      };
       break;
     default:
       break;

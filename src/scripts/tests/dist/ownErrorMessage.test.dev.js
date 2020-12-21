@@ -2,6 +2,8 @@
 
 var _ownErrorMessage = _interopRequireDefault(require("../ownErrorMessage"));
 
+var _constants = require("../../data/constants");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 describe('ErrorMessage function', function () {
@@ -9,26 +11,34 @@ describe('ErrorMessage function', function () {
     var errorResponse = {
       status: 400
     };
-    var message = "Sorry, that page doesn't exist, try again!";
+    var message = {
+      OWN_400: _constants.OWN_400
+    };
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for case 403', function () {
     var errorResponse = {
       status: 403
     };
-    var message = "Please, sign in again!";
+    var message = {
+      OWN_403: _constants.OWN_403
+    };
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for case 500-599', function () {
     var errorResponse = {
       status: 500
     };
-    var message = "Sorry, our server is overloaded, please try again later!";
+    var message = {
+      OWN_500_599: _constants.OWN_500_599
+    };
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for case Netword Error', function () {
     var errorResponse = 'Network Error';
-    var message = "Sorry, our server is down now, please try later!";
+    var message = {
+      OWN_NETWORK_ERROR: _constants.OWN_NETWORK_ERROR
+    };
     expect((0, _ownErrorMessage["default"])(errorResponse)).toEqual(message);
   });
   it('should return right message for default case', function () {

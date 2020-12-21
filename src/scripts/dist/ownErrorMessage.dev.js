@@ -5,24 +5,34 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = errorMessage;
 
+var _constants = require("../data/constants");
+
 function errorMessage(errorResponse) {
   var message = '';
 
   switch (true) {
     case errorResponse.status === 400:
-      message = "Sorry, that page doesn't exist, try again!";
+      message = {
+        OWN_400: _constants.OWN_400
+      };
       break;
 
     case errorResponse.status === 403:
-      message = "Please, sign in again!";
+      message = {
+        OWN_403: _constants.OWN_403
+      };
       break;
 
     case errorResponse.status >= 500 && errorResponse.status < 600:
-      message = "Sorry, our server is overloaded, please try again later!";
+      message = {
+        OWN_500_599: _constants.OWN_500_599
+      };
       break;
 
     case errorResponse === 'Network Error':
-      message = "Sorry, our server is down now, please try later!";
+      message = {
+        OWN_NETWORK_ERROR: _constants.OWN_NETWORK_ERROR
+      };
       break;
 
     default:
