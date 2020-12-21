@@ -2,6 +2,7 @@ import React from "react";
 import Chart from "react-google-charts";
 import Spinner from "./Spinner";
 
+
 const ProfileDelayGraph = ({ profileDelayGraphMapped }) => {
   return (
     <Chart

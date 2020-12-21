@@ -227,8 +227,8 @@ export default function EnhancedTableLanding({ rawRows }) {
     setDense(event.target.checked);
   };
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows?.length - page * rowsPerPage);
+  // const emptyRows =
+  //   rowsPerPage - Math.min(rowsPerPage, rows?.length - page * rowsPerPage);
 
   return (
     <div className="landingTable">
@@ -350,13 +350,13 @@ export default function EnhancedTableLanding({ rawRows }) {
                           );
                         }
                       )}
-                    {emptyRows > 0 && (
+                    {/* {emptyRows > 0 && (
                       <TableRow
                         style={{ height: (dense ? 33 : 53) * emptyRows }}
                       >
                         <TableCell colSpan={6} />
                       </TableRow>
-                    )}
+                    )} */}
                   </TableBody>
                   <TableBody>
                     {rows &&
@@ -419,13 +419,13 @@ export default function EnhancedTableLanding({ rawRows }) {
                             </>
                           );
                         })}
-                    {emptyRows > 0 && (
+                    {/* {emptyRows > 0 && (
                       <TableRow
                         style={{ height: (dense ? 33 : 53) * emptyRows }}
                       >
                         <TableCell colSpan={6} />
                       </TableRow>
-                    )}
+                    )} */}
                   </TableBody>
                 </Table>
               </TableContainer>

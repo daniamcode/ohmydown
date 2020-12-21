@@ -41,7 +41,7 @@ describe('Profile Component', () => {
     expect(document.querySelector('.profile')).toBeInTheDocument();
   })
 
-  test('Should execute handleSubmit and call addWebsite when clicking "Add"', () => {
+  test('Should execute handleSubmit and call addProfileWeb when clicking "Add"', () => {
     const state = {
       profileReducer: { profileUrls: [{url:'yavendras.com'}] },
     };

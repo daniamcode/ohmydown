@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Profile.css";
 import EnhancedTableProfile from "../presentational/ProfileTable";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import { addProfileWeb } from "../../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
-import basicOnFieldChange from "../../scripts/basicOnFieldChange";
 import { useSelector } from "react-redux";
 import { loadProfile } from "../../redux/actions/profileActions";
 import ProfileDelayGraph from "../presentational/ProfileDelayGraph";
+import ProfileForm from "../presentational/ProfileForm";
 import Login from "./Login";
 import Spinner from "../presentational/Spinner";
 import mapProfileDelayGraph from "../../scripts/mapProfileDelayGraph";
@@ -17,13 +15,11 @@ import ownErrorMessage from "../../scripts/ownErrorMessage";
 const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
-  const addWebsite = (url) => dispatch(addProfileWeb(url));
   const rawRows = useSelector((state) => state.profileReducer.profile);
 
   let profileDelayGraphMapped = mapProfileDelayGraph(
     rawRows?.response?.data?.responses
   );
-  console.log(profileDelayGraphMapped);
   const name = useSelector((state) => state.googleReducer.authResponse?.name);
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
   const isLoading = useSelector(
@@ -42,10 +38,10 @@ const Profile = (props) => {
     }
   }, [dispatch, token]);
 
-  function handleSubmit(event) {
+  function handleSubmit(event, url) {
     event.preventDefault();
     event.target.reset();
-    addWebsite(url);
+    dispatch(addProfileWeb(url));
   }
   return (
     <>
@@ -66,7 +62,7 @@ const Profile = (props) => {
         </h1>
       ) : (
         <main className="profile">
-          <h1 className="profile__title">Profile of {name}</h1>
+          <h1 className="profile__title">{name}'s Profile</h1>
           <div id="profile-delay-chart" className="profile__chart">
             <h2 className="profile-delay-chart__title">
               Performance:
@@ -77,30 +73,7 @@ const Profile = (props) => {
           </div>
           <div className="profile__add-title">
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
-            <form className="profile__add" onSubmit={handleSubmit}>
-              <div className="status__form-inner-container">
-                <TextField
-                  id="filled-basic"
-                  variant="filled"
-                  className="status__form-input"
-                  placeholder="Write any url here"
-                  name="url"
-                  required
-                  value={url}
-                  onChange={(event) =>
-                    basicOnFieldChange(event.target.value, setUrl)
-                  }
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="status__form-button"
-                  type="submit"
-                >
-                  Add
-                </Button>
-              </div>
-            </form>
+            <ProfileForm url={url} setUrl={setUrl} handleSubmit={handleSubmit}/>
           </div>
           <div className="profile__table">
             <EnhancedTableProfile rawRows={rawRows} />
