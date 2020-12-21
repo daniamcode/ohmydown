@@ -37,7 +37,7 @@ const Login = () => {
         document.cookie = `token = ${response.tokenId}; expires=` + new Date(9999, 0, 1).toUTCString; 
         document.cookie = `name = ${response.profileObj.name}; expires=` + new Date(9999, 0, 1).toUTCString
         dispatch(googleOAuth2());
-        // history.push("/profile");
+        history.push("/profile");
       }}
       onFailure={(response) => {
         dispatch(googleOAuth2());

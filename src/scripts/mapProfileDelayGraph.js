@@ -27,12 +27,12 @@ export default function mapProfileDelayGraph(response) {
     let firstSubArray = []
     let firstArray = [firstSubArray]
     for (let i = 0; i < response?.length; i++) {
-      firstSubArray.push(`${response[i].id.value}`)
+      firstSubArray?.push(`${response[i]?.id.value}`)
     }
     firstSubArray.sort()
     firstSubArray.unshift('x')
 
-    let result = firstArray.concat(formatted(response)[response?.length - 1].healthCheckResponse?.map(function (obj) {
+    let result = firstArray.concat(formatted(response)[response?.length - 1]?.healthCheckResponse?.map(function (obj) {
       return Object.keys(obj).sort().slice(0, response?.length + 1).map(function (key) {
         return obj[key];
       });
