@@ -10,7 +10,7 @@ export default function mapProfileDelayGraph(response) {
         //change name of properties
         response[i].healthCheckResponse[j][newDelay] = response[i].healthCheckResponse[j].delay
         response[i].healthCheckResponse[j][newTime] = response[i].healthCheckResponse[j].time
-        //group objects' properties
+        //group objects' properties into the last array of objects
         if (i === response?.length - 1) {
           for (let k = response?.length - 2; k >= 0; k--) {
             let newDelayGrouped = `001delay${response[k].id.value}`
