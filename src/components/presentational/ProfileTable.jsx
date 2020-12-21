@@ -224,6 +224,15 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  statusUp: {
+    color: "green",
+  },
+  statusDown: {
+    color: "red",
+  },
+  statusError: {
+    color: "goldenrod",
+  },
 }));
 
 export default function EnhancedTableProfile({ rawRows }) {
@@ -347,13 +356,37 @@ export default function EnhancedTableProfile({ rawRows }) {
                               {row.id.value}
                             </Link>
                           </TableCell>
-                          <TableCell align="right">
-                            {
-                              row.healthCheckResponse[
+                          {row.healthCheckResponse[
                                 row.healthCheckResponse.length - 1
-                              ].status
-                            }
+                              ].status === 200 ? (
+                                      <TableCell
+                                        className={classes.statusUp}
+                                        align="right"
+                                      >
+                                        UP
+                                      </TableCell>
+                                    ) : row.healthCheckResponse[
+                                      row.healthCheckResponse.length - 1
+                                    ].status >= 500 &&
+                                    row.healthCheckResponse[
+                                      row.healthCheckResponse.length - 1
+                                    ].status < 600 ? (
+                                      <TableCell
+                                        className={classes.statusDown}
+                                        align="right"
+                                      >
+                                        DOWN
+                                      </TableCell>
+                                    ) : (
+                                      <TableCell
+                                        className={classes.statusError}
+                                        align="right"
+                                      >
+                                        ISSUE {row.healthCheckResponse[
+                                row.healthCheckResponse.length - 1
+                              ].status}
                           </TableCell>
+                          )}
                           <TableCell align="right">
                             {
                               row.healthCheckResponse[

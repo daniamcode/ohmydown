@@ -55,6 +55,16 @@
     margin: 270px auto;
 }
 
+.profileDelayGraph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile__chart-container {
+    width: 100%;
+}
 
 @media screen and (min-width: 600px) {
     .profile__add {
