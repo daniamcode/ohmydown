@@ -1,7 +1,7 @@
 .profile {
     padding-top: 20px;
     height: 700px;
-    width: 60rem;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -13,8 +13,8 @@
 }
 
 .profile__add {
-    width: 40vw;
-    margin: 30px auto 60px auto;
+    width: 30rem;
+    margin: 30px auto 0px auto;
 }
 
 .profile__table {
@@ -22,10 +22,12 @@
     flex-direction: column;
     text-align: center;
     padding-bottom: 50px;
+    width: 95%;
+    margin: 50px auto;
 }
 
 .profile__chart {
-    width: 70vw;
+    width: 95%;
     margin: 50px auto;
 }
 
@@ -51,4 +53,35 @@
     color: goldenrod;
     width: 700px;
     margin: 270px auto;
+}
+
+
+@media screen and (min-width: 600px) {
+    .profile__add {
+        width: 40rem;
+    }
+
+    .profile__table {
+        width: 90%;
+
+    }
+
+    .profile__chart {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .profile__add {
+        width: 40rem;
+    }
+
+    .profile__table {
+        width: 60%;
+
+    }
+
+    .profile__chart {
+        width: 80%;
+    }
 }
