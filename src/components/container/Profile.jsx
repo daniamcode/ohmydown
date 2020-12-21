@@ -22,7 +22,7 @@ const Profile = (props) => {
   const rawRows = useSelector((state) => state.profileReducer.profile);
   
   let profileDelayGraphMapped = mapProfileDelayGraph(
-    rawRows?.response?.data?.responses, 'a.com', 'b.com', 'c.com'
+    rawRows?.response?.data?.responses
   );
   console.log(profileDelayGraphMapped)
   const name = useSelector(
