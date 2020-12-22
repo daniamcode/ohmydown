@@ -7,7 +7,6 @@ import Footer from './components/presentational/Footer'
 import About from './components/presentational/About'
 import Contact from './components/presentational/Contact'
 import Profile from './components/container/Profile'
-import AutoLogin from './components/container/AutoLogin'
 import PageNotFound from "./components/presentational/PageNotFound";
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";

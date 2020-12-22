@@ -3,11 +3,12 @@ import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../../../redux/configureStore';
-import Detail from '../Detail';
+import DetailDelayGraph from '../DetailDelayGraph';
+import Chart from "react-google-charts";
 
 jest.mock('react-google-charts')
 
-describe('Detail Component', () => {
+describe('DetailDelayGraph Component', () => {
   let wrapper = null;
   let store = null;
   const wrapperFactory = (wrapperState) => {
@@ -27,16 +28,17 @@ describe('Detail Component', () => {
     wrapper = null;
   });
 
-  test('Should render detail', () => {
+  test('Should call Chart', () => {
     const state = {
+        
+      };
    
-    };
-
     wrapper = wrapperFactory(state);
+    const detailDelayGraph = {response: {data:[{delay: 123}]}}
 
-    render(<Detail match={{params: {url: 'yavendras.com'}}}/>, { wrapper });
+    render(<DetailDelayGraph detailDelayGraph={detailDelayGraph}/>, { wrapper });
 
-    expect(document.querySelector('.detail')).toBeInTheDocument();
+    expect(Chart.mock.calls[0][0]).toBeTruthy();
   })
 
 })

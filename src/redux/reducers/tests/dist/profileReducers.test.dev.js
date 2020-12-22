@@ -27,7 +27,7 @@ describe('Profile reducer', function () {
       }
     });
   });
-  it('should handle LOAD_PROFILE_WEBS', function () {
+  xit('should handle LOAD_PROFILE_WEBS', function () {
     var result = {
       profile: {
         response: [{

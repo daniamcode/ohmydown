@@ -11,7 +11,7 @@ describe('Profile reducer', () => {
     expect(profileReducers(initialState.profileReducer)).toEqual({ profile: {response: {}, isLoading: false, error: {}} });
   });
 
-  it('should handle LOAD_PROFILE_WEBS', () => {
+  xit('should handle LOAD_PROFILE_WEBS', () => {
     let result = {profile: {response: [{name: 'sport.es'}, {name: 'amazon.com'}]}, isLoading: false, error: {}}
     expect(
       profileReducers(
