@@ -51,8 +51,9 @@
 .profile__message__error {
     font-size: 30px;
     color: goldenrod;
-    width: 700px;
-    margin: 270px auto;
+    width: 80%;
+    margin: 250px auto;
+    text-align: center;
 }
 
 .profileDelayGraph {

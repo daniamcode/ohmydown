@@ -147,10 +147,9 @@ const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected, selected } = props;
   const dispatch = useDispatch();
-  const deleteWebsites = (selected) => dispatch(deleteProfileWebs(selected));
 
   function handleDelete() {
-    deleteWebsites(selected);
+    dispatch(deleteProfileWebs(selected));
   }
 
   return (
@@ -242,7 +241,7 @@ export default function EnhancedTableProfile({ rawRows }) {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const rows = rawRows?.response?.data?.responses;
 
   const handleRequestSort = (event, property) => {
@@ -253,7 +252,7 @@ export default function EnhancedTableProfile({ rawRows }) {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows?.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -285,7 +284,7 @@ export default function EnhancedTableProfile({ rawRows }) {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setRowsPerPage(parseInt(event.target.value, 5));
     setPage(0);
   };
 

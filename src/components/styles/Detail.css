@@ -26,7 +26,7 @@
 .detail__comments {
     width: 50%;
     margin: auto;
-    padding-top: 20px;
+    padding: 20px 0px 50px 0px;
 }
 
 .detail__countdown {
