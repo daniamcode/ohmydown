@@ -32,7 +32,6 @@ export const loadProfile = (token) => {
       })
     if (response !== undefined) {
       isLoading = false;
-      console.log(response)
       dispatch({
         type: actionTypes.LOAD_PROFILE,
         payload: {

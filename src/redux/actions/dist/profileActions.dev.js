@@ -50,7 +50,6 @@ var loadProfile = function loadProfile(token) {
 
             if (response !== undefined) {
               isLoading = false;
-              console.log(response);
               dispatch({
                 type: _actionTypes["default"].LOAD_PROFILE,
                 payload: {

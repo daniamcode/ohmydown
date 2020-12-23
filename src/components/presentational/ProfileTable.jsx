@@ -23,6 +23,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { deleteProfileWebs } from "../../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
+import mapProfileRows from '../../scripts/mapProfileRows'
 
 
 function descendingComparator(a, b, orderBy) {
@@ -48,11 +49,12 @@ function stableSort(array, comparator) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
+  console.log(stabilizedThis) 
   return stabilizedThis.map((el) => el[0]);
 }
 
 const headCells = [
-  { id: "url", numeric: false, disablePadding: true, label: "Url" },
+  { id: "id", numeric: false, disablePadding: true, label: "Url" },
   { id: "status", numeric: true, disablePadding: false, label: "Last Status" },
   {
     id: "delay",
@@ -242,7 +244,7 @@ export default function EnhancedTableProfile({ rawRows }) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const rows = rawRows?.response?.data?.responses;
+  const rows = mapProfileRows(rawRows?.response?.data?.responses);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -324,7 +326,6 @@ export default function EnhancedTableProfile({ rawRows }) {
               <TableBody>
                 {rows &&
                   stableSort(rows, getComparator(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => {
                       const isItemSelected = isSelected(row.id);
                       const labelId = `enhanced-table-checkbox-${index}`;
@@ -351,25 +352,19 @@ export default function EnhancedTableProfile({ rawRows }) {
                             scope="row"
                             padding="10px"
                           >
-                            <Link to={`/detail/${row.id.value}`}>
-                              {row.id.value}
+                            <Link to={`/detail/${row.id}`}>
+                              {row.id}
                             </Link>
                           </TableCell>
-                          {row.healthCheckResponse[
-                                row.healthCheckResponse.length - 1
-                              ].status === 200 ? (
+                          {row.status === 200 ? (
                                       <TableCell
                                         className={classes.statusUp}
                                         align="right"
                                       >
                                         UP
                                       </TableCell>
-                                    ) : row.healthCheckResponse[
-                                      row.healthCheckResponse.length - 1
-                                    ].status >= 500 &&
-                                    row.healthCheckResponse[
-                                      row.healthCheckResponse.length - 1
-                                    ].status < 600 ? (
+                                    ) : row.status >= 500 &&
+                                    row.status < 600 ? (
                                       <TableCell
                                         className={classes.statusDown}
                                         align="right"
@@ -381,16 +376,12 @@ export default function EnhancedTableProfile({ rawRows }) {
                                         className={classes.statusError}
                                         align="right"
                                       >
-                                        ISSUE {row.healthCheckResponse[
-                                row.healthCheckResponse.length - 1
-                              ].status}
+                                        ISSUE {row.status}
                           </TableCell>
                           )}
                           <TableCell align="right">
                             {
-                              row.healthCheckResponse[
-                                row.healthCheckResponse.length - 1
-                              ]?.delay
+                              row.delay
                             }
                           </TableCell>
                         </TableRow>

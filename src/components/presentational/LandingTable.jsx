@@ -46,11 +46,12 @@ function stableSort(array, comparator) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
+  console.log(stabilizedThis) 
   return stabilizedThis.map((el) => el[0]);
 }
 
 const headCells = [
-  { id: "url", numeric: false, disablePadding: true, label: "Url" },
+  { id: "id", numeric: false, disablePadding: true, label: "Url" },
   { id: "status", numeric: true, disablePadding: false, label: "Last Status" },
   {
     id: "delay",
@@ -203,7 +204,6 @@ export default function EnhancedTableLanding({ rawRows }) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const rows = rawRows?.response?.data?.responses;
   const [filter, setFilter] = useState("");
-
   const handleSearchChange = (event) => {
     setFilter(event.target.value);
   };
