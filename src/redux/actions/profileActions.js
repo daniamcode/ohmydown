@@ -32,6 +32,7 @@ export const loadProfile = (token) => {
       })
     if (response !== undefined) {
       isLoading = false;
+      console.log(response)
       dispatch({
         type: actionTypes.LOAD_PROFILE,
         payload: {
@@ -43,13 +44,48 @@ export const loadProfile = (token) => {
   }
 };
 
-export const addProfileWeb = (webName) => {
-  return ({
-    type: actionTypes.ADD_PROFILE_WEB,
-    payload: {
-      name: webName
+export const addProfileWeb = (url, token) => {
+  return async function (dispatch) {
+    let isLoading = true;
+    console.log(url)
+    dispatch({
+      type: actionTypes.ADD_PROFILE_WEB,
+      payload: {
+        isLoading
+      }
+    });
+    const response = await axios.post(
+        'http://localhost:8080/profile/addurl', {url}, {
+          headers: {
+            Token: token
+          }
+        }
+      )
+      .catch(error => {
+        if (!error.response) {
+          error.response = 'Network Error'
+        }
+        isLoading = false;
+        dispatch({
+          type: actionTypes.ADD_PROFILE_WEB,
+          payload: {
+            error,
+            isLoading
+          }
+        })
+      })
+      console.log(response)
+    if (response !== undefined) {
+      isLoading = false;
+      dispatch({
+        type: actionTypes.ADD_PROFILE_WEB,
+        payload: {
+          response,
+          isLoading
+        }
+      })
     }
-  })
+  }
 };
 
 export const deleteProfileWebs = (webNames) => {

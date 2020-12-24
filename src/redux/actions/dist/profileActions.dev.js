@@ -50,6 +50,7 @@ var loadProfile = function loadProfile(token) {
 
             if (response !== undefined) {
               isLoading = false;
+              console.log(response);
               dispatch({
                 type: _actionTypes["default"].LOAD_PROFILE,
                 payload: {
@@ -70,12 +71,64 @@ var loadProfile = function loadProfile(token) {
 
 exports.loadProfile = loadProfile;
 
-var addProfileWeb = function addProfileWeb(webName) {
-  return {
-    type: _actionTypes["default"].ADD_PROFILE_WEB,
-    payload: {
-      name: webName
-    }
+var addProfileWeb = function addProfileWeb(url, token) {
+  return function _callee2(dispatch) {
+    var isLoading, response;
+    return regeneratorRuntime.async(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            isLoading = true;
+            console.log(url);
+            dispatch({
+              type: _actionTypes["default"].ADD_PROFILE_WEB,
+              payload: {
+                isLoading: isLoading
+              }
+            });
+            _context2.next = 5;
+            return regeneratorRuntime.awrap(_axios["default"].post('http://localhost:8080/profile/addurl', {
+              url: url
+            }, {
+              headers: {
+                Token: token
+              }
+            })["catch"](function (error) {
+              if (!error.response) {
+                error.response = 'Network Error';
+              }
+
+              isLoading = false;
+              dispatch({
+                type: _actionTypes["default"].ADD_PROFILE_WEB,
+                payload: {
+                  error: error,
+                  isLoading: isLoading
+                }
+              });
+            }));
+
+          case 5:
+            response = _context2.sent;
+            console.log(response);
+
+            if (response !== undefined) {
+              isLoading = false;
+              dispatch({
+                type: _actionTypes["default"].ADD_PROFILE_WEB,
+                payload: {
+                  response: response,
+                  isLoading: isLoading
+                }
+              });
+            }
+
+          case 8:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    });
   };
 };
 

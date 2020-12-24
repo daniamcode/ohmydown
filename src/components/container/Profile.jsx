@@ -38,10 +38,11 @@ const Profile = (props) => {
     }
   }, [dispatch, token]);
 
-  function handleSubmit(event, url) {
+  function handleSubmit(event) {
+    console.log(url)
     event.preventDefault();
     event.target.reset();
-    dispatch(addProfileWeb(url));
+    dispatch(addProfileWeb(url, token));
   }
   return (
     <>

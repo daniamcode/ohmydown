@@ -10,7 +10,7 @@ function mapProfileRows(rows) {
 
   for (var i = 0; i < rows.length; i++) {
     result[i] = {
-      id: rows[i].id.value,
+      id: rows[i].endpoint.id,
       status: rows[i].healthCheckResponse[rows[i].healthCheckResponse.length - 1].status,
       delay: rows[i].healthCheckResponse[rows[i].healthCheckResponse.length - 1].delay
     };

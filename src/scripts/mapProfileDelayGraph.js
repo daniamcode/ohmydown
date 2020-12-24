@@ -4,7 +4,7 @@ export default function mapProfileDelayGraph(response) {
     for (let i = 0; i < response?.length; i++) {
       for (let j = 0; j < response[i]?.healthCheckResponse?.length; j++) {
         let newTime = '000Time'
-        let newDelay = `001delay${response[i].id.value}`
+        let newDelay = `001delay${response[i].endpoint.id}`
         //convert java date format into javascript date format
         response[i].healthCheckResponse[j].time = new Date(response[i].healthCheckResponse[j].time)
         //change name of properties
@@ -13,8 +13,8 @@ export default function mapProfileDelayGraph(response) {
         //group objects' properties into the last array of objects
         if (i === response?.length - 1) {
           for (let k = response?.length - 2; k >= 0; k--) {
-            let newDelayGrouped = `001delay${response[k].id.value}`
-            response[i].healthCheckResponse[j][newDelayGrouped] = response[k].healthCheckResponse[j][newDelayGrouped]
+            let newDelayGrouped = `001delay${response[k]?.endpoint.id}`
+            response[i].healthCheckResponse[j][newDelayGrouped] = response[k]?.healthCheckResponse[j][newDelayGrouped]
           }
         }
       }
@@ -27,7 +27,7 @@ export default function mapProfileDelayGraph(response) {
     let firstSubArray = []
     let firstArray = [firstSubArray]
     for (let i = 0; i < response?.length; i++) {
-      firstSubArray?.push(`${response[i]?.id.value}`)
+      firstSubArray?.push(`${response[i]?.endpoint.id}`)
     }
     firstSubArray.sort()
     firstSubArray.unshift('x')
