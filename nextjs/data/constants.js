@@ -1,0 +1,17 @@
+export const LANDING_PAGE_TITLE = "Welcome to Ohmydown!";
+export const LANDING_PAGE_SUBTITLE = "Is your site up or down right now?";
+export const GOOGLE_CLIENT_ID = "97800569171-m8ksj0r9al1sda4qk5la1puhajlmthgk.apps.googleusercontent.com";
+export const OWN_400 = "Sorry, that page doesn't exist, try again!";
+export const OWN_403 = "Please, sign in again!";
+export const OWN_500_599 = "Sorry, our server is overloaded, please try again later!";
+export const OWN_NETWORK_ERROR = "Sorry, our server is down now, please try later!";
+export const THIRD_PARTY_301 = "Sorry, that url has a permanent redirect!";
+export const THIRD_PARTY_302 = "Sorry, that url has a temporary redirect!";
+export const THIRD_PARTY_400 = "Sorry, that was an invalid domain name, try again!";
+export const THIRD_PARTY_403 = "Sorry, that access was forbidden!";
+export const THIRD_PARTY_404 = "Sorry, that page doesn't exist, try again!";
+export const THIRD_PARTY_406 = "Sorry, that request wasn't accepted by their server!";
+export const THIRD_PARTY_408 = "Sorry, that was a timeout, try again!";
+export const THIRD_PARTY_421 = "Sorry, their server couldn't produce a response!";
+export const THIRD_PARTY_429 = "Sorry, too many requests right now!";
+export const THIRD_PARTY_495 = "Sorry, that SSL certificate expired, check it out!";
