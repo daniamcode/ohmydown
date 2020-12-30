@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Head from 'next/head'
 import styles from '../styles/LandingPage.module.css'
 import Layout from '../components/Layout'
-// import { useDispatch } from "react-redux";
-// import { showStatus, hideStatus, loadStatus } from "../../redux/actions/statusActions";
+import { useDispatch } from "react-redux";
+import { showStatus, hideStatus, loadStatus } from "../redux/actions/statusActions";
 // import EnhancedTableLanding from "../presentational/LandingTable";
 // import { Link } from "react-router-dom";
-// import LoadStatusMessage from "../presentational/LoadStatusMessage";
-// import { useSelector } from "react-redux";
+import LoadStatusMessage from "../components/LoadStatusMessage";
+import { useSelector } from "react-redux";
 // import { loadLandingList } from "../../redux/actions/landingListActions";
 // import Countdown from 'react-countdown';
-// import LandingForm from '../presentational/LandingForm'
+import LandingForm from '../components/LandingForm'
 
 
 const LandingPage = () => {
   let [url, setUrl] = useState("");
-  // let dispatch = useDispatch();
-  // const loadStatusResponse = useSelector((state) => state.statusReducer.loadStatus);
-  // const show = useSelector((state) => state.statusReducer.showStatus);
+  let dispatch = useDispatch();
+  const loadStatusResponse = useSelector((state) => state.statusReducer.loadStatus);
+  const show = useSelector((state) => state.statusReducer.showStatus);
   // const rawRows = useSelector((state) => state.landingListReducer.landingList);
-  // const token = useSelector((state) => state.googleReducer.authResponse?.token);
+  const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
   // let timer = Date.now() + 300000
 
@@ -33,31 +33,32 @@ const LandingPage = () => {
     
   // }, [dispatch, token]);
 
-  // const onFieldChange = (value, setValue) => {
-  //   dispatch(hideStatus());
-  //   setValue(value);
-  // }
+  const onFieldChange = (value, setValue) => {
+    dispatch(hideStatus());
+    setValue(value);
+  }
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   event.target.reset();
-  //   dispatch(showStatus());
-  //   dispatch(loadStatus(url, token));
-  // }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.target.reset();
+    dispatch(showStatus());
+    dispatch(loadStatus(url, token));
+  }
 
   return (
     <Layout>
-    <div className={styles.container}>
+    
       <Head>
         <title>Ohmydown!</title>
+        <meta description="Sleep without worries! We check the health of your websites and notify issues only in the cases you want to." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="center">
-    <div className="status__form-container">
-      {/* <LandingForm url={url} setUrl={setUrl} onFieldChange={onFieldChange} handleSubmit={handleSubmit}/> */}
-      <section id="status-message" className="status__result">
-      {/* <LoadStatusMessage
-      show = {show} loadStatusResponse={loadStatusResponse} /> */}
+      <main className={styles.center}>
+    <div className={styles.status__form_container}>
+      <LandingForm url={url} setUrl={setUrl} onFieldChange={onFieldChange} handleSubmit={handleSubmit}/>
+      <section id={styles.status__message} className={styles.status__result}>
+      <LoadStatusMessage
+      show = {show} loadStatusResponse={loadStatusResponse} />
       </section>
       {/* <p className="link-to-profile">
         You can go to your <Link to="/profile">Profile</Link> and add up to 5 websites
@@ -70,7 +71,7 @@ const LandingPage = () => {
       <br></br>
     </div>
     </main>
-    </div>
+    
     </Layout>
   )
 }
