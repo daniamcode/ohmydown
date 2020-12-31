@@ -1,5 +1,5 @@
 .profile {
-  padding-top: 90px;
+  padding-top: 100px;
   height: 700px;
   width: 100%;
   margin: auto;
@@ -52,7 +52,8 @@
   font-size: 30px;
   color: goldenrod;
   width: 80%;
-  margin: 250px auto;
+  padding-top: 320px;
+  margin: auto;
   text-align: center;
 }
 
