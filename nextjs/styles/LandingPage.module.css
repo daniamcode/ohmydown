@@ -22,29 +22,7 @@
   padding-bottom: 20px;
 }
 
-.status__up {
-  color: green
-}
-
-.status__down {
-  color: red;
-}
-
-.status__error {
-  color: goldenrod;
-}
-
-.status__initial {
-  color: #000;
-}
-
-.status__delay {
-  font-size: 20px;
-  color: #000;
-  margin-top: 20px;
-}
-
-.link-to-profile {
+.link_to_profile {
   width: 75%;
   margin: auto;
   margin-bottom: 40px;

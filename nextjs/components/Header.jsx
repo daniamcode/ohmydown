@@ -1,14 +1,14 @@
 import React from "react";
-import logo from "../../img/logo.png";
-import { Link } from "react-router-dom";
+// import logo from "../img/logo.png";
+import Link from "next/link";
 import Accordion from "./SimpleAccordion";
-import "../styles/Header.css";
-import { hideStatus } from "../../redux/actions/statusActions";
+import styles from "../styles/Header.module.css";
+import { hideStatus } from "../redux/actions/statusActions";
 import { useDispatch } from "react-redux";
 import FaceIcon from "@material-ui/icons/Face";
 import { makeStyles } from "@material-ui/core/styles";
-import Login from "../container/Login";
-import Logout from "../container/Logout";
+import Login from "./Login";
+import Logout from "./Logout";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,31 +32,32 @@ const Header = () => {
   }
 
   return (
-    <section className="header">
+    <section className={styles.header}>
       <div>
-        <Link to="/">
-          <img
-            className="header__logo"
+        <Link href="/">
+          {/* <img
+            className={styles.header__logo}
             src={logo}
             alt="Logo"
             onClick={handleClick}
-          />
+          /> */}
+          <a>Home</a>
         </Link>
       </div>
-      <div className="header__dropdown">
+      <div className={styles.header__dropdown}>
         <Accordion />
       </div>
-      <div className="separator"></div>
+      <div className={styles.separator}></div>
 
       {token ? (
-        <div className="header__buttons">
-          <Link to="/profile">
+        <div className={styles.header__buttons}>
+          <Link href="/profile">
             <FaceIcon className={classes.root} />
           </Link>
           <Logout />
         </div>
       ) : (
-        <div className="header__buttons">
+        <div className={styles.header__buttons}>
           <Login />
         </div>
       )}

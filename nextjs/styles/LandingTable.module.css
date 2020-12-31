@@ -1,0 +1,29 @@
+.landingTable {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 30px;
+}
+
+.landingTable__subtitle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.list__search {
+  min-width: 280px;
+  margin-right: 5px;
+}
+
+.landingTable__subtitle p {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: left;
+}
+
+#landingTable__table {
+  margin-top: 20px;
+}

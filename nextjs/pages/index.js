@@ -4,12 +4,12 @@ import styles from '../styles/LandingPage.module.css'
 import Layout from '../components/Layout'
 import { useDispatch } from "react-redux";
 import { showStatus, hideStatus, loadStatus } from "../redux/actions/statusActions";
-// import EnhancedTableLanding from "../presentational/LandingTable";
-// import { Link } from "react-router-dom";
+import EnhancedTableLanding from "../components/LandingTable";
+import Link from "next/link";
 import LoadStatusMessage from "../components/LoadStatusMessage";
 import { useSelector } from "react-redux";
-// import { loadLandingList } from "../../redux/actions/landingListActions";
-// import Countdown from 'react-countdown';
+import { loadLandingList } from "../redux/actions/landingListActions";
+import Countdown from 'react-countdown';
 import LandingForm from '../components/LandingForm'
 
 
@@ -18,20 +18,20 @@ const LandingPage = () => {
   let dispatch = useDispatch();
   const loadStatusResponse = useSelector((state) => state.statusReducer.loadStatus);
   const show = useSelector((state) => state.statusReducer.showStatus);
-  // const rawRows = useSelector((state) => state.landingListReducer.landingList);
+  const rawRows = useSelector((state) => state.landingListReducer.landingList);
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
-  // let timer = Date.now() + 300000
+  let timer = Date.now() + 300000
 
-  // useEffect(() => {
-  //   dispatch(loadLandingList(token));
-  //   const interval = setInterval(()=>{
-  //     dispatch(loadLandingList(token));
-  //   },300000)
+  useEffect(() => {
+    dispatch(loadLandingList(token));
+    const interval = setInterval(()=>{
+      dispatch(loadLandingList(token));
+    },300000)
     
-  //   return()=>clearInterval(interval)
+    return()=>clearInterval(interval)
     
-  // }, [dispatch, token]);
+  }, [dispatch, token]);
 
   const onFieldChange = (value, setValue) => {
     dispatch(hideStatus());
@@ -47,7 +47,6 @@ const LandingPage = () => {
 
   return (
     <Layout>
-    
       <Head>
         <title>Ohmydown!</title>
         <meta description="Sleep without worries! We check the health of your websites and notify issues only in the cases you want to." />
@@ -60,14 +59,14 @@ const LandingPage = () => {
       <LoadStatusMessage
       show = {show} loadStatusResponse={loadStatusResponse} />
       </section>
-      {/* <p className="link-to-profile">
-        You can go to your <Link to="/profile">Profile</Link> and add up to 5 websites
+      <p className={styles.link_to_profile}>
+        You can go to your <Link href="/profile">Profile</Link> and add up to 5 websites
         to follow their uptimes and delays for free, with customized monitoring and notifications.
-      </p> */}
-      {/* <h3 className="landingTable__title">Looking after 1000+ website's health:</h3>
+      </p>
+      <h3 className={styles.landingTable__title}>Looking after 1000+ website's health:</h3>
       <p>(New real-time data in <span> </span>
-      <Countdown className="landingPage__countdown" date={timer} daysInHours={true} overtime={true} />)</p>
-      <EnhancedTableLanding rawRows={rawRows}/> */}
+      <Countdown className={styles.landingPage__countdown} date={timer} daysInHours={true} overtime={true} />)</p>
+      <EnhancedTableLanding rawRows={rawRows}/>
       <br></br>
     </div>
     </main>
