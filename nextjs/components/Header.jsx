@@ -1,6 +1,7 @@
 import React from "react";
 // import logo from "../img/logo.png";
 import Link from "next/link";
+import Image from 'next/image'
 import Accordion from "./SimpleAccordion";
 import styles from "../styles/Header.module.css";
 import { hideStatus } from "../redux/actions/statusActions";
@@ -35,7 +36,7 @@ const Header = () => {
     <section className={styles.header}>
       <div>
         <Link href="/">
-          {/* <img
+          {/* <Image
             className={styles.header__logo}
             src={logo}
             alt="Logo"
