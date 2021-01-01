@@ -40,6 +40,7 @@
   align-items: flex-end;
   height: 50px;
   margin-left: 2vw;
+  cursor: pointer;
 }
 
 .separator {
