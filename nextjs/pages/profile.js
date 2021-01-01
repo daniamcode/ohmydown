@@ -59,7 +59,7 @@ const Profile = (props) => {
           <Spinner />
         </div>
       ) : error?.response ? (
-        <h1 className={styles.profile__message__error}>
+        <h1 >
           {ownErrorMessage(error.response)}
         </h1>
       ) : (

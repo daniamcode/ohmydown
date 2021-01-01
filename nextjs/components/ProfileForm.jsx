@@ -7,7 +7,7 @@ import styles from "../styles/Profile.module.css";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    width: "80%",
+    width: "100%",
   },
   // resize:{
   //   fontSize: 20

@@ -1,4 +1,7 @@
 .profile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   padding-top: 100px;
   height: 700px;
   width: 100%;
@@ -8,13 +11,17 @@
   align-items: center;
 }
 
+.profile__form_button {
+  width: 100%;
+}
+
 .profile__add_title {
   margin-top: 20px;
 }
 
 .profile__add {
-  width: 30rem;
   margin: 30px auto 0px auto;
+  width: 30rem;
 }
 
 .profile__table {
@@ -75,13 +82,9 @@
   align-items: center;
 }
 
-.profile__form_button {
-  width: 80%;
-}
-
 @media screen and (min-width: 600px) {
   .profile__add {
-      width: 40rem;
+      width: 35rem;
   }
 
   .profile__table {
@@ -96,7 +99,7 @@
 
 @media screen and (min-width: 1025px) {
   .profile__add {
-      width: 40rem;
+      width: 30rem;
   }
 
   .profile__table {

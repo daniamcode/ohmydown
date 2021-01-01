@@ -1,7 +1,5 @@
 import React from "react";
-// import logo from "../img/logo.png";
 import Link from "next/link";
-import Image from 'next/image'
 import Accordion from "./SimpleAccordion";
 import styles from "../styles/Header.module.css";
 import { hideStatus } from "../redux/actions/statusActions";
@@ -11,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Login from "./Login";
 import Logout from "./Logout";
 import { useSelector } from "react-redux";
+
+const logo = require("../img/logo.png");
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,13 +36,12 @@ const Header = () => {
     <section className={styles.header}>
       <div>
         <Link href="/">
-          {/* <Image
+          <img
             className={styles.header__logo}
             src={logo}
             alt="Logo"
             onClick={handleClick}
-          /> */}
-          <a>Home</a>
+          />
         </Link>
       </div>
       <div className={styles.header__dropdown}>
