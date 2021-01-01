@@ -65,21 +65,21 @@ const Profile = (props) => {
       ) : (
         <main className={styles.profile}>
           <h1 className={styles.profile__title}>{name}'s Profile</h1>
-          <div id={styles.profile_delay_chart} className={styles.profile__chart}>
+          {profileDelayGraphMapped && <div id={styles.profile_delay_chart} className={styles.profile__chart}>
             <h2 className={styles.profile_delay_chart__title}>
               Performance:
             </h2>
             <ProfileDelayGraph
               profileDelayGraphMapped={profileDelayGraphMapped}
             />
-          </div>
+          </div>}
           <div className={styles.profile__add_title}>
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <ProfileForm url={url} setUrl={setUrl} handleSubmit={handleSubmit}/>
           </div>
-          <div className={styles.profile__table}>
+          {profileDelayGraphMapped && <div className={styles.profile__table}>
             <EnhancedTableProfile rawRows={rawRows} />
-          </div>
+          </div>}
         </main>
       )}
     </Layout>
