@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import {Provider} from 'react-redux';
-import configureStore, { initialState } from '../redux/configureStore'
+import configureStore, { initialState } from '../redux/configureStore';
 
 const store = configureStore(initialState);
 

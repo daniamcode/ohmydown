@@ -2,6 +2,7 @@ import React from "react";
 import Chart from "react-google-charts";
 import Spinner from "./Spinner";
 import ownErrorMessage from "../scripts/ownErrorMessage";
+import styles from "../styles/Detail.module.css";
 
 const DetailDelayGraph = ({detailDelayGraph, detailDelayGraphMapped}) => {
   return (

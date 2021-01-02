@@ -19,7 +19,7 @@ export const hideStatus = () => {
 }
 
 export const loadStatus = (url, token) => {
-    return async function getServerSideProps (dispatch) {
+    return async function (dispatch) {
         let isLoading = true;
         dispatch({
             type: actionTypes.LOAD_STATUS,

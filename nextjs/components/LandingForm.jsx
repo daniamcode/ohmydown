@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {LANDING_PAGE_TITLE} from '../data/constants'
 import {LANDING_PAGE_SUBTITLE} from '../data/constants'
-import styles from '../styles/LandingForm.module.css'
+import styles from '../styles/LandingForm.module.css';
 
 const LandingForm = ({url, setUrl, onFieldChange, handleSubmit}) => {
   return (
