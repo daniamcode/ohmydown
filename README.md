@@ -3,7 +3,7 @@
 Backend can be found at my mate's https://github.com/alexmoleiro/sitechecker
 
 # Notes
-This project was started using Create React App ——you can find it in the cra folder——, and then migrated to Next.js, that can be found in the nextjs folder. This is the up-to-date version, and inside that folder you will find another README file with the instructions to launch the App.
+This project was started using Create React App —you can find it in the cra folder—, and then migrated to Next.js, that can be found in the nextjs folder. This is the up-to-date version, and inside that folder you will find another README file with the instructions to launch the App.
 
 ## Status codes and messages
 ### Own errors
