@@ -1,3 +1,6 @@
+# The Project
+We check the health of any website (uptime, delay and more to come)
+
 # Important
 
 Backend can be found at my mate's https://github.com/alexmoleiro/sitechecker
