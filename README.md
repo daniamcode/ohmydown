@@ -2,6 +2,9 @@
 
 Backend can be found at my mate's https://github.com/alexmoleiro/sitechecker
 
+# Notes
+This project was started using Create React App, you can find it in the cra folder, and then migrated to Next.js, that can be found in the nextjs folder. This is the up-to-date version. Inside that folder you will find another README file with the instructions to launch the App.
+
 ## Status codes and messages
 ### Own errors
 
@@ -17,6 +20,3 @@ Network Error: Sorry, our server is down now, please try again later!
 429: Sorry, too many requests right now\ 
 495: Sorry, that SSL certificate expired, check it out!\
 500-599: {url} is DOWN!
-
-# Notes
-This project was started using Create React App, you can find it in the cra folder, and then migrated to Next.js, that can be found in the nextjs folder. This is the up-to-date version. Inside that folder you will find another README file with the instructions to launch the App.
