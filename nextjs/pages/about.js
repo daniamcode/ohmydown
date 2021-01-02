@@ -1,22 +1,15 @@
-import Head from 'next/head'
-import styles from '../styles/LandingPage.module.css'
-import Layout from '../components/Layout'
+import React from "react";
 
-export default function Home() {
+
+const About = (props) => {
+
   return (
-    <Layout>
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <section className="about">
+      <h1>About us</h1>
+      
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Ohmydown!
-        </h1>
-        </main>       
-    </div>
-    </Layout>
-  )
-}
+    </section>
+  );
+};
+
+export default About;

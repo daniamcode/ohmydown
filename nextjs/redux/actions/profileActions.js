@@ -2,7 +2,7 @@ import axios from "axios";
 import actionTypes from "./actionTypes";
 
 export const loadProfile = (token) => {
-  return async function (dispatch) {
+  return async function getServerSideProps (dispatch) {
     let isLoading = true;
     dispatch({
       type: actionTypes.LOAD_PROFILE,

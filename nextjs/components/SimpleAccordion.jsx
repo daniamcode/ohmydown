@@ -19,11 +19,11 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <p className="header__dropdown-categories">Resources</p>
+          <p className="header__dropdown_categories">Resources</p>
         </AccordionSummary>
         <AccordionDetails>
           <Link
-            className="header__dropdown-subcategories"
+            className="header__dropdown_subcategories"
             href="/about"
             onClick={handleChange}
           >
@@ -31,7 +31,7 @@ export default function SimpleAccordion() {
           </Link>
         </AccordionDetails>
         <AccordionDetails>
-          <Link className="header__dropdown-subcategories" href="/contact" onClick={handleChange}>
+          <Link className="header__dropdown_subcategories" href="/contact" onClick={handleChange}>
             Contact
           </Link>
         </AccordionDetails>

@@ -24,7 +24,7 @@ const ProfileForm = ({ url, setUrl, handleSubmit }) => {
           id="filled-basic"
           variant="filled"
           className={classes.textField}
-          placeholder="Write any url here (start with http:// or https://)"
+          placeholder="Write any url here"
           name="url"
           required
           value={url}
@@ -32,7 +32,7 @@ const ProfileForm = ({ url, setUrl, handleSubmit }) => {
           // inputProps={{ pattern: "^https?://", classes: {
           //   input: classes.resize }}}
           // inputProps={{style: {fontSize: 20, marginLeft: 20, marginRight: 20, width: "100%"}, pattern: "^https?://"}}
-          inputProps={{style: {fontSize: 20, marginLeft: 20, marginRight: 20, width: "100%"}}}
+          inputProps={{style: {fontSize: 20, marginLeft: 60, marginRight: 60, width: "100%"}}}
         />
         <Button
           variant="contained"

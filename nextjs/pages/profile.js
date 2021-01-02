@@ -40,7 +40,6 @@ const Profile = (props) => {
   }, [dispatch, token]);
 
   function handleSubmit(event) {
-    console.log(url)
     event.preventDefault();
     event.target.reset();
     dispatch(addProfileWeb(url, token));
@@ -65,7 +64,7 @@ const Profile = (props) => {
       ) : (
         <main className={styles.profile}>
           <h1 className={styles.profile__title}>{name}'s Profile</h1>
-          {profileDelayGraphMapped && <div id={styles.profile_delay_chart} className={styles.profile__chart}>
+          {rawRows?.response?.data?.responses.length !== 0 && <div id={styles.profile_delay_chart} className={styles.profile__chart}>
             <h2 className={styles.profile_delay_chart__title}>
               Performance:
             </h2>
@@ -77,7 +76,7 @@ const Profile = (props) => {
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <ProfileForm url={url} setUrl={setUrl} handleSubmit={handleSubmit}/>
           </div>
-          {profileDelayGraphMapped && <div className={styles.profile__table}>
+          {rawRows?.response?.data?.responses.length !== 0 && <div className={styles.profile__table}>
             <EnhancedTableProfile rawRows={rawRows} />
           </div>}
         </main>

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="footer"
+  >
+    <p>
+      Sleep without worries! We check the health of your websites and notify issues only in the cases you want to.
+    </p>
+  </footer>
+</DocumentFragment>
+`;

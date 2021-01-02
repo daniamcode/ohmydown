@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.loadStatus = exports.hideStatus = exports.showStatus = void 0;
+exports.loadLandingList = void 0;
 
 var _actionTypes = _interopRequireDefault(require("./actionTypes"));
 
@@ -11,27 +11,7 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var showStatus = function showStatus() {
-  var showStatus = true;
-  return {
-    type: _actionTypes["default"].SHOW_STATUS,
-    payload: showStatus
-  };
-};
-
-exports.showStatus = showStatus;
-
-var hideStatus = function hideStatus() {
-  var showStatus = false;
-  return {
-    type: _actionTypes["default"].SHOW_STATUS,
-    payload: showStatus
-  };
-};
-
-exports.hideStatus = hideStatus;
-
-var loadStatus = function loadStatus(url, token) {
+var loadLandingList = function loadLandingList(token) {
   return function getServerSideProps(dispatch) {
     var isLoading, response;
     return regeneratorRuntime.async(function getServerSideProps$(_context) {
@@ -40,15 +20,13 @@ var loadStatus = function loadStatus(url, token) {
           case 0:
             isLoading = true;
             dispatch({
-              type: _actionTypes["default"].LOAD_STATUS,
+              type: _actionTypes["default"].LOAD_LANDING_LIST,
               payload: {
                 isLoading: isLoading
               }
             });
             _context.next = 4;
-            return regeneratorRuntime.awrap(_axios["default"].post('http://localhost:8080/status', {
-              url: url
-            }, {
+            return regeneratorRuntime.awrap(_axios["default"].post('http://localhost:8080/landing-list', {
               headers: {
                 Token: token
               }
@@ -59,7 +37,7 @@ var loadStatus = function loadStatus(url, token) {
 
               isLoading = false;
               dispatch({
-                type: _actionTypes["default"].LOAD_STATUS,
+                type: _actionTypes["default"].LOAD_LANDING_LIST,
                 payload: {
                   error: error,
                   isLoading: isLoading
@@ -72,13 +50,8 @@ var loadStatus = function loadStatus(url, token) {
 
             if (response !== undefined) {
               isLoading = false;
-
-              if (response.data.url.length > 35) {
-                response.data.url = response.data.url.slice(0, 35) + '...';
-              }
-
               dispatch({
-                type: _actionTypes["default"].LOAD_STATUS,
+                type: _actionTypes["default"].LOAD_LANDING_LIST,
                 payload: {
                   response: response,
                   isLoading: isLoading
@@ -95,4 +68,4 @@ var loadStatus = function loadStatus(url, token) {
   };
 };
 
-exports.loadStatus = loadStatus;
+exports.loadLandingList = loadLandingList;

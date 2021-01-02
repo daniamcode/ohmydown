@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const loadDetailDelayGraph = (id, token) => {
-    return async function (dispatch) {
+    return async function getServerSideProps (dispatch) {
         let isLoading = true;
         dispatch({
             type: actionTypes.LOAD_DETAIL_DELAY_GRAPH,
