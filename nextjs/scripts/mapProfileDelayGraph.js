@@ -10,33 +10,40 @@ export default function mapProfileDelayGraph(response) {
         //change name of properties
         response[i].healthCheckResponse[j][newDelay] = response[i]?.healthCheckResponse[j]?.delay
         response[i].healthCheckResponse[j][newTime] = response[i]?.healthCheckResponse[j]?.time
+
         //group objects' properties into the last array of objects
         if (i === response?.length - 1) {
           for (let k = response?.length - 2; k >= 0; k--) {
             let newDelayGrouped = `001delay${response[k]?.endpoint?.id}`
-            response[i].healthCheckResponse[j][newDelayGrouped] = response[k]?.healthCheckResponse[j][newDelayGrouped]
+            if (!response[k]?.healthCheckResponse[response[i]?.healthCheckResponse?.length - 1 - j]) {
+            response[i].healthCheckResponse[j][newDelayGrouped] = 0
+          } else {
+            response[i].healthCheckResponse[j][newDelayGrouped] = response[k]?.healthCheckResponse[response[i]?.healthCheckResponse?.length - 1 - j][newDelayGrouped]
           }
         }
+
       }
     }
-    return response
   }
+  console.log(response)
+  return response
+}
 
-  //then map
-  if (formatted(response)) {
-    let firstSubArray = []
-    let firstArray = [firstSubArray]
-    for (let i = 0; i < response?.length; i++) {
-      firstSubArray?.push(`${response[i]?.endpoint.id}`)
-    }
-    firstSubArray.sort()
-    firstSubArray.unshift('x')
-
-    let result = firstArray.concat(formatted(response)[response?.length - 1]?.healthCheckResponse?.map(function (obj) {
-      return Object.keys(obj).sort().slice(0, response?.length + 1).map(function (key) {
-        return obj[key];
-      });
-    }));
-    return result
+//then map
+if (formatted(response)) {
+  let firstSubArray = []
+  let firstArray = [firstSubArray]
+  for (let i = 0; i < response?.length; i++) {
+    firstSubArray?.push(`${response[i]?.endpoint.id}`)
   }
+  firstSubArray.sort()
+  firstSubArray.unshift('x')
+
+  let result = firstArray.concat(formatted(response)[response?.length - 1]?.healthCheckResponse?.map(function (obj) {
+    return Object.keys(obj).sort().slice(0, response?.length + 1).map(function (key) {
+      return obj[key];
+    });
+  }));
+  return result
+}
 }
