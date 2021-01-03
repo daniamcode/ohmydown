@@ -44,6 +44,7 @@ const Profile = (props) => {
     event.target.reset();
     dispatch(addProfileWeb(url, token));
   }
+  console.log(error?.response)
   return (
     <Layout>
       {!token ? (
@@ -58,7 +59,7 @@ const Profile = (props) => {
           <Spinner />
         </div>
       ) : error?.response ? (
-        <h1 >
+        <h1 className={styles.profile__message__error}>
           {ownErrorMessage(error.response)}
         </h1>
       ) : (

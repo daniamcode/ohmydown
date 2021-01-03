@@ -29,9 +29,6 @@ const ProfileForm = ({ url, setUrl, handleSubmit }) => {
           required
           value={url}
           onChange={(event) => {basicOnFieldChange(event.target.value, setUrl)}}
-          // inputProps={{ pattern: "^https?://", classes: {
-          //   input: classes.resize }}}
-          // inputProps={{style: {fontSize: 20, marginLeft: 20, marginRight: 20, width: "100%"}, pattern: "^https?://"}}
           inputProps={{style: {fontSize: 20, marginLeft: 60, marginRight: 60, width: "100%"}}}
         />
         <Button
