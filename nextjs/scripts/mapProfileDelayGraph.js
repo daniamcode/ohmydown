@@ -1,5 +1,7 @@
 export default function mapProfileDelayGraph(response) {
-
+  //the graph with more samples will be the last element
+  response?.sort((a, b) => (a.healthCheckResponse?.length > b.healthCheckResponse?.length) ? 1 : -1)
+  
   let formatted = (response) => {
     for (let i = 0; i < response?.length; i++) {
       for (let j = 0; j < response[i]?.healthCheckResponse?.length; j++) {
@@ -15,14 +17,14 @@ export default function mapProfileDelayGraph(response) {
         if (i === response?.length - 1) {
           for (let k = response?.length - 2; k >= 0; k--) {
             let newDelayGrouped = `001delay${response[k]?.endpoint?.id}`
+            let lengthDifference = response[i]?.healthCheckResponse?.length - response[k]?.healthCheckResponse?.length
             //we first have to look at the last positions, to consider graphs with less data than others, in oder to put zeros at the beginning
             if (!response[k]?.healthCheckResponse[response[i]?.healthCheckResponse?.length - 1 - j]) {
             response[i].healthCheckResponse[j][newDelayGrouped] = 0
           } else {
-            response[i].healthCheckResponse[j][newDelayGrouped] = response[k]?.healthCheckResponse[response[i]?.healthCheckResponse?.length - 1 - j][newDelayGrouped]
+            response[i].healthCheckResponse[j][newDelayGrouped] = response[k]?.healthCheckResponse[j - lengthDifference][newDelayGrouped]
           }
         }
-
       }
     }
   }
