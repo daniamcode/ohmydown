@@ -15,6 +15,7 @@ export default function mapProfileDelayGraph(response) {
         if (i === response?.length - 1) {
           for (let k = response?.length - 2; k >= 0; k--) {
             let newDelayGrouped = `001delay${response[k]?.endpoint?.id}`
+            //we first have to look at the last positions, to consider graphs with less data than others, in oder to put zeros at the beginning
             if (!response[k]?.healthCheckResponse[response[i]?.healthCheckResponse?.length - 1 - j]) {
             response[i].healthCheckResponse[j][newDelayGrouped] = 0
           } else {
