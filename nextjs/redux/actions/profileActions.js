@@ -88,9 +88,50 @@ export const addProfileWeb = (url, token) => {
   }
 };
 
-export const deleteProfileWebs = (webNames) => {
-  return ({
-    type: actionTypes.DELETE_PROFILE_WEBS,
-    payload: webNames
-  })
+export const deleteProfileWebs = (ids, token) => {
+  return async function (dispatch) {
+    let isLoading = true;
+    console.log({ids})
+    console.log(token)
+    dispatch({
+      type: actionTypes.DELETE_PROFILE_WEBS,
+      payload: {
+        isLoading
+      }
+    });
+    const response = await axios.delete(
+        'http://localhost:8080/profile/deleteurls', {
+          headers: {
+            Token: token
+          },
+          data: {
+              ids
+            }
+        }
+      )
+      .catch(error => {
+        if (!error.response) {
+          error.response = 'Network Error'
+        }
+        isLoading = false;
+        dispatch({
+          type: actionTypes.DELETE_PROFILE_WEBS,
+          payload: {
+            error,
+            isLoading
+          }
+        })
+      })
+      console.log(response)
+    if (response !== undefined) {
+      isLoading = false;
+      dispatch({
+        type: actionTypes.DELETE_PROFILE_WEBS,
+        payload: {
+          response,
+          isLoading
+        }
+      })
+    }
+  }
 };

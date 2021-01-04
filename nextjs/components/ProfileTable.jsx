@@ -23,6 +23,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { deleteProfileWebs } from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import mapProfileRows from '../scripts/mapProfileRows'
 import pofileStyles from "../styles/Profile.module.css";
 
@@ -50,7 +51,6 @@ function stableSort(array, comparator) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  console.log(stabilizedThis) 
   return stabilizedThis.map((el) => el[0]);
 }
 
@@ -150,9 +150,10 @@ const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected, selected } = props;
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
   function handleDelete() {
-    dispatch(deleteProfileWebs(selected));
+    dispatch(deleteProfileWebs(selected, token));
   }
 
   return (

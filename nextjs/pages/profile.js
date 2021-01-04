@@ -44,7 +44,7 @@ const Profile = (props) => {
     event.target.reset();
     dispatch(addProfileWeb(url, token));
   }
-  console.log(error?.response)
+  
   return (
     <Layout>
       {!token ? (

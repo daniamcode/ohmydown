@@ -134,10 +134,68 @@ var addProfileWeb = function addProfileWeb(url, token) {
 
 exports.addProfileWeb = addProfileWeb;
 
-var deleteProfileWebs = function deleteProfileWebs(webNames) {
-  return {
-    type: _actionTypes["default"].DELETE_PROFILE_WEBS,
-    payload: webNames
+var deleteProfileWebs = function deleteProfileWebs(ids, token) {
+  return function _callee2(dispatch) {
+    var isLoading, response;
+    return regeneratorRuntime.async(function _callee2$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            isLoading = true;
+            console.log({
+              ids: ids
+            });
+            console.log(token);
+            dispatch({
+              type: _actionTypes["default"].DELETE_PROFILE_WEBS,
+              payload: {
+                isLoading: isLoading
+              }
+            });
+            _context3.next = 6;
+            return regeneratorRuntime.awrap(_axios["default"]["delete"]('http://localhost:8080/profile/deleteurls', {
+              headers: {
+                Token: token
+              },
+              data: {
+                ids: ids
+              }
+            })["catch"](function (error) {
+              if (!error.response) {
+                error.response = 'Network Error';
+              }
+
+              isLoading = false;
+              dispatch({
+                type: _actionTypes["default"].DELETE_PROFILE_WEBS,
+                payload: {
+                  error: error,
+                  isLoading: isLoading
+                }
+              });
+            }));
+
+          case 6:
+            response = _context3.sent;
+            console.log(response);
+
+            if (response !== undefined) {
+              isLoading = false;
+              dispatch({
+                type: _actionTypes["default"].DELETE_PROFILE_WEBS,
+                payload: {
+                  response: response,
+                  isLoading: isLoading
+                }
+              });
+            }
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    });
   };
 };
 
