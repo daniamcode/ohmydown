@@ -15,14 +15,14 @@ const DetailDelayGraph = ({detailDelayGraph, detailDelayGraphMapped}) => {
         ) : detailDelayGraph && detailDelayGraph.error?.response ? (
           <h1>
             {document
-              .getElementById(detailStyles.detail__delay__chart)
+              .getElementById(detailStyles.detail__delay_chart)
               ?.classList.remove(
                 loadStatusMessageStyles.status__initial,
                 loadStatusMessageStyles.status__up,
                 loadStatusMessageStyles.status__down
               )}
             {document
-              .getElementById(detailStyles.detail__delay__chart)
+              .getElementById(detailStyles.detail__delay_chart)
               ?.classList.add(loadStatusMessageStyles.status__error)}
             {ownErrorMessage(detailDelayGraph.error.response)}
           </h1>

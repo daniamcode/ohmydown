@@ -18,6 +18,10 @@
   margin: 20px auto;
 }
 
+#detail__delay_chart {
+  display: flex;
+}
+
 .detail__comments_title {
   width: 50%;
   margin: auto;

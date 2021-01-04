@@ -56,7 +56,7 @@ const Detail = ({id}) => {
       </h1>
       <p>(New real-time data in <span> </span>
       <Countdown className={detailStyles.detail__countdown} date={timer} daysInHours={true} overtime={true} />)</p>
-      <div id={detailStyles.detail_delay_chart} className={detailStyles.detail__chart}>
+      <div id={detailStyles.detail__delay_chart} className={detailStyles.detail__chart}>
         <DetailDelayGraph detailDelayGraph={detailDelayGraph} detailDelayGraphMapped={detailDelayGraphMapped} />
       </div>
 
