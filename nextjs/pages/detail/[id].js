@@ -9,10 +9,11 @@ import DetailDelayGraph from '../../components/DetailDelayGraph';
 import Countdown from 'react-countdown';
 import { useRouter } from 'next/router';
 import Layout from "../../components/Layout";
+import { NextSeo } from 'next-seo';
 
-const Detail = (props) => {
-  const router = useRouter();
-  const { id } = router.query
+const Detail = ({id}) => {
+  // const router = useRouter();
+  // const { id } = router.query
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
   const detailDelayGraph = useSelector(
     (state) => state.detailReducer.detailDelayGraph
@@ -39,10 +40,17 @@ const Detail = (props) => {
 
     return () => clearInterval(interval);
   }, [dispatch, id, token]);
-
+  const title = `Is ${id} down?`
+  const description = `Uptime and delay data and graphs of ${id} over time.`
+  
   return (
+     <>
+     <NextSeo
+      title={title}
+      description={description}
+    />
     <Layout>
-    <section className={styles.detail}>
+    <main className={styles.detail}>
       <h1 className={styles.detail__title}>
         Delay of {id} over time:
       </h1>
@@ -64,9 +72,20 @@ const Detail = (props) => {
           config={disqusConfig}
         />
       </div>
-    </section>
+    </main>
     </Layout>
+    </>
   );
 };
+
+export async function getServerSideProps({query}) {
+  const { id } = query
+
+  return {
+    props: {
+      id
+    },
+  };
+}
 
 export default Detail;

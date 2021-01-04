@@ -6,10 +6,16 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 const theme = responsiveFontSizes(createMuiTheme())
 
 class MyDocument extends Document {
+  // static async getInitialProps(ctx) {
+  //   const initialProps = await Document.getInitialProps(ctx);
+  //   return { ...initialProps };
+  // }
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
+          <meta httpEquiv="content-language" content="en-us" />
+          <link rel="icon" href="/favicon.ico" />
           <meta charSet="utf-8" />
           <meta
             name="viewport"
