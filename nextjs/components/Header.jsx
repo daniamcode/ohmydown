@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Accordion from "./SimpleAccordion";
-import styles from "../styles/Header.module.css";
+import headerStyles from "../styles/Header.module.css";
 import { hideStatus } from "../redux/actions/statusActions";
 import { useDispatch } from "react-redux";
 import FaceIcon from "@material-ui/icons/Face";
@@ -33,31 +33,31 @@ const Header = () => {
   }
 
   return (
-    <section className={styles.header}>
+    <section className={headerStyles.header}>
       <div>
         <Link href="/">
           <img
-            className={styles.header__logo}
+            className={headerStyles.header__logo}
             src={logo}
             alt="Logo"
             onClick={handleClick}
           />
         </Link>
       </div>
-      <div className={styles.header__dropdown}>
+      <div className={headerStyles.header__dropdown}>
         <Accordion />
       </div>
-      <div className={styles.separator}></div>
+      <div className={headerStyles.separator}></div>
 
       {token ? (
-        <div className={styles.header__buttons}>
+        <div className={headerStyles.header__buttons}>
           <Link href="/profile">
             <FaceIcon className={classes.root} />
           </Link>
           <Logout />
         </div>
       ) : (
-        <div className={styles.header__buttons}>
+        <div className={headerStyles.header__buttons}>
           <Login />
         </div>
       )}

@@ -1,10 +1,9 @@
 import React from "react";
 
-
 const Contact = (props) => {
 
   return (
-    <section className="contact">
+    <section>
       <h1>Contact us</h1>
       
 

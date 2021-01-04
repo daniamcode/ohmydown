@@ -18,7 +18,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import SearchIcon from "@material-ui/icons/Search";
 import { TextField } from "@material-ui/core";
-import styles from "../styles/landingTable.module.css";
+import landingTableStyles from "../styles/LandingTable.module.css";
+import loadStatusMessageStyles from "../styles/LoadStatusMessage.module.css";
 import Spinner from "./Spinner";
 import ownErrorMessage from "../scripts/ownErrorMessage";
 
@@ -230,9 +231,9 @@ export default function EnhancedTableLanding({ rawRows }) {
   //   rowsPerPage - Math.min(rowsPerPage, rows?.length - page * rowsPerPage);
 
   return (
-    <div className={styles.landingTable}>
-      <div className={styles.landingTable__subtitle}>
-        <div className={styles.list__search}>
+    <div className={landingTableStyles.landingTable}>
+      <div className={landingTableStyles.landingTable__subtitle}>
+        <div className={landingTableStyles.list__search}>
           <SearchIcon style={{ fontSize: 30, fill: "#3F51B5" }} />
           <TextField
             label="Search a web from the list"
@@ -251,23 +252,23 @@ export default function EnhancedTableLanding({ rawRows }) {
           appear, you can register and add it to your profile!
         </p>
       </div>
-      <div id={styles.landingTable__table} className={classes.root}>
+      <div id={landingTableStyles.landingTable__table} className={classes.root}>
         {rawRows && rawRows.isLoading === true ? (
-          <div className={styles.spinner_active}>
+          <div className={landingTableStyles.spinner_active}>
             <Spinner />
           </div>
         ) : rawRows && rawRows.error?.response ? (
           <h1>
             {document
-              .getElementById("landingTable__table")
+              .getElementById(landingTableStyles.landingTable__table)
               ?.classList.remove(
-                "status__initial",
-                "status__up",
-                "status__down"
+                loadStatusMessageStyles.status__initial,
+                loadStatusMessageStyles.status__up,
+                loadStatusMessageStyles.status__down
               )}
             {document
-              .getElementById("landingTable__table")
-              ?.classList.add("status__error")}
+              .getElementById(landingTableStyles.landingTable__table)
+              ?.classList.add(loadStatusMessageStyles.status__error)}
             {ownErrorMessage(rawRows.error.response)}
           </h1>
         ) : (

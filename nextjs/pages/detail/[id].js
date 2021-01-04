@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Detail.module.css";
+import detailStyles from "../../styles/Detail.module.css";
 import Disqus from "disqus-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -50,23 +50,23 @@ const Detail = ({id}) => {
       description={description}
     />
     <Layout>
-    <main className={styles.detail}>
-      <h1 className={styles.detail__title}>
+    <main className={detailStyles.detail}>
+      <h1 className={detailStyles.detail__title}>
         Delay of {id} over time:
       </h1>
       <p>(New real-time data in <span> </span>
-      <Countdown className={styles.detail__countdown} date={timer} daysInHours={true} overtime={true} />)</p>
-      <div id={styles.detail_delay_chart} className={styles.detail__chart}>
+      <Countdown className={detailStyles.detail__countdown} date={timer} daysInHours={true} overtime={true} />)</p>
+      <div id={detailStyles.detail_delay_chart} className={detailStyles.detail__chart}>
         <DetailDelayGraph detailDelayGraph={detailDelayGraph} detailDelayGraphMapped={detailDelayGraphMapped} />
       </div>
 
-      <p className={styles.detail__comments_title}>
-        Is {id} down for you right now? You can submit your comments about their
+      <p className={detailStyles.detail__comments_title}>
+      Is {id} down for you right now? You can submit your comments about their
         service status or report an issue below to let others know that they
         aren't alone with their issue, or give your opinion about anything
         related if you want.
       </p>
-      <div className={styles.detail__comments}>
+      <div className={detailStyles.detail__comments}>
         <Disqus.DiscussionEmbed
           shortname={disqusShortname}
           config={disqusConfig}

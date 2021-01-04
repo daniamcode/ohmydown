@@ -4,6 +4,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Link from "next/link";
+import headerStyles from "../styles/Header.module.css";
 
 export default function SimpleAccordion() {
   const [expanded, setExpanded] = React.useState(false)
@@ -13,17 +14,17 @@ export default function SimpleAccordion() {
   }
   return (
     <div>
-      <Accordion className="accordion" expanded={expanded} onChange={handleChange}>
+      <Accordion className={headerStyles.accordion} expanded={expanded} onChange={handleChange}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <p className="header__dropdown_categories">Resources</p>
+          <p className={headerStyles.header__dropdown_categories}>Resources</p>
         </AccordionSummary>
         <AccordionDetails>
           <Link
-            className="header__dropdown_subcategories"
+            className={headerStyles.header__dropdown_subcategories}
             href="/about"
             onClick={handleChange}
           >
@@ -31,7 +32,7 @@ export default function SimpleAccordion() {
           </Link>
         </AccordionDetails>
         <AccordionDetails>
-          <Link className="header__dropdown_subcategories" href="/contact" onClick={handleChange}>
+          <Link className={headerStyles.header__dropdown_subcategories} href="/contact" onClick={handleChange}>
             Contact
           </Link>
         </AccordionDetails>

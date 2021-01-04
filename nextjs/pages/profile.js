@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/Profile.module.css";
+import profileStyles from "../styles/Profile.module.css";
 import EnhancedTableProfile from "../components/ProfileTable";
 import { addProfileWeb } from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
@@ -48,36 +48,36 @@ const Profile = (props) => {
   return (
     <Layout>
       {!token ? (
-        <div className={styles.profile__message__container}>
-          <p className={styles.profile__message}>
+        <div className={profileStyles.profile__message__container}>
+          <p className={profileStyles.profile__message}>
             Open the padlock to get access to your profile:
           </p>
           <Login />
         </div>
       ) : isLoading ? (
-        <div className={styles.spinner_active}>
+        <div className={profileStyles.spinner_active}>
           <Spinner />
         </div>
       ) : error?.response ? (
-        <h1 className={styles.profile__message__error}>
+        <h1 className={profileStyles.profile__message__error}>
           {ownErrorMessage(error.response)}
         </h1>
       ) : (
-        <main className={styles.profile}>
-          <h1 className={styles.profile__title}>{name}'s Profile</h1>
-          {rawRows?.response?.data?.responses.length !== 0 && <div id={styles.profile_delay_chart} className={styles.profile__chart}>
-            <h2 className={styles.profile_delay_chart__title}>
+        <main className={profileStyles.profile}>
+          <h1 className={profileStyles.profile__title}>{name}'s Profile</h1>
+          {rawRows?.response?.data?.responses.length !== 0 && <div id={profileStyles.profile_delay_chart} className={profileStyles.profile__chart}>
+            <h2 className={profileStyles.profile_delay_chart__title}>
               Performance:
             </h2>
             <ProfileDelayGraph
               profileDelayGraphMapped={profileDelayGraphMapped}
             />
           </div>}
-          <div className={styles.profile__add_title}>
+          <div className={profileStyles.profile__add_title}>
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <ProfileForm url={url} setUrl={setUrl} handleSubmit={handleSubmit}/>
           </div>
-          {rawRows?.response?.data?.responses.length !== 0 && <div className={styles.profile__table}>
+          {rawRows?.response?.data?.responses.length !== 0 && <div className={profileStyles.profile__table}>
             <EnhancedTableProfile rawRows={rawRows} />
           </div>}
         </main>

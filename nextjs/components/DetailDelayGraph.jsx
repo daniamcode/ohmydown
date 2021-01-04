@@ -2,27 +2,28 @@ import React from "react";
 import Chart from "react-google-charts";
 import Spinner from "./Spinner";
 import ownErrorMessage from "../scripts/ownErrorMessage";
-import styles from "../styles/Detail.module.css";
+import detailStyles from "../styles/Detail.module.css";
+import loadStatusMessageStyles from "../styles/LoadStatusMessage.module.css";
 
 const DetailDelayGraph = ({detailDelayGraph, detailDelayGraphMapped}) => {
   return (
     <>
         {detailDelayGraph && detailDelayGraph.isLoading === true ? (
-          <div className="spinner-active">
+          <div className={detailStyles.spinner_active}>
             <Spinner />
           </div>
         ) : detailDelayGraph && detailDelayGraph.error?.response ? (
           <h1>
             {document
-              .getElementById("detail-delay-chart")
+              .getElementById(detailStyles.detail__delay__chart)
               ?.classList.remove(
-                "status__initial",
-                "status__up",
-                "status__down"
+                loadStatusMessageStyles.status__initial,
+                loadStatusMessageStyles.status__up,
+                loadStatusMessageStyles.status__down
               )}
             {document
-              .getElementById("detail-delay-chart")
-              ?.classList.add("status__error")}
+              .getElementById(detailStyles.detail__delay__chart)
+              ?.classList.add(loadStatusMessageStyles.status__error)}
             {ownErrorMessage(detailDelayGraph.error.response)}
           </h1>
         ) : detailDelayGraph && detailDelayGraph.response?.data ? (

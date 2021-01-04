@@ -1,10 +1,9 @@
 import React from "react";
 
-
 const About = (props) => {
 
   return (
-    <section className="about">
+    <section>
       <h1>About us</h1>
       
 

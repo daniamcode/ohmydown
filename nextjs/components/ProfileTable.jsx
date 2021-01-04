@@ -24,7 +24,7 @@ import FilterListIcon from "@material-ui/icons/FilterList";
 import { deleteProfileWebs } from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
 import mapProfileRows from '../scripts/mapProfileRows'
-import styles from "../styles/Profile.module.css";
+import pofileStyles from "../styles/Profile.module.css";
 
 
 function descendingComparator(a, b, orderBy) {
@@ -301,8 +301,8 @@ export default function EnhancedTableProfile({ rawRows }) {
   //     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <div className={styles.profileTable}>
-      <div id={styles.profileTable__table} className={classes.root}>
+    <div className={pofileStyles.profileTable}>
+      <div id={pofileStyles.profileTable__table} className={classes.root}>
         <Paper className={classes.paper}>
           <EnhancedTableToolbar
             numSelected={selected.length}

@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import basicOnFieldChange from "../scripts/basicOnFieldChange";
 import { makeStyles } from "@material-ui/core/styles";
-import styles from "../styles/Profile.module.css";
+import profileStyles from "../styles/Profile.module.css";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -18,8 +18,8 @@ const ProfileForm = ({ url, setUrl, handleSubmit }) => {
   const classes = useStyles();
 
   return (
-    <form className={styles.profile__add} onSubmit={handleSubmit}>
-      <div className={styles.profile__form_inner_container}>
+    <form className={profileStyles.profile__add} onSubmit={handleSubmit}>
+      <div className={profileStyles.profile__form_inner_container}>
         <TextField
           id="filled-basic"
           variant="filled"
@@ -34,7 +34,7 @@ const ProfileForm = ({ url, setUrl, handleSubmit }) => {
         <Button
           variant="contained"
           color="primary"
-          className={styles.profile__form_button}
+          className={profileStyles.profile__form_button}
           type="submit"
         >
           Add
