@@ -246,7 +246,7 @@ export default function EnhancedTableProfile({ rawRows }) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const rows = mapProfileRows(rawRows?.response?.data?.responses);
+  const rows = mapProfileRows(rawRows);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";

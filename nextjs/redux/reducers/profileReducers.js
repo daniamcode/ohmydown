@@ -15,7 +15,9 @@ const profileReducers = (state = {}, action = {}) => {
     case actionTypes.DELETE_PROFILE_WEBS:
       return {
         ...state,
-        // profile: state.profile?.response?.data?.responses.filter(x => !action.payload.includes(x.name))
+        profile: {
+          response: state.profile.response?.filter(x => !action.payload?.response?.config?.data?.includes(x.endpoint?.id))
+        }
       };
     default:
       return state;

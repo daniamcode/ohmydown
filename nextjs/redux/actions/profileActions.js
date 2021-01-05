@@ -10,7 +10,7 @@ export const loadProfile = (token) => {
         isLoading
       }
     });
-    const response = await axios.get(
+    const rawResponse = await axios.get(
         'http://localhost:8080/profile', {
           headers: {
             Token: token
@@ -30,9 +30,9 @@ export const loadProfile = (token) => {
           }
         })
       })
-    if (response !== undefined) {
+    if (rawResponse !== undefined) {
       isLoading = false;
-      console.log(response)
+      const response = rawResponse?.data?.responses
       dispatch({
         type: actionTypes.LOAD_PROFILE,
         payload: {
@@ -74,7 +74,6 @@ export const addProfileWeb = (url, token) => {
           }
         })
       })
-      console.log(response)
     if (response !== undefined) {
       isLoading = false;
       dispatch({
@@ -91,8 +90,6 @@ export const addProfileWeb = (url, token) => {
 export const deleteProfileWebs = (ids, token) => {
   return async function (dispatch) {
     let isLoading = true;
-    console.log({ids})
-    console.log(token)
     dispatch({
       type: actionTypes.DELETE_PROFILE_WEBS,
       payload: {
@@ -122,7 +119,7 @@ export const deleteProfileWebs = (ids, token) => {
           }
         })
       })
-      console.log(response)
+      console.log(response?.config)
     if (response !== undefined) {
       isLoading = false;
       dispatch({

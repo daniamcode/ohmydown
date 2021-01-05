@@ -29,7 +29,12 @@ var profileReducers = function profileReducers() {
       return _objectSpread({}, state);
 
     case _actionTypes["default"].DELETE_PROFILE_WEBS:
-      return _objectSpread({}, state);
+      return _objectSpread({}, state, {
+        // profile: state.profile?.response?.data?.responses.filter(x => action.payload?.response?.config?.data?.includes(x.endpoint.id))
+        profile: {
+          response: state.profile.response
+        }
+      });
 
     default:
       return state;

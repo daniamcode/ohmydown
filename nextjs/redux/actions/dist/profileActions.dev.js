@@ -110,10 +110,10 @@ var addProfileWeb = function addProfileWeb(url, token) {
 
           case 5:
             response = _context2.sent;
-            console.log(response);
 
             if (response !== undefined) {
               isLoading = false;
+              console.log(response);
               dispatch({
                 type: _actionTypes["default"].ADD_PROFILE_WEB,
                 payload: {
@@ -123,7 +123,7 @@ var addProfileWeb = function addProfileWeb(url, token) {
               });
             }
 
-          case 8:
+          case 7:
           case "end":
             return _context2.stop();
         }
@@ -142,17 +142,13 @@ var deleteProfileWebs = function deleteProfileWebs(ids, token) {
         switch (_context3.prev = _context3.next) {
           case 0:
             isLoading = true;
-            console.log({
-              ids: ids
-            });
-            console.log(token);
             dispatch({
               type: _actionTypes["default"].DELETE_PROFILE_WEBS,
               payload: {
                 isLoading: isLoading
               }
             });
-            _context3.next = 6;
+            _context3.next = 4;
             return regeneratorRuntime.awrap(_axios["default"]["delete"]('http://localhost:8080/profile/deleteurls', {
               headers: {
                 Token: token
@@ -175,7 +171,7 @@ var deleteProfileWebs = function deleteProfileWebs(ids, token) {
               });
             }));
 
-          case 6:
+          case 4:
             response = _context3.sent;
             console.log(response);
 
@@ -190,7 +186,7 @@ var deleteProfileWebs = function deleteProfileWebs(ids, token) {
               });
             }
 
-          case 9:
+          case 7:
           case "end":
             return _context3.stop();
         }

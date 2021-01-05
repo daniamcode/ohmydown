@@ -16,10 +16,10 @@ import Layout from "../components/Layout";
 const Profile = (props) => {
   let [url, setUrl] = useState("");
   const dispatch = useDispatch();
-  const rawRows = useSelector((state) => state.profileReducer.profile);
+  const rawRows = useSelector((state) => state.profileReducer.profile?.response);
 
   let profileDelayGraphMapped = mapProfileDelayGraph(
-    rawRows?.response?.data?.responses
+    rawRows
   );
   const name = useSelector((state) => state.googleReducer.authResponse?.name);
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
@@ -65,7 +65,7 @@ const Profile = (props) => {
       ) : (
         <main className={profileStyles.profile}>
           <h1 className={profileStyles.profile__title}>{name}'s Profile</h1>
-          {rawRows?.response?.data?.responses.length !== 0 && <div id={profileStyles.profile_delay_chart} className={profileStyles.profile__chart}>
+          {rawRows?.length !== 0 && <div id={profileStyles.profile_delay_chart} className={profileStyles.profile__chart}>
             <h2 className={profileStyles.profile_delay_chart__title}>
               Performance:
             </h2>
@@ -77,7 +77,7 @@ const Profile = (props) => {
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <ProfileForm url={url} setUrl={setUrl} handleSubmit={handleSubmit}/>
           </div>
-          {rawRows?.response?.data?.responses.length !== 0 && <div className={profileStyles.profile__table}>
+          {rawRows?.length !== 0 && <div className={profileStyles.profile__table}>
             <EnhancedTableProfile rawRows={rawRows} />
           </div>}
         </main>
