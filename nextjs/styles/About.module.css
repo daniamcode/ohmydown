@@ -1,4 +1,4 @@
-.about{
+.about {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,4 +30,22 @@
 
 .about img {
   width: 50rem;
+  display: none;
+}
+
+.about__example {
+  display: none;
+}
+
+@media screen and (min-width: 1025px) {
+  .about img {
+    display: flex;
+  }
+
+  .about__example {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
 }

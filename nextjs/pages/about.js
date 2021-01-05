@@ -25,7 +25,7 @@ const About = (props) => {
       <p>We want to offer easy access to everybody to this kind of information, with a very extensive free plan.
       </p>
       </div>
-      <div className={aboutStyles.about__container}>
+      <div className={aboutStyles.about__example}>
       <h2>Example</h2>
       <p>Here's a little example of what we offer, a delay chart of several urls that you can follow in your profile.
       </p>
