@@ -24,16 +24,11 @@ export default function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <Link
-            className={headerStyles.header__dropdown_subcategories}
             href="/about"
-            onClick={handleChange}
           >
+            <a className={headerStyles.header__dropdown_subcategories}>
             About
-          </Link>
-        </AccordionDetails>
-        <AccordionDetails>
-          <Link className={headerStyles.header__dropdown_subcategories} href="/contact" onClick={handleChange}>
-            Contact
+            </a>
           </Link>
         </AccordionDetails>
       </Accordion>
