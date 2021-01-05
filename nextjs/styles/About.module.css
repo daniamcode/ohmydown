@@ -1,0 +1,33 @@
+.about{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+  padding-top: 100px;
+}
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.about h1 {
+  padding-bottom: 30px;
+  color: #3F51B5;
+}
+
+.about p {
+  padding-bottom: 40px;
+}
+
+.about h2 {
+  padding-bottom: 30px;
+  color: #3F51B5;
+}
+
+.about img {
+  width: 50rem;
+}

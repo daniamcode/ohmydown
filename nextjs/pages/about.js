@@ -1,8 +1,10 @@
 import React from "react";
 import Layout from "../components/Layout";
 import Head from "next/head";
+import aboutStyles from "../styles/About.module.css";
 
 const About = (props) => {
+  const example = require("../img/graphExample.png");
   return (
     <>
     <Head>
@@ -11,11 +13,27 @@ const About = (props) => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Layout>
-    <main>
+    <main className={aboutStyles.about}>
+      <div className={aboutStyles.about__container}>
       <h1>About us</h1>
       <p>Ohmydown is a web service that offers you the opportunity to keep track of any website that you own —or not—, in terms of
         observability, that is, uptime, delays and more to come.
       </p>
+      </div>
+      <div className={aboutStyles.about__container}>
+      <h2>Vision</h2>
+      <p>We want to offer easy access to everybody to this kind of information, with a very extensive free plan.
+      </p>
+      </div>
+      <div className={aboutStyles.about__container}>
+      <h2>Example</h2>
+      <p>Here's a little example of what we offer, a delay chart of several urls that you can follow in your profile.
+      </p>
+      </div>
+      <img
+            src={example}
+            alt="Example"
+          />
     </main>
     </Layout>
     </>
