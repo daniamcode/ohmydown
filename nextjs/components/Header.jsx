@@ -10,28 +10,27 @@ import Login from "./Login";
 import Logout from "./Logout";
 import { useSelector } from "react-redux";
 
-const logo = require("../img/logo.png");
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    fontSize: 40,
-    color: "#3F51B5",
-    marginRight: "2vw",
-    cursor: "pointer",
-  },
-}));
-
-const Header = () => {
-  const token = useSelector(
-    (state) => state.googleReducer.authResponse?.token
-  );
+const Header = (props) => {
+  const token = useSelector((state) => state.googleReducer.authResponse?.token);
   let dispatch = useDispatch();
+
+  const logo = require("../img/logo.png");
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      fontSize: 40,
+      color: "#3F51B5",
+      marginRight: "2vw",
+      cursor: "pointer",
+    },
+  }));
+
   const classes = useStyles();
 
   function handleClick() {
     dispatch(hideStatus());
   }
-
+  
   return (
     <section className={headerStyles.header}>
       <div>
@@ -64,5 +63,13 @@ const Header = () => {
     </section>
   );
 };
+
+// export async function getServerSideProps() {
+//   return {
+//     props: {
+      
+//     },
+//   };
+// }
 
 export default Header;
