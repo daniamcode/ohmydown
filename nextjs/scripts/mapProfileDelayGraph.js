@@ -6,7 +6,7 @@ export default function mapProfileDelayGraph(response) {
     for (let i = 0; i < response?.length; i++) {
       for (let j = 0; j < response[i]?.healthCheckResponse?.length; j++) {
         let newTime = '000Time'
-        let newDelay = `001delay${response[i]?.endpoint?.id}`
+        let newDelay = `001delay${response[i]?.endpoint?.url}`
         //convert java date format into javascript date format
         response[i].healthCheckResponse[j].time = new Date(response[i]?.healthCheckResponse[j]?.time)
         //change name of properties
@@ -16,7 +16,7 @@ export default function mapProfileDelayGraph(response) {
         //group objects' properties into the last array of objects
         if (i === response?.length - 1) {
           for (let k = response?.length - 2; k >= 0; k--) {
-            let newDelayGrouped = `001delay${response[k]?.endpoint?.id}`
+            let newDelayGrouped = `001delay${response[k]?.endpoint?.url}`
             //we look for graphs with less data than others
             let lengthDifference = response[i]?.healthCheckResponse?.length - response[k]?.healthCheckResponse?.length
             //we first have to look at the last positions, to consider graphs with less data than others, in order to put zeros at the beginning
@@ -37,7 +37,7 @@ if (formatted(response)) {
   let firstSubArray = []
   let firstArray = [firstSubArray]
   for (let i = 0; i < response?.length; i++) {
-    firstSubArray?.push(`${response[i]?.endpoint.id}`)
+    firstSubArray?.push(`${response[i]?.endpoint.url}`)
   }
   firstSubArray.sort()
   firstSubArray.unshift('x')
