@@ -4,6 +4,7 @@ export default function mapProfileRows(rows) {
   for (let i = 0; i < rows?.length; i++) {
     result[i] = {
       id: rows[i]?.endpoint.id,
+      url: rows[i]?.endpoint.url,
       status: rows[i]?.healthCheckResponse[
         rows[i]?.healthCheckResponse.length - 1
       ].status,

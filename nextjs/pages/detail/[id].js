@@ -78,14 +78,4 @@ const Detail = ({id}) => {
   );
 };
 
-export async function getServerSideProps({query}) {
-  const { id } = query
-
-  return {
-    props: {
-      id
-    },
-  };
-}
-
 export default Detail;

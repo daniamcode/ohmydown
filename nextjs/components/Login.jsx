@@ -49,4 +49,16 @@ const Login = () => {
   );
 };
 
+
+// export async function getServerSideProps(ctx) {
+//   if (ctx && ctx.req) {
+//     console.log('server side')
+//     ctx.res.writeHead(302, {Location: `/profile`})
+//     ctx.res.end()
+// } else {
+//     console.log('client side')
+//     Router.push(`/profile`)
+// }
+// }
+
 export default Login;
