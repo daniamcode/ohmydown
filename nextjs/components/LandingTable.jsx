@@ -51,7 +51,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "id", numeric: false, disablePadding: true, label: "Url" },
+  { id: "url", numeric: false, disablePadding: true, label: "Url" },
   { id: "status", numeric: true, disablePadding: false, label: "Last Status" },
   {
     id: "delay",
@@ -315,7 +315,7 @@ export default function EnhancedTableLanding({ rawRows }) {
                                       <Link
                                         href={`/detail/${row.id}`}
                                       >
-                                        {row.id}
+                                        {row.url}
                                       </Link>
                                     </TableCell>
                                     {row.status === 200 ? (
@@ -386,7 +386,7 @@ export default function EnhancedTableLanding({ rawRows }) {
                                     <Link
                                       href={`/detail/${row.id}`}
                                     >
-                                      {row.id}
+                                      {row.url}
                                     </Link>
                                   </TableCell>
                                   {row.status === 200 ? (
