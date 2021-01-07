@@ -1,4 +1,4 @@
-export default function mapDetailDelayGraph(response, id) {
+export default function mapDetailDelayGraph(response) {
     //convert java date format into javascript date format
     let dateFormatted = (response) => {
         for(let i = 0; i < response?.length; i++) {
@@ -8,7 +8,7 @@ export default function mapDetailDelayGraph(response, id) {
     }
 
     //then map
-    let firstArray = [['x', `${id}`]]
+    let firstArray = [['x', `${response && response[0].url}`]]
     let result = firstArray.concat(dateFormatted(response)?.map(function(obj) {
         return Object.keys(obj).sort().reverse().filter(x => (x ==='delay' || x ==='time')).map(function(key) { 
           return obj[key];

@@ -17,10 +17,10 @@ const Detail = ({id}) => {
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
   const detailDelayGraph = useSelector(
     (state) => state.detailReducer.detailDelayGraph
-  );
+    );
+  const url = detailDelayGraph?.response?.data && detailDelayGraph.response.data[0].url;
   let detailDelayGraphMapped = mapDetailDelayGraph(
-    detailDelayGraph?.response?.data,
-    id
+    detailDelayGraph?.response?.data
   );
   let dispatch = useDispatch();
   let timer = Date.now() + 300000
@@ -52,7 +52,7 @@ const Detail = ({id}) => {
     <Layout>
     <main className={detailStyles.detail}>
       <h1 className={detailStyles.detail__title}>
-        Delay of {id} over time:
+        Delay of {url} over time:
       </h1>
       <p>(New real-time data in <span> </span>
       <Countdown className={detailStyles.detail__countdown} date={timer} daysInHours={true} overtime={true} />)</p>
@@ -61,7 +61,7 @@ const Detail = ({id}) => {
       </div>
 
       <p className={detailStyles.detail__comments_title}>
-      Is {id} down for you right now? You can submit your comments about their
+      Is {url} down for you right now? You can submit your comments about their
         service status or report an issue below to let others know that they
         aren't alone with their issue, or give your opinion about anything
         related if you want.
