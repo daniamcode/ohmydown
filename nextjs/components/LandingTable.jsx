@@ -51,7 +51,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: "url", numeric: false, disablePadding: true, label: "Url" },
+  { id: "group", numeric: false, disablePadding: true, label: "Website" },
   { id: "status", numeric: true, disablePadding: false, label: "Last Status" },
   {
     id: "delay",
@@ -298,7 +298,7 @@ export default function EnhancedTableLanding({ rawRows }) {
                             <>
                               {filter !== "" &&
                                 filter.length >= 3 &&
-                                row.id
+                                row.group
                                   .startsWith(filter) && (
                                   <TableRow
                                     hover
@@ -315,7 +315,7 @@ export default function EnhancedTableLanding({ rawRows }) {
                                       <Link
                                         href={`/detail/${row.id}`}
                                       >
-                                        {row.url}
+                                        {row.group}
                                       </Link>
                                     </TableCell>
                                     {row.status === 200 ? (
@@ -386,7 +386,7 @@ export default function EnhancedTableLanding({ rawRows }) {
                                     <Link
                                       href={`/detail/${row.id}`}
                                     >
-                                      {row.url}
+                                      {row.group}
                                     </Link>
                                   </TableCell>
                                   {row.status === 200 ? (
