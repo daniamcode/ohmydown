@@ -63,6 +63,12 @@ const headCells = [
     disablePadding: false,
     label: "Last Delay (ms)",
   },
+  {
+    id: "uptime",
+    numeric: true,
+    disablePadding: false,
+    label: "Uptime(%)",
+  }
 ];
 
 function EnhancedTableHead(props) {
@@ -384,6 +390,11 @@ export default function EnhancedTableProfile({ rawRows }) {
                           <TableCell align="right">
                             {
                               row.delay
+                            }
+                          </TableCell>
+                          <TableCell align="right">
+                            {
+                              row.uptime
                             }
                           </TableCell>
                         </TableRow>

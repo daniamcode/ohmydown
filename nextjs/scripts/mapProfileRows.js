@@ -7,10 +7,11 @@ export default function mapProfileRows(rows) {
       url: rows[i]?.endpoint.url,
       status: rows[i]?.healthCheckResponse[
         rows[i]?.healthCheckResponse.length - 1
-      ].status,
+      ]?.status,
       delay: rows[i]?.healthCheckResponse[
         rows[i].healthCheckResponse.length - 1
-      ].delay
+      ]?.delay,
+      uptime: rows[i]?.uptime,
     }
   }
   return result

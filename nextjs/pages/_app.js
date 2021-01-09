@@ -6,6 +6,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Provider } from "react-redux";
 import configureStore, { initialState } from "../redux/configureStore";
+import withRedux from "next-redux-wrapper";
 
 const store = configureStore(initialState);
 
@@ -36,11 +37,13 @@ MyApp.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-MyApp.getInitialProps = async ({ Component, ctx }) => {
-  const pageProps = Component.getInitialProps
-    ? await Component.getInitialProps(ctx)
+MyApp.getServerSideProps = async ({ Component, ctx }) => {
+  const pageProps = Component.getServerSideProps
+    ? await Component.getServerSideProps(ctx)
     : {};
   return { pageProps };
 };
+
+MyApp = withRedux(configureStore, (state) => ({initialState}))(MyApp);
 
 export default MyApp;

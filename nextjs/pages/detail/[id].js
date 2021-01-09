@@ -40,8 +40,8 @@ const Detail = ({id}) => {
 
     return () => clearInterval(interval);
   }, [dispatch, id, token]);
-  const title = `Is ${id} down?`
-  const description = `Uptime and delay data and graphs of ${id} over time.`
+  const title = `Is ${url} down?`
+  const description = `Uptime and delay data and graphs of ${url} over time.`
   
   return (
      <>
