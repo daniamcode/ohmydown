@@ -11,6 +11,7 @@ export default function mapProfileRows(rows) {
       delay: rows[i]?.healthCheckResponse[
         rows[i].healthCheckResponse.length - 1
       ]?.delay,
+      average: rows[i]?.average,
       uptime: rows[i]?.uptime,
     }
   }

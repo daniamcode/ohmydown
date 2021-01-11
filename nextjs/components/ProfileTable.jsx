@@ -64,6 +64,12 @@ const headCells = [
     label: "Last Delay (ms)",
   },
   {
+    id: "average",
+    numeric: true,
+    disablePadding: false,
+    label: "Average Delay (ms)",
+  },
+  {
     id: "uptime",
     numeric: true,
     disablePadding: false,
@@ -390,6 +396,11 @@ export default function EnhancedTableProfile({ rawRows }) {
                           <TableCell align="right">
                             {
                               row.delay
+                            }
+                          </TableCell>
+                          <TableCell align="right">
+                            {
+                              row.average
                             }
                           </TableCell>
                           <TableCell align="right">
