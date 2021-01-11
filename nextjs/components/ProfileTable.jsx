@@ -253,7 +253,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EnhancedTableProfile({ rawRows }) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("delay");
+  const [orderBy, setOrderBy] = React.useState("average");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);

@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding-bottom: 30px;
+  width: 50rem;
 }
 
 .landingTable__subtitle {

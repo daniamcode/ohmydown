@@ -59,6 +59,18 @@ const headCells = [
     disablePadding: false,
     label: "Last Delay (ms)",
   },
+  {
+    id: "average",
+    numeric: true,
+    disablePadding: false,
+    label: "Average Delay (ms)",
+  },
+  {
+    id: "uptime",
+    numeric: true,
+    disablePadding: false,
+    label: "Uptime (%)",
+  }
 ];
 
 function EnhancedTableHead(props) {
@@ -198,7 +210,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EnhancedTableLanding({ rawRows }) {
   const classes = useStyles();
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("delay");
+  const [orderBy, setOrderBy] = React.useState("average");
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -344,6 +356,12 @@ export default function EnhancedTableLanding({ rawRows }) {
                                     <TableCell align="right">
                                       {row.delay}
                                     </TableCell>
+                                    <TableCell align="right">
+                                      {row.average}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                      {row.uptime}
+                                    </TableCell>
                                   </TableRow>
                                 )}
                             </>
@@ -414,6 +432,12 @@ export default function EnhancedTableLanding({ rawRows }) {
                                   <TableCell align="right">
                                     {row.delay}
                                   </TableCell>
+                                  <TableCell align="right">
+                                      {row.average}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                      {row.uptime}
+                                    </TableCell>
                                 </TableRow>
                               )}
                             </>
