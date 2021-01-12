@@ -32,7 +32,6 @@ export const loadProfile = (token) => {
       })
     if (rawResponse !== undefined) {
       isLoading = false;
-      console.log(rawResponse)
       const response = rawResponse?.data?.responses
       dispatch({
         type: actionTypes.LOAD_PROFILE,
@@ -77,6 +76,7 @@ export const addProfileWeb = (url, token) => {
       })
     if (response !== undefined) {
       isLoading = false;
+      dispatch(loadProfile(token));
       dispatch({
         type: actionTypes.ADD_PROFILE_WEB,
         payload: {

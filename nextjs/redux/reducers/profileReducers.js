@@ -10,6 +10,7 @@ const profileReducers = (state = {}, action = {}) => {
     case actionTypes.ADD_PROFILE_WEB:
       return {
         ...state,
+        addUrl: action.payload
         // profile: [...state.profile?.response?.data?.responses, action.payload]
       };
     case actionTypes.DELETE_PROFILE_WEBS:

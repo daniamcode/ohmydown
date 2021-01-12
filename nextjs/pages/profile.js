@@ -23,10 +23,14 @@ const Profile = (props) => {
   );
   const name = useSelector((state) => state.googleReducer.authResponse?.name);
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
-  const isLoading = useSelector(
+  const profileIsLoading = useSelector(
     (state) => state.profileReducer.profile?.isLoading
   );
-  const error = useSelector((state) => state.profileReducer.profile?.error);
+  const profileError = useSelector((state) => state.profileReducer.profile?.error);
+  const addUrlIsLoading = useSelector(
+    (state) => state.profileReducer.addUrl?.isLoading
+  );
+  const addUrlError = useSelector((state) => state.profileReducer.addUrl?.error);
 
   useEffect(() => {
     if (token) {
@@ -54,13 +58,13 @@ const Profile = (props) => {
           </p>
           <Login />
         </div>
-      ) : isLoading ? (
+      ) : profileIsLoading ? (
         <div className={profileStyles.spinner_active}>
           <Spinner />
         </div>
-      ) : error?.response ? (
+      ) : profileError?.response ? (
         <h1 className={profileStyles.profile__message__error}>
-          {ownErrorMessage(error.response)}
+          {ownErrorMessage(profileError.response)}
         </h1>
       ) : (
         <main className={profileStyles.profile}>
@@ -73,10 +77,20 @@ const Profile = (props) => {
               profileDelayGraphMapped={profileDelayGraphMapped}
             />
           </div>}
+          {addUrlIsLoading ? (
+            <div className={profileStyles.spinner_active}>
+            <Spinner />
+          </div>
+          ) : addUrlError?.response ? (
+            <h1 className={profileStyles.profile__message__error}>
+          {ownErrorMessage(addUrlError.response)}
+            </h1>
+          ) : (
           <div className={profileStyles.profile__add_title}>
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <ProfileForm url={url} setUrl={setUrl} handleSubmit={handleSubmit}/>
           </div>
+          )}
           {rawRows?.length !== 0 && <div className={profileStyles.profile__table}>
             <EnhancedTableProfile rawRows={rawRows} />
           </div>}

@@ -31,6 +31,11 @@ var initialState = {
       response: [],
       isLoading: false,
       error: {}
+    },
+    addUrl: {
+      response: [],
+      isLoading: false,
+      error: {}
     }
   },
   landingListReducer: {
