@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import profileStyles from "../styles/Profile.module.css";
+import spinnerStyles from "../styles/Spinner.module.css";
 import EnhancedTableProfile from "../components/ProfileTable";
 import { addProfileWeb } from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
@@ -59,7 +60,7 @@ const Profile = (props) => {
           <Login />
         </div>
       ) : profileIsLoading ? (
-        <div className={profileStyles.spinner_active}>
+        <div className={spinnerStyles.spinner__active}>
           <Spinner />
         </div>
       ) : profileError?.response ? (
@@ -78,7 +79,7 @@ const Profile = (props) => {
             />
           </div>}
           {addUrlIsLoading ? (
-            <div className={profileStyles.spinner_active}>
+            <div className={spinnerStyles.spinner__active}>
             <Spinner />
           </div>
           ) : addUrlError?.response ? (
