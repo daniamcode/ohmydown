@@ -80,7 +80,6 @@ export const addProfileWeb = (url, token) => {
       dispatch({
         type: actionTypes.ADD_PROFILE_WEB,
         payload: {
-          response,
           isLoading
         }
       })

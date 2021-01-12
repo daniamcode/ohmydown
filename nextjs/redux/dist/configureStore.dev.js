@@ -33,7 +33,6 @@ var initialState = {
       error: {}
     },
     addUrl: {
-      response: [],
       isLoading: false,
       error: {}
     }
