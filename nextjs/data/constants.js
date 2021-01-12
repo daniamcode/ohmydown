@@ -4,6 +4,7 @@ export const GOOGLE_CLIENT_ID = "97800569171-m8ksj0r9al1sda4qk5la1puhajlmthgk.ap
 export const OWN_400 = "Sorry, that page doesn't exist, try again!";
 export const OWN_403 = "Please, sign in again!";
 export const OWN_500_599 = "Sorry, our server is overloaded, please try again later!";
+export const OWN_701 = "Sorry, the maximum number of urls in the free version is 10";
 export const OWN_NETWORK_ERROR = "Sorry, our server is down now, please try later!";
 export const THIRD_PARTY_301 = "Sorry, that url has a permanent redirect!";
 export const THIRD_PARTY_302 = "Sorry, that url has a temporary redirect!";

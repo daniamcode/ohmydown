@@ -82,16 +82,16 @@ const Profile = (props) => {
             <div className={spinnerStyles.spinner__active}>
             <Spinner />
           </div>
-          ) : addUrlError?.response ? (
-            <h1 className={profileStyles.profile__message__error}>
-          {ownErrorMessage(addUrlError.response)}
-            </h1>
           ) : (
           <div className={profileStyles.profile__add_title}>
             <h3 key={url}>Add a url to be followed (up to 5):</h3>
             <ProfileForm url={url} setUrl={setUrl} handleSubmit={handleSubmit}/>
           </div>
           )}
+          {addUrlError?.response &&
+            <h1 className={profileStyles.profile__addUrl__message__error}>
+          {ownErrorMessage(addUrlError.response)}
+            </h1>}
           {rawRows?.length !== 0 && <div className={profileStyles.profile__table}>
             <EnhancedTableProfile rawRows={rawRows} />
           </div>}

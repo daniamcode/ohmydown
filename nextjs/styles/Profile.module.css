@@ -64,6 +64,15 @@
   text-align: center;
 }
 
+.profile__addUrl__message__error {
+  font-size: 30px;
+  color: goldenrod;
+  width: 80%;
+  padding-top: 30px;
+  margin: auto;
+  text-align: center;
+}
+
 .profileDelayGraph {
   display: flex;
   flex-direction: column;

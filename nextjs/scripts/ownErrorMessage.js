@@ -2,6 +2,7 @@ import {
   OWN_400,
   OWN_403,
   OWN_500_599,
+  OWN_701,
   OWN_NETWORK_ERROR
 } from '../data/constants'
 
@@ -19,6 +20,10 @@ export default function errorMessage(errorResponse) {
     case errorResponse.status >= 500 && errorResponse.status < 600:
       message =
         OWN_500_599;
+      break;
+    case errorResponse.status === 701:
+      message =
+        OWN_701;
       break;
     case errorResponse === 'Network Error':
       message =

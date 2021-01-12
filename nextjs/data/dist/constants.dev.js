@@ -1,0 +1,42 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.THIRD_PARTY_495 = exports.THIRD_PARTY_429 = exports.THIRD_PARTY_421 = exports.THIRD_PARTY_408 = exports.THIRD_PARTY_406 = exports.THIRD_PARTY_404 = exports.THIRD_PARTY_403 = exports.THIRD_PARTY_400 = exports.THIRD_PARTY_302 = exports.THIRD_PARTY_301 = exports.OWN_NETWORK_ERROR = exports.OWN_701 = exports.OWN_500_599 = exports.OWN_403 = exports.OWN_400 = exports.GOOGLE_CLIENT_ID = exports.LANDING_PAGE_SUBTITLE = exports.LANDING_PAGE_TITLE = void 0;
+var LANDING_PAGE_TITLE = "Welcome to Ohmydown!";
+exports.LANDING_PAGE_TITLE = LANDING_PAGE_TITLE;
+var LANDING_PAGE_SUBTITLE = "Is your site up or down right now?";
+exports.LANDING_PAGE_SUBTITLE = LANDING_PAGE_SUBTITLE;
+var GOOGLE_CLIENT_ID = "97800569171-m8ksj0r9al1sda4qk5la1puhajlmthgk.apps.googleusercontent.com";
+exports.GOOGLE_CLIENT_ID = GOOGLE_CLIENT_ID;
+var OWN_400 = "Sorry, that page doesn't exist, try again!";
+exports.OWN_400 = OWN_400;
+var OWN_403 = "Please, sign in again!";
+exports.OWN_403 = OWN_403;
+var OWN_500_599 = "Sorry, our server is overloaded, please try again later!";
+exports.OWN_500_599 = OWN_500_599;
+var OWN_701 = "Sorry, the maximum number of urls in the free version is 10";
+exports.OWN_701 = OWN_701;
+var OWN_NETWORK_ERROR = "Sorry, our server is down now, please try later!";
+exports.OWN_NETWORK_ERROR = OWN_NETWORK_ERROR;
+var THIRD_PARTY_301 = "Sorry, that url has a permanent redirect!";
+exports.THIRD_PARTY_301 = THIRD_PARTY_301;
+var THIRD_PARTY_302 = "Sorry, that url has a temporary redirect!";
+exports.THIRD_PARTY_302 = THIRD_PARTY_302;
+var THIRD_PARTY_400 = "Sorry, that was an invalid domain name, try again!";
+exports.THIRD_PARTY_400 = THIRD_PARTY_400;
+var THIRD_PARTY_403 = "Sorry, that access was forbidden!";
+exports.THIRD_PARTY_403 = THIRD_PARTY_403;
+var THIRD_PARTY_404 = "Sorry, that page doesn't exist, try again!";
+exports.THIRD_PARTY_404 = THIRD_PARTY_404;
+var THIRD_PARTY_406 = "Sorry, that request wasn't accepted by their server!";
+exports.THIRD_PARTY_406 = THIRD_PARTY_406;
+var THIRD_PARTY_408 = "Sorry, that was a timeout, try again!";
+exports.THIRD_PARTY_408 = THIRD_PARTY_408;
+var THIRD_PARTY_421 = "Sorry, their server couldn't produce a response!";
+exports.THIRD_PARTY_421 = THIRD_PARTY_421;
+var THIRD_PARTY_429 = "Sorry, too many requests right now!";
+exports.THIRD_PARTY_429 = THIRD_PARTY_429;
+var THIRD_PARTY_495 = "Sorry, that SSL certificate expired, check it out!";
+exports.THIRD_PARTY_495 = THIRD_PARTY_495;

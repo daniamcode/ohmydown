@@ -23,6 +23,10 @@ function errorMessage(errorResponse) {
       message = _constants.OWN_500_599;
       break;
 
+    case errorResponse.status === 701:
+      message = _constants.OWN_701;
+      break;
+
     case errorResponse === 'Network Error':
       message = _constants.OWN_NETWORK_ERROR;
       break;
