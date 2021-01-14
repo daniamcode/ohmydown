@@ -13,10 +13,12 @@ import { NextSeo } from "next-seo";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
 
-const Detail = ({ id }) => {
+const Detail = ({ id, response }) => {
   // const router = useRouter();
   // const { id } = router.query
+
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
+  
   // const detailDelayGraph = useSelector(
   //   (state) => state.detailReducer.detailDelayGraph
   //   );
