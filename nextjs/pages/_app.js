@@ -5,10 +5,10 @@ import theme from "../styles/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Provider } from "react-redux";
-import configureStore, { initialState } from "../redux/configureStore";
-import withRedux from "next-redux-wrapper";
+import finalStore, { initialState, preloadedState } from "../redux/configureStore";
+// import withRedux from "next-redux-wrapper";
 
-const store = configureStore(initialState);
+const store = finalStore(initialState);
 
 function MyApp({ Component, pageProps }) {
   // React.useEffect(() => {
@@ -20,15 +20,15 @@ function MyApp({ Component, pageProps }) {
   // }, []);
 
   return (
-    <React.Fragment>
-        {/* <ThemeProvider theme={theme}> */}
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          {/* <CssBaseline /> */}
+    // <React.Fragment>
+    //     {/* <ThemeProvider theme={theme}> */}
+    //       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+    //       {/* <CssBaseline /> */}
           <Provider store={store}>
             <Component {...pageProps} />
           </Provider>
-        {/* </ThemeProvider> */}
-    </React.Fragment>
+    //     {/* </ThemeProvider> */}
+    // </React.Fragment>
   );
 }
 
@@ -44,6 +44,6 @@ function MyApp({ Component, pageProps }) {
 //   return { pageProps };
 // };
 
-MyApp = withRedux(configureStore, (state) => ({initialState}))(MyApp);
+// MyApp = withRedux(configureStore, (state) => ({initialState}))(MyApp);
 
 export default MyApp;

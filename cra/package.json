@@ -23,7 +23,6 @@
     "hammerjs": "^2.0.8",
     "ignore-styles": "^5.0.1",
     "node-sass": "^5.0.0",
-    "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-chartjs-2": "^2.11.1",
     "react-countdown": "^2.3.1",
