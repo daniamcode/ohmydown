@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import detailStyles from "../../styles/Detail.module.css";
-import Disqus from "disqus-react";
+//import Disqus from "disqus-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { loadDetailDelayGraph } from "../../redux/actions/detailActions";
@@ -12,17 +12,22 @@ import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
+import {useIsSSR} from '@react-aria/ssr';
 
 const Detail = ({ id, response }) => {
   // const router = useRouter();
   // const { id } = router.query
 
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
-  
-  // const detailDelayGraph = useSelector(
-  //   (state) => state.detailReducer.detailDelayGraph
-  //   );
-  const detailDelayGraph = { response };
+
+  let isSSR = useIsSSR();
+  console.log(isSSR)
+
+  const detailDelayGraph =
+    typeof window === "undefined"
+      ? { response }
+      : useSelector((state) => state.detailReducer.detailDelayGraph);
+
   const url =
     detailDelayGraph?.response?.data &&
     detailDelayGraph?.response?.data[0]?.url;
@@ -58,6 +63,7 @@ const Detail = ({ id, response }) => {
           <h1 className={detailStyles.detail__title}>
             Delay of {url} over time:
           </h1>
+          <span>{isSSR ? 'Server' : 'Client'}</span>
           <p>
             (New real-time data in <span> </span>
             <Countdown

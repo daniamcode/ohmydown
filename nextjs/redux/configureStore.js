@@ -3,9 +3,10 @@ import {createStore, applyMiddleware, compose} from "redux";
 import thunk from 'redux-thunk';
 import rootReducer from "./reducers/rootReducer";
 
-// if (typeof window === 'undefined') {
-//   global.window = {}
-// }
+// check if this is necessary
+if (typeof window === 'undefined') {
+  global.window = {}
+}
 
 const initialState = {
     statusReducer: {showStatus: false, loadStatus: {response: {}, isLoading: false, error: {}}},

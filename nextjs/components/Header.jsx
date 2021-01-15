@@ -14,7 +14,7 @@ const Header = (props) => {
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
   let dispatch = useDispatch();
 
-  const logo = require("../img/logo.png");
+  // const logo = require("../img/logo.png");
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,14 +34,14 @@ const Header = (props) => {
   return (
     <section className={headerStyles.header}>
       <div>
-        <Link href="/">
+        {/* <Link href="/">
           <img
             className={headerStyles.header__logo}
             src={logo}
             alt="Logo"
             onClick={handleClick}
           />
-        </Link>
+        </Link> */}
       </div>
       <div className={headerStyles.header__dropdown}>
         <Accordion />

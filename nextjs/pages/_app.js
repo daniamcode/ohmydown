@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import "../styles/globals.css";
-import theme from "../styles/theme";
-import { ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+//import theme from "../styles/theme";
+//import { ThemeProvider } from "@material-ui/core/styles";
+//import CssBaseline from "@material-ui/core/CssBaseline";
 import { Provider } from "react-redux";
 import finalStore, { initialState, preloadedState } from "../redux/configureStore";
 // import withRedux from "next-redux-wrapper";
