@@ -105,21 +105,21 @@ const Detail = () => {
   );
 };
 
-// export async function getServerSideProps({ query }) {
-//   const { id } = query;
-//   const rawResponse = await axios.get(
-//     `http://localhost:8080/historical/${id}`,
-//     {
-//       id,
-//     }
-//   );
+// export async function getServerSideProps() {
+//   // const { id } = query;
+//   // const rawResponse = await axios.get(
+//   //   `http://localhost:8080/historical/${id}`,
+//   //   {
+//   //     id,
+//   //   }
+//   // );
 
-//   const response = JSON.parse(safeJsonStringify(rawResponse));
+//   // const response = JSON.parse(safeJsonStringify(rawResponse));
 
 //   return {
 //     props: {
 //       id,
-//       response,
+//       response    
 //     },
 //   };
 // }
