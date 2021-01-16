@@ -2,9 +2,10 @@ import React from "react";
 import Layout from "../components/Layout";
 import Head from "next/head";
 import aboutStyles from "../styles/About.module.css";
+// import Image from 'next/image'
 
 const About = (props) => {
-  // const example = require("../img/graphExample.png");
+  const example = require("../img/graphExample.png");
   return (
     <>
     <Head>
@@ -30,10 +31,10 @@ const About = (props) => {
       <p>Here's a little example of what we offer, a delay chart of several urls that you can follow in your profile.
       </p>
       </div>
-      {/* <img
+      <img
             src={example}
             alt="Example"
-          /> */}
+          />
     </main>
     </Layout>
     </>
