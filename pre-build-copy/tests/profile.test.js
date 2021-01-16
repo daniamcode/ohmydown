@@ -5,7 +5,9 @@ import configureStore from '../../redux/configureStore';
 import Profile from '../profile';
 import { addProfileWeb } from "../../redux/actions/profileActions";
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+//import '@testing-library/jest-dom/extend-expect';
+import {describe, expect } from '@jest/globals'
+
 
 jest.mock('../../redux/actions/profileActions');
 

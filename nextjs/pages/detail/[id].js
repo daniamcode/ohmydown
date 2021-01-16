@@ -14,19 +14,22 @@ import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
 import {useIsSSR} from '@react-aria/ssr';
 
-const Detail = ({ id, response }) => {
-  // const router = useRouter();
-  // const { id } = router.query
+// const Detail = ({ id, response }) => {
+const Detail = () => {
+  const router = useRouter();
+  const { id } = router.query
 
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
   let isSSR = useIsSSR();
   console.log(isSSR)
 
-  const detailDelayGraph =
-    typeof window === "undefined"
-      ? { response }
-      : useSelector((state) => state.detailReducer.detailDelayGraph);
+  // const detailDelayGraph =
+  //   typeof window === "undefined"
+  //     ? { response }
+  //     : useSelector((state) => state.detailReducer.detailDelayGraph);
+
+  const detailDelayGraph = useSelector((state) => state.detailReducer.detailDelayGraph);
 
   const url =
     detailDelayGraph?.response?.data &&
@@ -37,12 +40,12 @@ const Detail = ({ id, response }) => {
   let dispatch = useDispatch();
   let timer = Date.now() + 300000;
 
-  const disqusShortname = "caucana";
-  const disqusConfig = {
-    url: `http://localhost:3000/${id}`,
-    identifier: `http://localhost:3000/${id}`,
-    title: "Title",
-  };
+  // const disqusShortname = "caucana";
+  // const disqusConfig = {
+  //   url: `http://localhost:3000/${id}`,
+  //   identifier: `http://localhost:3000/${id}`,
+  //   title: "Title",
+  // };
 
   useEffect(() => {
     dispatch(loadDetailDelayGraph(id, token));
@@ -90,35 +93,35 @@ const Detail = ({ id, response }) => {
             that they aren't alone with their issue, or give your opinion about
             anything related if you want.
           </p>
-          <div className={detailStyles.detail__comments}>
+          {/* <div className={detailStyles.detail__comments}>
             <Disqus.DiscussionEmbed
               shortname={disqusShortname}
               config={disqusConfig}
             />
-          </div>
+          </div> */}
         </main>
       </Layout>
     </>
   );
 };
 
-export async function getServerSideProps({ query }) {
-  const { id } = query;
-  const rawResponse = await axios.get(
-    `http://localhost:8080/historical/${id}`,
-    {
-      id,
-    }
-  );
+// export async function getServerSideProps({ query }) {
+//   const { id } = query;
+//   const rawResponse = await axios.get(
+//     `http://localhost:8080/historical/${id}`,
+//     {
+//       id,
+//     }
+//   );
 
-  const response = JSON.parse(safeJsonStringify(rawResponse));
+//   const response = JSON.parse(safeJsonStringify(rawResponse));
 
-  return {
-    props: {
-      id,
-      response,
-    },
-  };
-}
+//   return {
+//     props: {
+//       id,
+//       response,
+//     },
+//   };
+// }
 
 export default Detail;

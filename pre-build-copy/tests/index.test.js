@@ -5,7 +5,8 @@ import configureStore from '../../redux/configureStore';
 import LandingPage from '../index';
 import { showStatus, loadStatus } from "../../redux/actions/statusActions";
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+//import '@testing-library/jest-dom/extend-expect';
+import {describe, expect } from '@jest/globals'
 import landingPageStyles from "../../styles/LandingPage.module.css";
 
 jest.mock('../../redux/actions/statusActions');
