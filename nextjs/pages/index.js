@@ -15,15 +15,22 @@ import { useSelector } from "react-redux";
 import { loadLandingList } from "../redux/actions/landingListActions";
 import Countdown from "react-countdown";
 import LandingForm from "../components/LandingForm";
+import axios from "axios";
+import safeJsonStringify from "safe-json-stringify";
 
-const LandingPage = () => {
+const LandingPage = ({response}) => {
   let [url, setUrl] = useState("");
   let dispatch = useDispatch();
   const loadStatusResponse = useSelector(
     (state) => state.statusReducer.loadStatus
   );
   const show = useSelector((state) => state.statusReducer.showStatus);
-  const rawRows = useSelector((state) => state.landingListReducer.landingList);
+
+  const rawRows =
+    typeof window === "undefined"
+      ? { response }
+      : useSelector((state) => state.landingListReducer.landingList);
+
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
   let timer = Date.now() + 300000;
@@ -100,5 +107,20 @@ const LandingPage = () => {
     </>
   );
 };
+
+
+export async function getServerSideProps() {
+  const rawResponse = await axios.post(
+      'http://localhost:8080/landing-list'
+  )
+
+  const response = JSON.parse(safeJsonStringify(rawResponse));
+
+  return {
+    props: {
+      response
+    },
+  };
+}
 
 export default LandingPage;

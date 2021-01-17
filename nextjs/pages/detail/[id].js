@@ -14,11 +14,12 @@ import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
 import {useIsSSR} from '@react-aria/ssr';
 
-// const Detail = ({ id, response }) => {
+// const Detail = ({ query, response }) => {
 const Detail = () => {
   const router = useRouter();
   const { id } = router.query
 
+  // const id = query;
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
   let isSSR = useIsSSR();
@@ -105,20 +106,20 @@ const Detail = () => {
   );
 };
 
-// export async function getServerSideProps() {
-//   // const { id } = query;
-//   // const rawResponse = await axios.get(
-//   //   `http://localhost:8080/historical/${id}`,
-//   //   {
-//   //     id,
-//   //   }
-//   // );
+// export async function getServerSideProps(context) {
+//   const { query } = context;
+//   const rawResponse = await axios.get(
+//     `http://localhost:8080/historical/${query}`,
+//     {
+//       query,
+//     }
+//   );
 
-//   // const response = JSON.parse(safeJsonStringify(rawResponse));
-
+//   const response = JSON.parse(safeJsonStringify(rawResponse));
+  
 //   return {
 //     props: {
-//       id,
+//       query,
 //       response    
 //     },
 //   };
