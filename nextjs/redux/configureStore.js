@@ -1,4 +1,3 @@
-import React, { useMemo } from 'react'
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from 'redux-thunk';
 import rootReducer from "./reducers/rootReducer";
@@ -15,14 +14,6 @@ const initialState = {
     detailReducer: {detailDelayGraph: {response: {}, isLoading: false, error: {}}},
     googleReducer: {}
   };
-
-const preloadedState = {
-  statusReducer: {showStatus: false, loadStatus: {response: {}, isLoading: false, error: {}}},
-  profileReducer: { profile: {response: [], isLoading: false, error: {}}, addUrl: {isLoading: false, error: {}}},
-  landingListReducer: {landingList: {response: {}, isLoading: false, error: {}}},
-  detailReducer: {detailDelayGraph: 'test'},
-  googleReducer: {}
-};
 
 let store
 
@@ -53,12 +44,11 @@ export const initializeStore = (preloadedState) => {
   return _store
 }
 
-const finalStore = (initialState) => {
+const useStore = (initialState) => {
   // const store = useMemo(() => initializeStore(initialState), [initialState])
-  const store = initializeStore(preloadedState)
+  const store = initializeStore(initialState)
   return store
 }
 
-export { initialState, preloadedState }
-// export default finalStore
-export default finalStore
+export { initialState }
+export default useStore

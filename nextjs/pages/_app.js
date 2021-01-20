@@ -5,16 +5,13 @@ import theme from "../styles/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Provider } from "react-redux";
-//import initStore, { initialState, preloadedState } from "../redux/configureStore";
-import finalStore, {
+import useStore, {
   initialState,
-  preloadedState,
 } from "../redux/configureStore";
-// import withRedux from "next-redux-wrapper";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
-const store = finalStore(initialState);
+const store = useStore(initialState);
 
 export const cache = createCache({ key: "css", prepend: true });
 
@@ -51,7 +48,5 @@ MyApp.propTypes = {
 //     : {};
 //   return { pageProps };
 // };
-
-// MyApp = withRedux(configureStore, (state) => ({initialState}))(MyApp);
 
 export default MyApp;
