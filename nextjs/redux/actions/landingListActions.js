@@ -30,6 +30,7 @@ export const loadLandingList = (token) => {
                 })
             })
         if (response !== undefined) {
+            console.log(response)
             isLoading = false;
             dispatch({
                 type: actionTypes.LOAD_LANDING_LIST,

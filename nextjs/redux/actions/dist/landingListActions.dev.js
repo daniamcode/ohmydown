@@ -49,6 +49,7 @@ var loadLandingList = function loadLandingList(token) {
             response = _context.sent;
 
             if (response !== undefined) {
+              console.log(response);
               isLoading = false;
               dispatch({
                 type: _actionTypes["default"].LOAD_LANDING_LIST,

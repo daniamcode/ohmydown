@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { GoogleLogout } from "react-google-login";
 import { GOOGLE_CLIENT_ID } from "../data/constants";
 import { googleOAuth2 } from "../redux/actions/authActions";
-// import { useHistory } from "react-router-dom";
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 const Logout = () => {
   const classes = useStyles();
   let dispatch = useDispatch();
-  // let history = useHistory();
+  const router = useRouter()
 
   return (
     <>
@@ -38,7 +38,7 @@ const Logout = () => {
           document.cookie =
             "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
           dispatch(googleOAuth2());
-          // history.push("/");
+          router.push('/')
         }}
       />
     </>

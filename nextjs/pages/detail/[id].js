@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
 import detailStyles from "../../styles/Detail.module.css";
-//import Disqus from "disqus-react";
+import Disqus from "disqus-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { loadDetailDelayGraph } from "../../redux/actions/detailActions";
 import mapDetailDelayGraph from "../../scripts/mapDetailDelayGraph";
 import DetailDelayGraph from "../../components/DetailDelayGraph";
 import Countdown from "react-countdown";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
 
 const Detail = ({id, response}) => {
-// const Detail = () => {
   // const router = useRouter();
   // const { id } = router.query
 
-  // const id = query;
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
   const detailDelayGraph =
@@ -37,12 +35,12 @@ const Detail = ({id, response}) => {
   let dispatch = useDispatch();
   let timer = Date.now() + 300000;
 
-  // const disqusShortname = "caucana";
-  // const disqusConfig = {
-  //   url: `http://localhost:3000/${id}`,
-  //   identifier: `http://localhost:3000/${id}`,
-  //   title: "Title",
-  // };
+  const disqusShortname = "ohmydown";
+  const disqusConfig = {
+    url: `http://localhost:3000/${id}`,
+    identifier: `http://localhost:3000/${id}`,
+    title: "Title",
+  };
 
   useEffect(() => {
     dispatch(loadDetailDelayGraph(id, token));
@@ -90,49 +88,24 @@ const Detail = ({id, response}) => {
             that they aren't alone with their issue, or give your opinion about
             anything related if you want.
           </p>
-          {/* <div className={detailStyles.detail__comments}>
+          <div className={detailStyles.detail__comments}>
             <Disqus.DiscussionEmbed
               shortname={disqusShortname}
               config={disqusConfig}
             />
-          </div> */}
+          </div>
         </main>
       </Layout>
     </>
   );
 };
 
-// export async function getServerSideProps(context) {
-//   const { query } = context;
-//   // const rawResponse = await axios.get(
-//   //   `http://localhost:8080/historical/${query}`,
-//   //   {
-//   //     query,
-//   //   }
-//   // );
-
-//   // const response = await JSON.parse(safeJsonStringify(rawResponse));
-  
-//   // return {
-//   //   props: {
-//   //     query,
-//   //     response    
-//   //   },
-//   // };
-
-//   return {
-//     props: {
-//       query  
-//     },
-//   };
-// }
-
 Detail.getInitialProps = async ({query}) => {
   const { id } = query;
 
 // export async function getServerSideProps({ query }) {
 //   const { id } = query;
-    //console.log(id)
+    
   const rawResponse = await axios.get(
     `http://localhost:8080/historical/${id}`,
     {
