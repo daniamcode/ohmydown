@@ -12,25 +12,21 @@ import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
-import {useIsSSR} from '@react-aria/ssr';
 
-// const Detail = ({ query, response }) => {
-const Detail = () => {
-  const router = useRouter();
-  const { id } = router.query
+const Detail = ({id, response}) => {
+// const Detail = () => {
+  // const router = useRouter();
+  // const { id } = router.query
 
   // const id = query;
   const token = useSelector((state) => state.googleReducer.authResponse?.token);
 
-  let isSSR = useIsSSR();
-  console.log(isSSR)
+  const detailDelayGraph =
+    typeof window === "undefined"
+      ? { response }
+      : useSelector((state) => state.detailReducer.detailDelayGraph);
 
-  // const detailDelayGraph =
-  //   typeof window === "undefined"
-  //     ? { response }
-  //     : useSelector((state) => state.detailReducer.detailDelayGraph);
-
-  const detailDelayGraph = useSelector((state) => state.detailReducer.detailDelayGraph);
+  // const detailDelayGraph = useSelector((state) => state.detailReducer.detailDelayGraph);
 
   const url =
     detailDelayGraph?.response?.data &&
@@ -56,6 +52,7 @@ const Detail = () => {
 
     return () => clearInterval(interval);
   }, [dispatch, id, token]);
+
   const title = `Is ${url} down?`;
   const description = `Uptime and delay data and graphs of ${url} over time.`;
 
@@ -67,7 +64,6 @@ const Detail = () => {
           <h1 className={detailStyles.detail__title}>
             Delay of {url} over time:
           </h1>
-          <span>{isSSR ? 'Server' : 'Client'}</span>
           <p>
             (New real-time data in <span> </span>
             <Countdown
@@ -108,21 +104,48 @@ const Detail = () => {
 
 // export async function getServerSideProps(context) {
 //   const { query } = context;
-//   const rawResponse = await axios.get(
-//     `http://localhost:8080/historical/${query}`,
-//     {
-//       query,
-//     }
-//   );
+//   // const rawResponse = await axios.get(
+//   //   `http://localhost:8080/historical/${query}`,
+//   //   {
+//   //     query,
+//   //   }
+//   // );
 
-//   const response = JSON.parse(safeJsonStringify(rawResponse));
+//   // const response = await JSON.parse(safeJsonStringify(rawResponse));
   
+//   // return {
+//   //   props: {
+//   //     query,
+//   //     response    
+//   //   },
+//   // };
+
 //   return {
 //     props: {
-//       query,
-//       response    
+//       query  
 //     },
 //   };
 // }
+
+Detail.getInitialProps = async ({query}) => {
+  const { id } = query;
+
+// export async function getServerSideProps({ query }) {
+//   const { id } = query;
+    //console.log(id)
+  const rawResponse = await axios.get(
+    `http://localhost:8080/historical/${id}`,
+    {
+      id,
+    }
+  );
+
+  const response = await JSON.parse(safeJsonStringify(rawResponse));
+  
+  return {
+      id,
+      response    
+  };
+};
 
 export default Detail;

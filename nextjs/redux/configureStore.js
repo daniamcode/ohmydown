@@ -60,4 +60,5 @@ const finalStore = (initialState) => {
 }
 
 export { initialState, preloadedState }
+// export default finalStore
 export default finalStore

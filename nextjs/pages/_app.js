@@ -5,6 +5,7 @@ import "../styles/globals.css";
 //import { ThemeProvider } from "@material-ui/core/styles";
 //import CssBaseline from "@material-ui/core/CssBaseline";
 import { Provider } from "react-redux";
+//import initStore, { initialState, preloadedState } from "../redux/configureStore";
 import finalStore, { initialState, preloadedState } from "../redux/configureStore";
 // import withRedux from "next-redux-wrapper";
 
