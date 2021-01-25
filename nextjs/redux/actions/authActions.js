@@ -5,15 +5,18 @@ export const googleOAuth2 = () => {
         // if (typeof googleResponse === 'undefined') {
         //     googleResponse = [];
         // }
-        const cookies = document.cookie.split(';')
-            .map(cookie => cookie.split('='))
-            .reduce((accumulator, [key, value]) =>
-                ({
-                    ...accumulator,
-                    [key.trim()]: decodeURIComponent(value)
-
-                }), {})
-        
+        let cookies = ''
+        if(typeof document !== "undefined") {
+            cookies = document.cookie.split(';')
+                .map(cookie => cookie.split('='))
+                .reduce((accumulator, [key, value]) =>
+                    ({
+                        ...accumulator,
+                        [key.trim()]: decodeURIComponent(value)
+    
+                    }), {})
+            
+        }
         let token = '';
         let name = '';
         if(cookies.token !== undefined) {
