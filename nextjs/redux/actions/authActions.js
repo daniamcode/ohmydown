@@ -15,7 +15,6 @@ export const googleOAuth2 = () => {
                         [key.trim()]: decodeURIComponent(value)
     
                     }), {})
-            
         }
         let token = '';
         let name = '';

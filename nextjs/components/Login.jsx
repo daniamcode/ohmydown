@@ -35,16 +35,16 @@ const Login = () => {
       // uxMode="redirect"
       // redirectUri="http://localhost:3000/"
       onSuccess={(response) => {
-        document.cookie = `token = ${response.tokenId}; path=/; Max-Age=2592000` 
-        document.cookie = `name = ${response.profileObj.name}; path=/; Max-Age=2592000`
-        dispatch(googleOAuth2());
-        // Make sure we're in the browser
         if (typeof window !== 'undefined') {
+          // Make sure we're in the browser
           router.push('/profile')}
-      }}
+          document.cookie = `token = ${response.tokenId}; path=/; Max-Age=2592000` 
+          document.cookie = `name = ${response.profileObj.name}; path=/; Max-Age=2592000`
+          dispatch(googleOAuth2());
+        }}
       onFailure={(response) => {
-        dispatch(googleOAuth2());
         router.push('/')
+        dispatch(googleOAuth2());
       }}
       cookiePolicy={"single_host_origin"}
       isSignedIn={false}

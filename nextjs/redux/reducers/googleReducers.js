@@ -1,4 +1,4 @@
-import actionTypes from "../actions/actionTypes"
+import actionTypes from "../actions/actionTypes";
 
 export const googleReducers = (state = {}, action) => {
   switch (action.type) {

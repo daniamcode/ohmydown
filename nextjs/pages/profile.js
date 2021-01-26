@@ -33,8 +33,10 @@ const Profile = (props) => {
   );
   const addUrlError = useSelector((state) => state.profileReducer.addUrl?.error);
 
+  console.log(token)
+
   useEffect(() => {
-    if (token) {
+    if (token && token !== 'init') {
       dispatch(loadProfile(token));
       const interval = setInterval(() => {
         dispatch(loadProfile(token));

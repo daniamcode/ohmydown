@@ -12,7 +12,7 @@ const initialState = {
     profileReducer: { profile: {response: [], isLoading: false, error: {}}, addUrl: {isLoading: false, error: {}}},
     landingListReducer: {landingList: {response: {}, isLoading: false, error: {}}},
     detailReducer: {detailDelayGraph: {response: {}, isLoading: false, error: {}}},
-    googleReducer: {}
+    googleReducer: {authResponse: {token: 'init'}}
   };
 
 let store

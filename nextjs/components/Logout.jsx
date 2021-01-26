@@ -33,12 +33,12 @@ const Logout = () => {
           />
         )}
         onLogoutSuccess={(response) => {
+          router.push('/')
           document.cookie =
             "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
           document.cookie =
             "name=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
           dispatch(googleOAuth2());
-          router.push('/')
         }}
       />
     </>
