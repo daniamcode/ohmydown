@@ -13,7 +13,6 @@ import Spinner from "../components/Spinner";
 import mapProfileDelayGraph from "../scripts/mapProfileDelayGraph";
 import ownErrorMessage from "../scripts/ownErrorMessage";
 import Layout from "../components/Layout";
-import ReactGA from 'react-ga';
 
 const Profile = (props) => {
   let [url, setUrl] = useState("");
@@ -37,7 +36,6 @@ const Profile = (props) => {
   console.log(token)
 
   useEffect(() => {
-    ReactGA.pageview('/profile');
     if (token && token !== 'init') {
       dispatch(loadProfile(token));
       const interval = setInterval(() => {

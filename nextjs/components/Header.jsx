@@ -10,14 +10,12 @@ import Login from "./Login";
 import Logout from "./Logout";
 import { useSelector } from "react-redux";
 import { googleOAuth2 } from "../redux/actions/authActions";
-import ReactGA from 'react-ga';
 // import Image from 'next/image'
 
 const Header = (props) => {
   let dispatch = useDispatch();
 
   useEffect(() => {
-    ReactGA.initialize('G-QMT6YX9BD8');
     dispatch(googleOAuth2());
   }, [dispatch]);
 

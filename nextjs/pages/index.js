@@ -21,6 +21,9 @@ import ReactGA from 'react-ga';
 
 
 const LandingPage = ({response}) => {
+  ReactGA.initialize('G-QMT6YX9BD8');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+
   let [url, setUrl] = useState("");
   let dispatch = useDispatch();
   const loadStatusResponse = useSelector(
@@ -38,7 +41,6 @@ const LandingPage = ({response}) => {
   let timer = Date.now() + 300000;
 
   useEffect(() => {
-    ReactGA.pageview('/');
     dispatch(loadLandingList(token));
     const interval = setInterval(() => {
       dispatch(loadLandingList(token));
