@@ -18,7 +18,9 @@ export const cache = createCache({ key: "css", prepend: true });
 
 function MyApp({ Component, pageProps }) {
   ReactGA.initialize('G-QMT6YX9BD8');
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  if (typeof window !== 'undefined') {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
