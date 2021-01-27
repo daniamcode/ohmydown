@@ -12,6 +12,7 @@ import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
+import ReactGA from 'react-ga';
 
 const Detail = ({id, response}) => {
   // const router = useRouter();
@@ -43,6 +44,7 @@ const Detail = ({id, response}) => {
   };
 
   useEffect(() => {
+    ReactGA.pageview(`/detail/${url}`);
     dispatch(loadDetailDelayGraph(id, token));
     const interval = setInterval(() => {
       dispatch(loadDetailDelayGraph(id, token));

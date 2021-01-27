@@ -17,6 +17,8 @@ import Countdown from "react-countdown";
 import LandingForm from "../components/LandingForm";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
+import ReactGA from 'react-ga';
+
 
 const LandingPage = ({response}) => {
   let [url, setUrl] = useState("");
@@ -36,6 +38,7 @@ const LandingPage = ({response}) => {
   let timer = Date.now() + 300000;
 
   useEffect(() => {
+    ReactGA.pageview('/');
     dispatch(loadLandingList(token));
     const interval = setInterval(() => {
       dispatch(loadLandingList(token));

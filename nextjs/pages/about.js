@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Layout from "../components/Layout";
 import Head from "next/head";
 import aboutStyles from "../styles/About.module.css";
+import ReactGA from 'react-ga';
 // import Image from 'next/image'
 
 const About = (props) => {
   const example = require("../img/graphExample.png");
+  useEffect(() => {
+    ReactGA.pageview('/about');
+  }, []);
+ 
   return (
     <>
     <Head>
