@@ -17,13 +17,9 @@ import Countdown from "react-countdown";
 import LandingForm from "../components/LandingForm";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
-import ReactGA from 'react-ga';
 
 
 const LandingPage = ({response}) => {
-  ReactGA.initialize('G-QMT6YX9BD8');
-  ReactGA.pageview(window.location.pathname + window.location.search);
-
   let [url, setUrl] = useState("");
   let dispatch = useDispatch();
   const loadStatusResponse = useSelector(

@@ -10,12 +10,16 @@ import useStore, {
 } from "../redux/configureStore";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
+import ReactGA from 'react-ga';
 
 const store = useStore(initialState);
 
 export const cache = createCache({ key: "css", prepend: true });
 
 function MyApp({ Component, pageProps }) {
+  ReactGA.initialize('G-QMT6YX9BD8');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
