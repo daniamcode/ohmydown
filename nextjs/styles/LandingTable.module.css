@@ -6,17 +6,16 @@
   width: 50rem;
 }
 
-.landingTable__subtitle {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 .list__search {
   min-width: 280px;
   margin-right: 5px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.list__search__input {
+  width: 35rem;
+  color: white;
 }
 
 .landingTable__subtitle p {

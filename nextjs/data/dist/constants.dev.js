@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.THIRD_PARTY_495 = exports.THIRD_PARTY_429 = exports.THIRD_PARTY_421 = exports.THIRD_PARTY_408 = exports.THIRD_PARTY_406 = exports.THIRD_PARTY_404 = exports.THIRD_PARTY_403 = exports.THIRD_PARTY_400 = exports.THIRD_PARTY_302 = exports.THIRD_PARTY_301 = exports.OWN_NETWORK_ERROR = exports.OWN_701 = exports.OWN_500_599 = exports.OWN_403 = exports.OWN_400 = exports.GOOGLE_CLIENT_ID = exports.LANDING_PAGE_SUBTITLE = exports.LANDING_PAGE_TITLE = void 0;
-var LANDING_PAGE_TITLE = "Welcome to Ohmydown!";
+var LANDING_PAGE_TITLE = "Ohmydown!";
 exports.LANDING_PAGE_TITLE = LANDING_PAGE_TITLE;
-var LANDING_PAGE_SUBTITLE = "Is your site up or down right now?";
+var LANDING_PAGE_SUBTITLE = "Check Web Statuses. Compare them with the best ones";
 exports.LANDING_PAGE_SUBTITLE = LANDING_PAGE_SUBTITLE;
 var GOOGLE_CLIENT_ID = "97800569171-m8ksj0r9al1sda4qk5la1puhajlmthgk.apps.googleusercontent.com";
 exports.GOOGLE_CLIENT_ID = GOOGLE_CLIENT_ID;

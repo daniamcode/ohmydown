@@ -17,6 +17,8 @@ import Countdown from "react-countdown";
 import LandingForm from "../components/LandingForm";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
+import {LANDING_PAGE_TITLE, LANDING_PAGE_SUBTITLE} from '../data/constants';
+import Button from "@material-ui/core/Button";
 
 
 const LandingPage = ({response}) => {
@@ -66,7 +68,13 @@ const LandingPage = ({response}) => {
     </Head>
     <Layout>
       <main className={landingPageStyles.center}>
-        <div className={landingPageStyles.status__form_container}>
+      <div className={landingPageStyles.landing__title}>
+          <p>{LANDING_PAGE_TITLE}</p>
+          </div>
+          <div className={landingPageStyles.landing__subtitle}>
+          <p>{LANDING_PAGE_SUBTITLE}</p>
+          </div>
+        <section className={landingPageStyles.status__form_container}>
           <LandingForm
             url={url}
             setUrl={setUrl}
@@ -82,27 +90,34 @@ const LandingPage = ({response}) => {
               loadStatusResponse={loadStatusResponse}
             />
           </section>
-          <p className={landingPageStyles.link_to_profile}>
-            You can go to your <Link href="/profile">Profile</Link> and add up
-            to 5 websites to follow their uptimes and delays for free, with
-            customized monitoring and notifications.
-          </p>
+          
+          
+          </section>
+          <section className={landingPageStyles.landingTable}>
           <h3 className={landingPageStyles.landingTable__title}>
             Looking after 1000+ website's health:
           </h3>
+          <Button onClick={() => { <Link href="/profile">Profile</Link> }}
+            variant="contained"
+            color="primary"
+            type="link"
+          >
+            Start Monitoring Your's
+          </Button>
+          <EnhancedTableLanding rawRows={rawRows} />
           <p>
-            (New real-time data in <span> </span>
+            New real-time data in: <span> </span>
             <Countdown
               className={landingPageStyles.landingPage__countdown}
               date={timer}
               daysInHours={true}
               overtime={true}
             />
-            )
           </p>
-          <EnhancedTableLanding rawRows={rawRows} />
-          <br></br>
-        </div>
+          <br />
+          <br />
+          </section>
+        
       </main>
     </Layout>
     </>

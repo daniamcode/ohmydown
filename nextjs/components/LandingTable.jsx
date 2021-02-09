@@ -179,7 +179,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: "100%",
     marginBottom: theme.spacing(2),
-    backgroundColor: "transparent",
+    // backgroundColor: "transparent",
+    backgroundColor: "white",
   },
   table: {
     minWidth: 250,
@@ -243,11 +244,12 @@ export default function EnhancedTableLanding({ rawRows }) {
 
   return (
     <div className={landingTableStyles.landingTable}>
-      <div className={landingTableStyles.landingTable__subtitle}>
+      
         <div className={landingTableStyles.list__search}>
           <SearchIcon style={{ fontSize: 30, fill: "#3F51B5" }} />
           <TextField
-            label="Search a web from the list"
+          className={landingTableStyles.list__search__input}
+            label="Search a web from the list (at least 3 characters without http or www)"
             InputLabelProps={{
               style: { color: "#000000" },
             }}
@@ -257,12 +259,7 @@ export default function EnhancedTableLanding({ rawRows }) {
             onChange={handleSearchChange}
           />
         </div>
-        <p>
-          {" "}
-          Write at least 3 characters (without http or www). If the site doesn't
-          appear, you can register and add it to your profile!
-        </p>
-      </div>
+      
       <div id={landingTableStyles.landingTable__table} className={classes.root}>
         {rawRows && rawRows.isLoading === true ? (
           <div className={landingTableStyles.spinner_active}>

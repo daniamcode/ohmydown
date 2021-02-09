@@ -1,5 +1,5 @@
-export const LANDING_PAGE_TITLE = "Welcome to Ohmydown!";
-export const LANDING_PAGE_SUBTITLE = "Is your site up or down right now?";
+export const LANDING_PAGE_TITLE = "Ohmydown!";
+export const LANDING_PAGE_SUBTITLE = "Check Web Statuses. Compare them with the best ones";
 export const GOOGLE_CLIENT_ID = "97800569171-m8ksj0r9al1sda4qk5la1puhajlmthgk.apps.googleusercontent.com";
 export const OWN_400 = "Sorry, that page doesn't exist, try again!";
 export const OWN_403 = "Please, sign in again!";
