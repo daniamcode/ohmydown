@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { loadLandingList } from "../redux/actions/landingListActions";
 import Countdown from "react-countdown";
 import LandingForm from "../components/LandingForm";
+import ButtonLink from "../components/ButtonLink";
 import axios from "axios";
 import safeJsonStringify from "safe-json-stringify";
 import {LANDING_PAGE_TITLE, LANDING_PAGE_SUBTITLE} from '../data/constants';
@@ -97,7 +98,7 @@ const LandingPage = ({response}) => {
           <h3 className={landingPageStyles.landingTable__title}>
             Looking after 1000+ website's health:
           </h3>
-          <Button onClick={() => { <Link href="/profile">Profile</Link> }}
+          <Button component={ButtonLink} href="/profile"
             variant="contained"
             color="primary"
             type="link"
