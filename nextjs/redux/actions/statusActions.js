@@ -34,7 +34,7 @@ export const loadStatus = (url, token) => {
                     headers: {Token: token}
                 }
             )
-            .catch(error => {
+            ?.catch(error => {
                 if (!error.response) {
                     error.response = 'Network Error'
                 }

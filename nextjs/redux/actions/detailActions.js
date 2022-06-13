@@ -18,7 +18,7 @@ export const loadDetailDelayGraph = (id, token) => {
                     headers: {Token: token}
                 }
             )
-            .catch(error => {
+            ?.catch(error => {
                 if (!error.response) {
                     error.response = 'Network Error'
                 }

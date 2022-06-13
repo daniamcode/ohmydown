@@ -17,7 +17,7 @@ export const loadProfile = (token) => {
           }
         }
       )
-      .catch(error => {
+      ?.catch(error => {
         if (!error.response) {
           error.response = 'Network Error'
         }
@@ -61,7 +61,7 @@ export const addProfileWeb = (url, token) => {
           }
         }
       )
-      .catch(error => {
+      ?.catch(error => {
         if (!error.response) {
           error.response = 'Network Error'
         }
@@ -106,7 +106,7 @@ export const deleteProfileWebs = (ids, token) => {
             }
         }
       )
-      .catch(error => {
+      ?.catch(error => {
         if (!error.response) {
           error.response = 'Network Error'
         }
