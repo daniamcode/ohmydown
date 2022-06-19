@@ -43,6 +43,7 @@ const Header = (props) => {
         <Link href="/">
           <img
             className={headerStyles.header__logo}
+            data-testid="logo"
             src={logo}
             alt="Logo"
             onClick={handleClick}

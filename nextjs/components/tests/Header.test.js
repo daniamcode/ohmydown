@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from '../../redux/configureStore';
 import Header from '../Header';
@@ -7,6 +7,12 @@ import { hideStatus } from "../../redux/actions/statusActions";
 import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('../../redux/actions/statusActions');
+
+jest.mock("next/link", () => {
+  return ({children}) => {
+    return children;
+  }
+});
 
 describe('Header Component', () => {
   let wrapper = null;
@@ -37,17 +43,17 @@ describe('Header Component', () => {
   })
 
   test('Should execute handleClick and call hideStatus when clicking link', () => {
-    const state = {
-      
-    };
+    const state = {};
+    
     wrapper = wrapperFactory(state);
 
     render(<Header />, { wrapper });
 
-    const form = document.querySelector('.header__logo');
+    const form = screen.getByTestId('logo')
 
     fireEvent.click(form);
 
     expect(hideStatus).toHaveBeenCalled();
+    expect(hideStatus).toHaveBeenCalledTimes(1)
   });
 })

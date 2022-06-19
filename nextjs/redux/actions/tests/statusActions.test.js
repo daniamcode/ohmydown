@@ -22,7 +22,7 @@ describe('hideStatus', () => {
 })
 
 // In fact these are integration tests, since we are testing how redux integrates with axios. Other tries can be made 
-// with moxios, a library that mocks axios. Checl also npm redux-mock-store to work with a mocked store
+// with moxios, a library that mocks axios. Check also npm redux-mock-store to work with a mocked store
 describe('dispatch loadStatus', () => {
     let dispatch = null;
     beforeEach(() => {
