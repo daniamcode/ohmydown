@@ -4,9 +4,9 @@ import Button from "@material-ui/core/Button";
 import {LANDING_PAGE_SUBTITLE} from '../data/constants'
 import landingFormStyles from '../styles/LandingForm.module.css';
 
-const LandingForm = ({url, setUrl, onFieldChange, handleSubmit}) => {
+const LandingForm = ({url, setUrl, onFieldChange, handleSubmit, testid}) => {
   return (
-    <form className={landingFormStyles.status__form} onSubmit={handleSubmit}>
+    <form className={landingFormStyles.status__form} onSubmit={handleSubmit} data-testid={testid}>
           {/* <label className={landingFormStyles.status__form_label}>
           {LANDING_PAGE_SUBTITLE}
         </label> */}

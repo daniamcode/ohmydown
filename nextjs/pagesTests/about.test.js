@@ -1,10 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from '../redux/configureStore';
 import About from '../pages/about';
 // import '@testing-library/jest-dom/extend-expect';
 // import {describe, expect } from '@jest/globals'
+import '@testing-library/jest-dom'
+
 
 describe('About Component', () => {
   let wrapper = null;
@@ -31,6 +33,6 @@ describe('About Component', () => {
 
     render(<About />, { wrapper });
 
-    expect(document.querySelector('.about')).toBeInTheDocument();
+    expect(screen.getByTestId('about')).toBeInTheDocument();
   })
 })

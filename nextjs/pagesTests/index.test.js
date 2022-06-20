@@ -8,6 +8,8 @@ import userEvent from '@testing-library/user-event';
 // import '@testing-library/jest-dom/extend-expect';
 // import {describe, expect } from '@jest/globals'
 import landingPageStyles from "../styles/LandingPage.module.css";
+import '@testing-library/jest-dom' // this is needed in order to use toBeInTheDocument
+
 
 jest.mock('../redux/actions/statusActions');
 jest.mock('./styles/LandingPage.module.css');
@@ -37,7 +39,7 @@ describe('LandingPage Component', () => {
 
     render(<LandingPage />, { wrapper });
     
-    expect(document.querySelector('.status__form')).toBeInTheDocument();
+    expect(screen.getByTestId('status__form')).toBeInTheDocument();
   })
 
   test('Should execute handleSubmit and call showStatus and loadStatus when clicking "Check"', () => {
@@ -48,9 +50,7 @@ describe('LandingPage Component', () => {
 
     render(<LandingPage />, { wrapper });
 
-    const form = document.querySelector('.status__form');
-
-    fireEvent.submit(form);
+    fireEvent.submit(screen.getByTestId('status__form'))
 
     expect(showStatus).toHaveBeenCalled();
     expect(loadStatus).toHaveBeenCalled();

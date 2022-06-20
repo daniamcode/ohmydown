@@ -58,7 +58,7 @@ const Detail = ({id, response}) => {
     <>
       <NextSeo title={title} description={description} />
       <Layout>
-        <main className={detailStyles.detail}>
+        <main className={detailStyles.detail} data-testid='detail'>
           <h1 className={detailStyles.detail__title}>
             Delay of {url} over time:
           </h1>

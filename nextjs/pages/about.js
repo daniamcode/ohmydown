@@ -14,7 +14,7 @@ const About = (props) => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Layout>
-    <main className={aboutStyles.about}>
+    <main className={aboutStyles.about} data-testid='about'>
       <div className={aboutStyles.about__container}>
       <h1>About us</h1>
       <p>Ohmydown is a web service that offers you the opportunity to keep track of any website that you own —or not—, in terms of

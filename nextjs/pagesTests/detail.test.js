@@ -1,10 +1,12 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from '../redux/configureStore';
 import Detail from '../pages/detail/[id]';
 // import '@testing-library/jest-dom/extend-expect';
 // import {describe, expect } from '@jest/globals'
+import '@testing-library/jest-dom'
+
 
 jest.mock('react-google-charts')
 jest.mock('next/router')
@@ -36,7 +38,7 @@ describe('Detail Component', () => {
 
     render(<Detail match={{params: {url: 'yavendras.com'}}}/>, { wrapper });
 
-    expect(document.querySelector('.detail')).toBeInTheDocument();
+    expect(screen.getByTestId('detail')).toBeInTheDocument();
   })
 
 })
